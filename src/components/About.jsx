@@ -9,7 +9,7 @@ const About = () => {
         degree: "Bachelor of Science in Computer Science",
         year: "2021 - 2025",
         description: "Focused on software development with C# and ASP.NET, covering full-stack web application development, database management, and enterprise solutions. Also explored Artificial Intelligence and Machine Learning concepts, including data analytics and automation.",
-        logo: "/src/assets/cpu_logo.png",
+        logo: "logo/cpu_logo.png",
         skills: ["C#", "ASP.NET", "AI/ML", "Python", "Database Management"]
       },
       {
@@ -17,7 +17,7 @@ const About = () => {
         degree: "Associate's Degree in Computer Technology",
         year: "2019 - 2021",
         description: "Completed an intensive program focused on computer hardware servicing, networking, and software development, gaining hands-on experience in troubleshooting, system maintenance, and programming.",
-        logo: "/src/assets/peii_logo.png",
+        logo: "logo/peii_logo.png",
         skills: ["Hardware Servicing", "Networking", "Software Development"]
       }
     ];

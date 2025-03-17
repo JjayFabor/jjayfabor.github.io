@@ -11,7 +11,7 @@ const Experience = () => {
       position: "Intern Software Developer",
       period: "Jan 2025 - Present",
       description: "Working primarily as a backend developer using Laravel, focusing on building and optimizing APIs, database management, and system integrations. Assisting in implementing additional features and enhancements for the company's portal. Collaborating with the team to ensure seamless functionality and performance improvements.",
-      logo: "/src/assets/callbox_logo.jpg"
+      logo: "logo/callbox_logo.jpg"
     },
   ];
 

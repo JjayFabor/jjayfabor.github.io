@@ -20,7 +20,7 @@ const Bio = () => {
           </div>
           <div className="flex-shrink-0 order-first md:order-last">
             <img
-              src="/src/assets/profile.jpg"
+              src="logo/profile.jpg"
               alt="Profile"
               className="w-32 h-32 md:w-48 md:h-48 rounded-lg object-cover"
             />
