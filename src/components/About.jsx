@@ -13,7 +13,7 @@ const About = () => {
         skills: ["C#", "ASP.NET", "AI/ML", "Python", "Database Management"]
       },
       {
-        school: "College Name",
+        school: "Professional Electronics Institute, Inc.",
         degree: "Associate's Degree in Computer Technology",
         year: "2019 - 2021",
         description: "Completed an intensive program focused on computer hardware servicing, networking, and software development, gaining hands-on experience in troubleshooting, system maintenance, and programming.",
