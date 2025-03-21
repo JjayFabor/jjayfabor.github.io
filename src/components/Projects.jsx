@@ -27,7 +27,7 @@ const Projects = () => {
     {
       id: 3,
       title: "SwiftBidder",
-      description: "RESTful API for e-commerce applications with authentication and payment processing.",
+      description: "A Laravel Realtime Auction System.",
       image: "projects/swiftbidder.png",
       techStack: ["Laravel", "PHP", "React", "InertiaJS", "TailwindCSS", "MySQL"],
       status: "ongoing",
