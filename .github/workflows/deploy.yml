@@ -27,6 +27,11 @@ jobs:
       - name: 🛠️ Build project
         run: npm run build
 
+      - name: ⚙️ Configure Git User
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+
       - name: 🚀 Deploy to GitHub Pages
         run: npm run deploy
         env:
