@@ -15,6 +15,8 @@ const techColors = {
     Laravel: "bg-red-500/30 text-red-100",
     Python: "bg-blue-600/30 text-blue-100",
     Flask: "bg-gray-400/30 text-gray-100",
+    Postman: "bg-orange-600/20 text-orange-400",
+    "RESTful API": "bg-purple-600/20 text-purple-400",
     Node: "bg-green-500/30 text-green-100",
     Express: "bg-gray-500/30 text-gray-100",
     Dart: "bg-blue-700/30 text-blue-100",

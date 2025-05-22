@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
 import techColors from "../constants/techColors";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 
 const ProjectCard = ({ project }) => {
   const getTechColor = (tech) => techColors[tech] || "bg-white/20 text-white";
@@ -43,7 +45,20 @@ const ProjectCard = ({ project }) => {
             ))}
           </div>
 
-          {/* GitHub Link */}
+          {project.preview && (
+            <a
+                href={project.preview}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center mb-2"
+              >
+                <Button variant="default" size="sm">
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Preview
+                </Button>
+              </a>
+          )}
+
           <a
             href={project.link}
             target="_blank"

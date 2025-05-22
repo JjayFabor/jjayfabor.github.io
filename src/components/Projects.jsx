@@ -35,15 +35,26 @@ const Projects = () => {
       link: "https://github.com/JjayFabor/swift-bidder"
     },
     {
-        id: 4,
-        title: "BridgeAI",
-        description: "An educational platform for personalized learning.",
-        image: "projects/bridgeAI.png",
-        techStack: ["Python", "GeminiAPI", "Flutter", "Dart", "Flask"],
-        status: "ongoing",
-        category: "Mobile Application",
-        link: "https://github.com/JjayFabor/bridgeAI"
-      },
+      id: 4,
+      title: "DevTrack API",
+      description: "A personal productivity API for developers to manage tasks, log learning sessions, track progress on side projects.",
+      image: "projects/default.png",
+      techStack: ["Laravel", "PHP", "Laravel Scribe", "Postman", "RESTful API"],
+      status: "ongoing",
+      category: "Backend API",
+      preview: "https://devtrack-api-production.up.railway.app/docs",
+      link: "https://github.com/JjayFabor/devtrack-api"
+    },
+    {
+      id: 5,
+      title: "BridgeAI",
+      description: "An educational platform for personalized learning.",
+      image: "projects/bridgeAI.png",
+      techStack: ["Python", "GeminiAPI", "Flutter", "Dart", "Flask"],
+      status: "ongoing",
+      category: "Mobile Application",
+      link: "https://github.com/JjayFabor/bridgeAI"
+    },
   ];
 
   const [selectedCategory, setSelectedCategory] = useState("All");
