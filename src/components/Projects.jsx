@@ -1,11 +1,9 @@
-import { useState, useRef, useCallback } from "react";
+import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 
 const Projects = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const sliderRef = useRef(null);
 
-  const projects = [
+  const projectsData = [
     {
       id: 1,
       title: "Portfolio Website",
@@ -13,6 +11,7 @@ const Projects = () => {
       image: "projects/portfolio.png",
       techStack: ["React", "TailwindCSS", "Vite", "Shadcn/ui"],
       status: "completed",
+      category: "Full-Stack Application",
       link: "https://github.com/JjayFabor/portfolio"
     },
     {
@@ -22,6 +21,7 @@ const Projects = () => {
       image: "projects/lettuce-watch.png",
       techStack: ["Python", "Flask", "Machine Learning (ML)", "SQLite", "Arduino", "HTML", "CSS", "JavaScript"],
       status: "completed",
+      category: "Full-Stack Application",
       link: "https://github.com/JjayFabor/LettuceRealTimeMonitoringSystem"
     },
     {
@@ -31,6 +31,7 @@ const Projects = () => {
       image: "projects/swiftbidder.png",
       techStack: ["Laravel", "PHP", "React", "InertiaJS", "TailwindCSS", "MySQL"],
       status: "ongoing",
+      category: "Full-Stack Application",
       link: "https://github.com/JjayFabor/swift-bidder"
     },
     {
@@ -40,75 +41,57 @@ const Projects = () => {
         image: "projects/bridgeAI.png",
         techStack: ["Python", "GeminiAPI", "Flutter", "Dart", "Flask"],
         status: "ongoing",
+        category: "Mobile Application",
         link: "https://github.com/JjayFabor/bridgeAI"
       },
   ];
 
-  // Next slide function
-  const nextSlide = useCallback(() => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % projects.length);
-  }, [projects.length]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const categories = ["All", ...new Set(projectsData.map((p) => p.category))];
 
-  // Previous slide function
-  const prevSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
-  };
+  const filteredProjects = selectedCategory === "All"
+    ? projectsData
+    : projectsData.filter((project) => project.category === selectedCategory);
 
-  const goToSlide = (index) => setActiveIndex(index);
 
   return (
     <section id="projects" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl font-bold mb-10 text-center">Projects</h2>
 
-        <div className="relative">
+        <div className="flex justify-center gap-2 mb-10 flex-wrap">
+          {categories.map((category) => (
             <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-all"
-                aria-label="Previous project"
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors
+                ${selectedCategory === category
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }`}
             >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-                </svg>
+              {category}
             </button>
-          {/* Slider */}
-          <div ref={sliderRef} className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-            >
-              {projects.map((project) => (
+          ))}
+        </div>
+
+        {filteredProjects.length > 0 ? (
+          <div className="overflow-x-auto pb-4">
+            <div className="flex gap-6">
+              {filteredProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           </div>
+        ) : (
+          <p className="text-center text-gray-500">No projects found in this category.</p>
+        )}
 
-          {/* Next Button */}
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-all"
-            aria-label="Next project"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-
-          {/* Dots */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  activeIndex === index ? "bg-blue-500 w-6" : "bg-gray-300"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+        {filteredProjects.length > 0 && (
+          <div className="text-center mt-4 text-sm text-gray-500">
+            <p>Swipe or scroll to view more projects &rarr;</p>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
