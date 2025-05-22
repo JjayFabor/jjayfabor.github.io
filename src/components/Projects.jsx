@@ -89,7 +89,7 @@ const Projects = () => {
 
         {filteredProjects.length > 0 && (
           <div className="text-center mt-4 text-sm text-gray-500">
-            <p>Swipe or scroll to view more projects &rarr;</p>
+            <p>Swipe to view more projects &rarr;</p>
           </div>
         )}
       </div>
