@@ -11,7 +11,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: ⬇️ Checkout code
         uses: actions/checkout@v3
@@ -29,3 +29,5 @@ jobs:
 
       - name: 🚀 Deploy to GitHub Pages
         run: npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
