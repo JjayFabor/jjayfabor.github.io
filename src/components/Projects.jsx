@@ -42,7 +42,7 @@ const Projects = () => {
       techStack: ["Laravel", "PHP", "Laravel Scribe", "Postman", "RESTful API"],
       status: "ongoing",
       category: "Backend API",
-      preview: "https://devtrack-api-production.up.railway.app/docs",
+      preview: "https://devtrack-api-production.up.railway.app",
       link: "https://github.com/JjayFabor/devtrack-api"
     },
     {
