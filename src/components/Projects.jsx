@@ -38,7 +38,7 @@ const Projects = () => {
       id: 4,
       title: "DevTrack API",
       description: "A personal productivity API for developers to manage tasks, log learning sessions, track progress on side projects.",
-      image: "projects/default.png",
+      image: "projects/devtrack-api.png",
       techStack: ["Laravel", "PHP", "Laravel Scribe", "Postman", "RESTful API"],
       status: "ongoing",
       category: "Backend API",
