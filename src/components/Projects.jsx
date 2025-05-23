@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 
 const Projects = () => {
@@ -64,6 +64,57 @@ const Projects = () => {
     ? projectsData
     : projectsData.filter((project) => project.category === selectedCategory);
 
+  const sliderRef = useRef(null);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    const mouseDownHandler = (e) => {
+      isDown = true;
+      slider.classList.add('cursor-grabbing');
+      slider.classList.remove('cursor-grab');
+      slider.classList.add('select-none');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    };
+
+    const mouseMoveHandler = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      slider.scrollLeft = scrollLeft - walk;
+    };
+
+    const mouseUpHandler = () => {
+      if (!isDown) return;
+      isDown = false;
+      slider.classList.remove('cursor-grabbing');
+      slider.classList.add('cursor-grab');
+      slider.classList.remove('select-none');
+    };
+
+    slider.addEventListener('mousedown', mouseDownHandler);
+    window.addEventListener('mousemove', mouseMoveHandler);
+    window.addEventListener('mouseup', mouseUpHandler);
+
+    return () => {
+      slider.removeEventListener('mousedown', mouseDownHandler);
+      window.removeEventListener('mousemove', mouseMoveHandler);
+      window.removeEventListener('mouseup', mouseUpHandler);
+
+      if (slider) {
+        slider.classList.remove('cursor-grabbing');
+        slider.classList.add('cursor-grab');
+        slider.classList.remove('select-none');
+      }
+    };
+  }, []);
 
   return (
     <section id="projects" className="py-20">
@@ -87,7 +138,7 @@ const Projects = () => {
         </div>
 
         {filteredProjects.length > 0 ? (
-          <div className="overflow-x-auto pb-4">
+          <div ref={sliderRef} className="overflow-x-auto pb-4 cursor-grab">
             <div className="flex gap-6">
               {filteredProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
@@ -99,8 +150,16 @@ const Projects = () => {
         )}
 
         {filteredProjects.length > 0 && (
-          <div className="text-center mt-4 text-sm text-gray-500">
+          <div className="text-center mt-4 text-sm text-gray-500 flex items-center justify-center gap-2">
             <p>Swipe to view more projects &rarr;</p>
+            <div className="relative group">
+              <span className="cursor-help text-gray-400 hover:text-gray-600">
+                (?)
+              </span>
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max max-w-xs p-2 text-xs text-white bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                Using an external mouse? Hold left-click and drag to swipe.
+              </div>
+            </div>
           </div>
         )}
       </div>
