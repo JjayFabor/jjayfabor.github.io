@@ -1,21 +1,19 @@
 import { useState } from 'react';
 
 const Experience = () => {
-  // State to track which experience item is expanded
-  const [expandedIndex, setExpandedIndex] = useState(null); // Default to first item expanded
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
-  // Experience data with company logos
   const experiences = [
     {
       company: "Callbox Iloilo",
       position: "Intern Software Developer",
       period: "Feb 2025 - May 2025",
       description: "Working primarily as a backend developer using Laravel, focusing on building and optimizing APIs, database management, and system integrations. Assisting in implementing additional features and enhancements for the company's portal. Collaborating with the team to ensure seamless functionality and performance improvements.",
-      logo: "logo/callbox_logo.jpg"
+      logo: "logo/callbox_logo.jpg",
+      skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git"]
     },
   ];
 
-  // Toggle function to expand/collapse experience item
   const toggleExpand = (index) => {
     if (expandedIndex === index) {
       setExpandedIndex(null);
@@ -25,44 +23,43 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <section id="experience" className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="p-6 max-w-4xl w-full mx-auto">
-        <h2 className="text-3xl font-bold mb-10 text-center">Experience</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center text-gray-900 dark:text-white">Experience</h2>
 
         <div className="space-y-6">
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className={`bg-white rounded-xl border border-gray-100 overflow-hidden transition-all duration-300 ease-in-out
+              className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 overflow-hidden transition-all duration-300 ease-in-out
                 ${expandedIndex === index
-                  ? 'shadow-[0_10px_40px_-15px_rgba(0,0,0,0.2)]'
-                  : 'shadow-[0_5px_15px_-3px_rgba(0,0,0,0.1)]'}
-                hover:shadow-[0_15px_50px_-12px_rgba(0,0,0,0.25)]`}
+                  ? 'shadow-[0_10px_40px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.4)]'
+                  : 'shadow-[0_5px_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_5px_15px_-3px_rgba(0,0,0,0.3)]'}
+                hover:shadow-[0_15px_50px_-12px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_15px_50px_-12px_rgba(0,0,0,0.5)]`}
               onClick={() => toggleExpand(index)}
             >
-              {/* Header - Always visible */}
               <div className="p-5 cursor-pointer flex items-center gap-5">
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-lg overflow-hidden shadow-md border border-gray-100">
+                  <div className="w-16 h-16 rounded-lg overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
                     <img
                       src={exp.logo}
                       alt={`${exp.company} logo`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-1"
                     />
                   </div>
                 </div>
                 <div className="flex-grow">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                    <h3 className="text-xl font-semibold text-gray-800">{exp.position}</h3>
-                    <span className="text-blue-600 font-medium text-sm md:text-base bg-blue-50 px-3 py-1 rounded-full">
+                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{exp.position}</h3>
+                    <span className="text-blue-600 dark:text-blue-400 font-medium text-sm md:text-base bg-blue-50 dark:bg-blue-900/50 px-3 py-1 rounded-full">
                       {exp.period}
                     </span>
                   </div>
-                  <p className="text-gray-600 mt-1">{exp.company}</p>
+                  <p className="text-gray-600 dark:text-gray-400 mt-1">{exp.company}</p>
                 </div>
                 <div className="flex-shrink-0">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors
-                    ${expandedIndex === index ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'}`}>
+                    ${expandedIndex === index ? 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300' : 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400'}`}>
                     <svg
                       className={`w-5 h-5 transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`}
                       fill="none"
@@ -75,23 +72,24 @@ const Experience = () => {
                 </div>
               </div>
 
-              {/* Description - Expandable content */}
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   expandedIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="p-5 pt-0 border-t border-gray-100">
-                  <div className="pl-0 md:pl-21"> {/* Align with content above */}
-                    <p className="text-gray-700 leading-relaxed">{exp.description}</p>
+                <div className="p-5 pt-0 border-t border-gray-100 dark:bordere-gray-700">
+                  <div className="pl-0 md:pl-[calc(4rem+1.25rem)]">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{exp.description}</p>
 
-                    {/* Optional: Add skills or technologies used */}
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">Laravel</span>
-                      <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">PHP</span>
-                      <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">MySQL</span>
-                      <span className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">Bootstrap</span>
-                    </div>
+                    {exp.skills && exp.skills.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {exp.skills.map((skill, skillIndex) => (
+                          <span key={skillIndex} className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs px-3 py-1 rounded-full">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

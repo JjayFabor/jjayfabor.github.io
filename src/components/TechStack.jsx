@@ -168,15 +168,12 @@ const TechStack = () => {
   }, []);
 
   return (
-    <section className="py-10 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <section className="py-10 bg-gray-50 dark:bg-gray-900">
       <h2 className="text-center text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
         My Tech Stack
       </h2>
 
       <div className="relative w-full overflow-hidden py-4">
-        {/* Gradient fade effects */}
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-50 dark:from-gray-800 to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-50 dark:from-gray-800 to-transparent z-10" />
 
         {/* Frontend Tools */}
         <div

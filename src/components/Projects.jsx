@@ -117,9 +117,9 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-10 text-center">Projects</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center text-gray-900 dark:text-white">Projects</h2>
 
         <div className="flex justify-center gap-2 mb-10 flex-wrap">
           {categories.map((category) => (

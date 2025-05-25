@@ -8,7 +8,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div className="w-[360px] flex-shrink-0 px-4">
-      <Card className="h-[550px] overflow-hidden relative group">
+      <Card className="h-[550px] overflow-hidden relative group dark:border-gray-700">
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <img
