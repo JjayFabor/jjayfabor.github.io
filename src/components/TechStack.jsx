@@ -168,8 +168,8 @@ const TechStack = () => {
   }, []);
 
   return (
-    <section className="py-10 bg-gray-50 dark:bg-gray-900">
-      <h2 className="text-center text-2xl font-bold mb-8 text-gray-800 dark:text-gray-100">
+    <section className="py-4 bg-gray-50 dark:bg-gray-900">
+      <h2 className="text-center text-4xl font-bold mb-8 text-gray-800 dark:text-gray-100">
         My Tech Stack
       </h2>
 

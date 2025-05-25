@@ -49,9 +49,9 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative  bg-gray-50 dark:bg-gray-900">
+    <section id="contact" className="pt-4 pb-16 relative  bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-10 text-center text-gray-900 dark:text-white">Get In Touch</h2>
+        <h2 className="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">Get In Touch</h2>
         <p className="text-gray-600 dark:text-gray-100 text-center mb-12">
           Have a question or want to work together? Fill out the form below and I'll get back to you as soon as possible.
         </p>
