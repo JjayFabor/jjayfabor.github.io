@@ -47,6 +47,16 @@ const Projects = () => {
     },
     {
       id: 5,
+      title: "AncestraLink API",
+      description: "A platform to preserve, explore, and share cultural heritage from around the world. The idea is to bring communities together through storytelling and multimedia content. ",
+      image: "projects/ancestralink.png",
+      techStack: ["Python", "FastAPI", "PostgreSQL", "Postman", "RESTful API"],
+      status: "ongoing",
+      category: "Backend API",
+      link: "https://github.com/JjayFabor/ancestralink-backend"
+    },
+    {
+      id: 6,
       title: "BridgeAI",
       description: "An educational platform for personalized learning.",
       image: "projects/bridgeAI.png",
@@ -118,7 +128,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-4 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">Projects</h2>
 
         <div className="flex justify-center gap-2 mb-10 flex-wrap">
@@ -139,7 +149,7 @@ const Projects = () => {
 
         {filteredProjects.length > 0 ? (
           <div ref={sliderRef} className="overflow-x-auto pb-4 cursor-grab">
-            <div className="flex gap-6">
+            <div className="flex gap-4">
               {filteredProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}

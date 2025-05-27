@@ -7,7 +7,7 @@ const ProjectCard = ({ project }) => {
   const getTechColor = (tech) => techColors[tech] || "bg-white/20 text-white";
 
   return (
-    <div className="w-[360px] flex-shrink-0 px-4">
+    <div className="w-[300px] mmd:w-[340px] lg:w-[360px] flex-shrink-0 px-4">
       <Card className="h-[550px] overflow-hidden relative group dark:border-gray-700">
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
