@@ -7,10 +7,18 @@ const Experience = () => {
     {
       company: "Callbox Iloilo",
       position: "Intern Software Developer",
-      period: "Feb 2025 - May 2025",
+      period: "02/2025 - 05/2025",
       description: "Working primarily as a backend developer using Laravel, focusing on building and optimizing APIs, database management, and system integrations. Assisting in implementing additional features and enhancements for the company's portal. Collaborating with the team to ensure seamless functionality and performance improvements.",
       logo: "logo/callbox_logo.jpg",
-      skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git"]
+      skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git", "PhpMyAdmin"]
+    },
+    {
+      company: "Central Philippine University - Thesis Project",
+      position: "Lead Programmer",
+      period: "09/2023 - 12/2023",
+      description: "Designed and implemented a semi-automated hydroponic system with integrated sensors and machine learning to predict optimal lettuce growth days, using Arduino C++, Python (Flask, ML), JavaScript, HTML, and CSS.",
+      logo: "logo/cpu_logo.png",
+      skills: ["Python", "Arduino", "C++", "Flask", "Machine Learning", "Web Development", "Github", "Jupyter Notebook", "SQlite"]
     },
   ];
 
@@ -79,7 +87,7 @@ const Experience = () => {
               >
                 <div className="p-5 pt-0 border-t border-gray-100 dark:bordere-gray-700">
                   <div className="pl-0 md:pl-[calc(4rem+1.25rem)]">
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{exp.description}</p>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3">{exp.description}</p>
 
                     {exp.skills && exp.skills.length > 0 && (
                       <div className="mt-4 flex flex-wrap gap-2">
