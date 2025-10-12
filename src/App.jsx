@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Bio from "./components/Bio";
 import Projects from "./components/Projects";
 import TechStack from "./components/TechStack";
@@ -9,15 +10,18 @@ import { Toaster } from "@/components/ui/sonner";
 import LightSwitch from "./components/LightSwitch";
 
 const App = () => {
+  const [contactOpen, setContactOpen] = useState(false);
+
+
   return (
     <div className="overflow-y-scroll">
       <LightSwitch />
-      <Bio />
+      <Bio onOpenContact={() => setContactOpen(true)} />
       <About />
       <Experience />
       <Projects />
       <TechStack />
-      <Contact />
+      <Contact open={contactOpen} onClose={() => setContactOpen(false)} />
       <Toaster />
       <Footer />
     </div>

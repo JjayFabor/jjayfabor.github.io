@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 import { toast } from "sonner";
 
-const Contact = () => {
+const Contact = ({ open = false, onClose = () => {} }) => {
   const form = useForm({
     defaultValues: {
       name: "",
@@ -17,6 +17,14 @@ const Contact = () => {
   });
 
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === "Escape") onClose();
+    }
+    if (open) document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
 
   const handleSubmit = async (data) => {
     setSubmitting(true);
@@ -31,105 +39,123 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        toast.success("Your message has been sent successfully.", {
-            icon: <CheckCircle className="text-green-500 w-6 h-6 p-2" />,
-        });
+        toast.success("Your message has been sent successfully.");
         form.reset();
+        // close modal after success
+        onClose();
       } else {
         throw new Error("Failed to submit form");
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Oops! Something went wrong. Please try again.", {
-        icon: <CircleX className="text-red-500 w-6 h-6 p-2" />,
-    });
+      toast.error("Oops! Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
   };
 
+  if (!open) return null;
+
   return (
-    <section id="contact" className="pt-4 pb-16 relative  bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">Get In Touch</h2>
-        <p className="text-gray-600 dark:text-gray-100 text-center mb-12">
-          Have a question or want to work together? Fill out the form below and I'll get back to you as soon as possible.
-        </p>
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-50 flex items-center justify-center px-4"
+    >
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-            {/* Name */}
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <Label htmlFor="name">Your Name</Label>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      id="name"
-                      placeholder="John Doe"
-                      required
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+      {/* Modal */}
+      <div className="relative z-10 max-w-2xl w-full bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white">Get in touch</h3>
+          <button
+            aria-label="Close contact form"
+            onClick={onClose}
+            className="bg-transparent text-gray-600 hover:text-gray-900 dark:text-gray-300"
+          >
+            ✕
+          </button>
+        </div>
 
-            {/* Email */}
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <Label htmlFor="email">Your Email</Label>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      id="email"
-                      type="email"
-                      placeholder="johndoe@example.com"
-                      required
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <div className="p-6">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            Have a question or want to work together? Send me a message and I'll get back to you.
+          </p>
 
-            {/* Message */}
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <Label htmlFor="message">Your Message</Label>
-                  <FormControl>
-                    <Textarea
-                      {...field}
-                      id="message"
-                      placeholder="How can I help you?"
-                      rows="5"
-                      required
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label htmlFor="name">Your Name</Label>
+                    <FormControl>
+                      <Input {...field} id="name" placeholder="John Doe" required />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            {/* Submit Button */}
-            <div>
-              <Button type="submit" className="w-full h-12" disabled={submitting}>
-                {submitting ? "Sending..." : "Send Message"}
-              </Button>
-            </div>
-          </form>
-        </Form>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label htmlFor="email">Your Email</Label>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="email"
+                        type="email"
+                        placeholder="johndoe@example.com"
+                        required
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <Label htmlFor="message">Your Message</Label>
+                    <FormControl>
+                      <Textarea
+                        {...field}
+                        id="message"
+                        placeholder="How can I help you?"
+                        rows="5"
+                        required
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="flex items-center gap-3">
+                <Button type="submit" className="h-12" disabled={submitting}>
+                  {submitting ? "Sending..." : "Send Message"}
+                </Button>
+                <Button variant="outline" onClick={onClose} className="h-12">
+                  Cancel
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 

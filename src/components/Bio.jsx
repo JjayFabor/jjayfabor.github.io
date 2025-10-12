@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button";
 
 const ROLES_LIST = ["Software", "Backend"];
 
-const Bio = () => {
+function Bio({ onOpenContact = () => {}}) {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -57,6 +58,11 @@ const Bio = () => {
               className="w-32 h-32 md:w-48 md:h-48 rounded-lg object-cover"
             />
           </div>
+        </div>
+        <div className="mt-6">
+          <Button onClick={onOpenContact} className="px-6 py-2">
+            Get in touch
+          </Button>
         </div>
       </div>
     </section>

@@ -5,6 +5,18 @@ const Experience = () => {
 
   const experiences = [
     {
+      company: "Central Philippine University - Thesis Project",
+      position: "Lead Programmer",
+      period: "09/2023 - 12/2023",
+      description: [
+        "Designed and implemented a semi-automated hydroponic system with integrated sensors",
+        "Developed machine learning models to predict optimal lettuce growth days",
+        "Built the system using Arduino C++, Python (Flask, ML), JavaScript, HTML, and CSS"
+      ],
+      logo: "logo/cpu_logo.png",
+      skills: ["Python", "Arduino", "C++", "Flask", "Machine Learning", "Web Development", "Github", "Jupyter Notebook", "SQlite"]
+    },
+    {
       company: "Callbox Iloilo",
       position: "Intern Software Developer",
       period: "02/2025 - 05/2025",
@@ -16,18 +28,6 @@ const Experience = () => {
       ],
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git", "PhpMyAdmin"]
-    },
-    {
-      company: "Central Philippine University - Thesis Project",
-      position: "Lead Programmer",
-      period: "09/2023 - 12/2023",
-      description: [
-        "Designed and implemented a semi-automated hydroponic system with integrated sensors",
-        "Developed machine learning models to predict optimal lettuce growth days",
-        "Built the system using Arduino C++, Python (Flask, ML), JavaScript, HTML, and CSS"
-      ],
-      logo: "logo/cpu_logo.png",
-      skills: ["Python", "Arduino", "C++", "Flask", "Machine Learning", "Web Development", "Github", "Jupyter Notebook", "SQlite"]
     },
     {
       company: "Smartgenix",
