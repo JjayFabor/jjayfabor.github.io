@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jjayfabor.github.io/sitemap.xml
+Host: jjayfabor.github.io
