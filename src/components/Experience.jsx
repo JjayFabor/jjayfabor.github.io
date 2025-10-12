@@ -8,7 +8,12 @@ const Experience = () => {
       company: "Callbox Iloilo",
       position: "Intern Software Developer",
       period: "02/2025 - 05/2025",
-      description: "Working primarily as a backend developer using Laravel, focusing on building and optimizing APIs, database management, and system integrations. Assisting in implementing additional features and enhancements for the company's portal. Collaborating with the team to ensure seamless functionality and performance improvements.",
+      description: [
+        "Working primarily as a backend developer using Laravel",
+        "Focusing on building and optimizing APIs, database management, and system integrations",
+        "Assisting in implementing additional features and enhancements for the company's portal",
+        "Collaborating with the team to ensure seamless functionality and performance improvements"
+      ],
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git", "PhpMyAdmin"]
     },
@@ -16,9 +21,26 @@ const Experience = () => {
       company: "Central Philippine University - Thesis Project",
       position: "Lead Programmer",
       period: "09/2023 - 12/2023",
-      description: "Designed and implemented a semi-automated hydroponic system with integrated sensors and machine learning to predict optimal lettuce growth days, using Arduino C++, Python (Flask, ML), JavaScript, HTML, and CSS.",
+      description: [
+        "Designed and implemented a semi-automated hydroponic system with integrated sensors",
+        "Developed machine learning models to predict optimal lettuce growth days",
+        "Built the system using Arduino C++, Python (Flask, ML), JavaScript, HTML, and CSS"
+      ],
       logo: "logo/cpu_logo.png",
       skills: ["Python", "Arduino", "C++", "Flask", "Machine Learning", "Web Development", "Github", "Jupyter Notebook", "SQlite"]
+    },
+    {
+      company: "Smartgenix",
+      position: "Full Stack Software Developer",
+      period: "06/2025 - present",
+      description: [
+        "Developed and enhanced a SaaS application by improving frontend design and backend performance",
+        "Strengthened security measures and integrated ElevenLabs AI Voice Agent",
+        "Built APIs for booking appointments seamlessly connected to the AI agent",
+        "Implemented additional features to optimize user experience and system efficiency"
+      ],
+      logo: "logo/smartgenix_logo.png",
+      skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Web Development", "Github", "Twilio"]
     },
   ];
 
@@ -34,7 +56,7 @@ const Experience = () => {
     <section id="experience" className="py-4 bg-gray-50 dark:bg-gray-900">
       <div className="p-6 max-w-4xl w-full mx-auto">
         <h2 className="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">Experience</h2>
-
+        
         <div className="space-y-6">
           {experiences.map((exp, index) => (
             <div
@@ -56,6 +78,7 @@ const Experience = () => {
                     />
                   </div>
                 </div>
+
                 <div className="flex-grow">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-center">
                     <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{exp.position}</h3>
@@ -65,6 +88,7 @@ const Experience = () => {
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 mt-1">{exp.company}</p>
                 </div>
+
                 <div className="flex-shrink-0">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors
                     ${expandedIndex === index ? 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300' : 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400'}`}>
@@ -85,10 +109,13 @@ const Experience = () => {
                   expandedIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="p-5 pt-0 border-t border-gray-100 dark:bordere-gray-700">
+                <div className="p-5 pt-0 border-t border-gray-100 dark:border-gray-700">
                   <div className="pl-0 md:pl-[calc(4rem+1.25rem)]">
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3">{exp.description}</p>
-
+                    <ul className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3 space-y-2 list-disc list-inside">
+                      {exp.description.map((point, i) => (
+                        <li key={i}>{point}</li>
+                      ))}
+                    </ul>
                     {exp.skills && exp.skills.length > 0 && (
                       <div className="mt-4 flex flex-wrap gap-2">
                         {exp.skills.map((skill, skillIndex) => (
