@@ -29,19 +29,19 @@ const Experience = () => {
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git", "PhpMyAdmin"]
     },
-    {
-      company: "Smartgenix",
-      position: "Full Stack Software Developer",
-      period: "06/2025 - present",
-      description: [
-        "Developed and enhanced a SaaS application by improving frontend design and backend performance",
-        "Strengthened security measures and integrated ElevenLabs AI Voice Agent",
-        "Built APIs for booking appointments seamlessly connected to the AI agent",
-        "Implemented additional features to optimize user experience and system efficiency"
-      ],
-      logo: "logo/smartgenix_logo.png",
-      skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Web Development", "Github", "Twilio"]
-    },
+    // {
+    //   company: "Smartgenix",
+    //   position: "Full Stack Software Developer",
+    //   period: "06/2025 - present",
+    //   description: [
+    //     "Developed and enhanced a SaaS application by improving frontend design and backend performance",
+    //     "Strengthened security measures and integrated ElevenLabs AI Voice Agent",
+    //     "Built APIs for booking appointments seamlessly connected to the AI agent",
+    //     "Implemented additional features to optimize user experience and system efficiency"
+    //   ],
+    //   logo: "logo/smartgenix_logo.png",
+    //   skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Web Development", "Github", "Twilio"]
+    // },
   ];
 
   const toggleExpand = (index) => {
