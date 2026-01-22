@@ -48,7 +48,7 @@ function Bio({ onOpenContact = () => {}}) {
             </p>
             <p className="text-gray-700 dark:text-gray-300">
                 Hey there! I'm more of a backend kind of person — I love setting up a clean, well-structured backend,
-                but don't expect the frontend to look too pretty. 😆 As long as it works, right? Let’s keep it functional!
+                but don't expect the frontend to look too pretty. 😆 As long as it works, right? Let's keep it functional!
             </p>
           </div>
           <div className="flex-shrink-0 order-first md:order-last">
@@ -59,9 +59,22 @@ function Bio({ onOpenContact = () => {}}) {
             />
           </div>
         </div>
-        <div className="mt-6">
+        <div className="mt-6 flex gap-3 flex-wrap">
           <Button onClick={onOpenContact} className="px-6 py-2">
             Get in touch
+          </Button>
+          <Button 
+            variant="outline" 
+            className="px-6 py-2"
+            asChild
+          >
+            <a 
+              href="https://docs.google.com/document/d/1VQs6h8NJPEx_FUvsaaHDd1DYauJ5jI1y/edit?usp=sharing&ouid=108342282876658747339&rtpof=true&sd=true"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View CV
+            </a>
           </Button>
         </div>
       </div>
