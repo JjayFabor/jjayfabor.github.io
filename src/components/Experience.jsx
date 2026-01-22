@@ -5,16 +5,31 @@ const Experience = () => {
 
   const experiences = [
     {
-      company: "Central Philippine University - Thesis Project",
-      position: "Lead Programmer",
-      period: "09/2023 - 12/2023",
+      company: "Callbox Iloilo",
+      position: "Junior Software Developer",
+      period: "10/2025 - present",
       description: [
-        "Designed and implemented a semi-automated hydroponic system with integrated sensors",
-        "Developed machine learning models to predict optimal lettuce growth days",
-        "Built the system using Arduino C++, Python (Flask, ML), JavaScript, HTML, and CSS"
+        "Streamline development workflows by creating comprehensive project documentation, enabling faster onboarding and reducing knowledge gaps across teams",
+        "Bridge communication between developers and operations teams to ensure smooth feature rollouts and minimize deployment risks",
+        "Accelerate issue resolution through proactive code debugging and troubleshooting, reducing system downtime and improving overall reliability",
+        "Automate business processes using n8n workflows, saving hours of manual work and increasing operational efficiency",
+        "Enhance customer engagement by implementing VAPI AI Voice Agents for webinar invitations and event reminders, improving attendance rates and user experience"
       ],
-      logo: "logo/cpu_logo.png",
-      skills: ["Python", "Arduino", "C++", "Flask", "Machine Learning", "Web Development", "Github", "Jupyter Notebook", "SQlite"]
+      logo: "logo/callbox_logo.jpg",
+      skills: ["Laravel", "PHP", "MySQL", "n8n", "VAPI AI", "API Development", "Documentation", "Git", "Automation"]
+    },
+    {
+      company: "Smartgenix",
+      position: "Freelance Full Stack Software Developer",
+      period: "06/2025 - present",
+      description: [
+        "Developed and enhanced a SaaS application by improving frontend design and backend performance",
+        "Strengthened security measures and integrated ElevenLabs AI Voice Agent",
+        "Built APIs for booking appointments seamlessly connected to the AI agent",
+        "Implemented additional features to optimize user experience and system efficiency"
+      ],
+      logo: "logo/smartgenix_logo.png",
+      skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Web Development", "Github", "Twilio"]
     },
     {
       company: "Callbox Iloilo",
@@ -29,19 +44,18 @@ const Experience = () => {
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git", "PhpMyAdmin"]
     },
-    // {
-    //   company: "Smartgenix",
-    //   position: "Full Stack Software Developer",
-    //   period: "06/2025 - present",
-    //   description: [
-    //     "Developed and enhanced a SaaS application by improving frontend design and backend performance",
-    //     "Strengthened security measures and integrated ElevenLabs AI Voice Agent",
-    //     "Built APIs for booking appointments seamlessly connected to the AI agent",
-    //     "Implemented additional features to optimize user experience and system efficiency"
-    //   ],
-    //   logo: "logo/smartgenix_logo.png",
-    //   skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Web Development", "Github", "Twilio"]
-    // },
+    {
+      company: "Central Philippine University - Thesis Project",
+      position: "Lead Programmer",
+      period: "09/2023 - 12/2023",
+      description: [
+        "Designed and implemented a semi-automated hydroponic system with integrated sensors",
+        "Developed machine learning models to predict optimal lettuce growth days",
+        "Built the system using Arduino C++, Python (Flask, ML), JavaScript, HTML, and CSS"
+      ],
+      logo: "logo/cpu_logo.png",
+      skills: ["Python", "Arduino", "C++", "Flask", "Machine Learning", "Web Development", "Github", "Jupyter Notebook", "SQlite"]
+    }
   ];
 
   const toggleExpand = (index) => {
