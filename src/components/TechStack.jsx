@@ -66,6 +66,12 @@ const backendTools = [
     height: 50
   },
   {
+    name: "n8n",
+    iconUrl: "https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.svg",
+    width: 80,
+    height: 80
+  },
+  {
     name: "Python",
     iconUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
     width: 80,
