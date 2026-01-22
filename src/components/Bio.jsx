@@ -64,8 +64,7 @@ function Bio({ onOpenContact = () => {}}) {
             Get in touch
           </Button>
           <Button 
-            variant="outline" 
-            className="px-6 py-2"
+            className="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 text-black"
             asChild
           >
             <a 
