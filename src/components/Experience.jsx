@@ -18,19 +18,19 @@ const Experience = () => {
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "n8n", "VAPI AI", "API Development", "Documentation", "Git", "Automation"]
     },
-    {
-      company: "Smartgenix",
-      position: "Freelance Full Stack Software Developer",
-      period: "06/2025 - present",
-      description: [
-        "Developed and enhanced a SaaS application by improving frontend design and backend performance",
-        "Strengthened security measures and integrated ElevenLabs AI Voice Agent",
-        "Built APIs for booking appointments seamlessly connected to the AI agent",
-        "Implemented additional features to optimize user experience and system efficiency"
-      ],
-      logo: "logo/smartgenix_logo.png",
-      skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Web Development", "Github", "Twilio"]
-    },
+    // {
+    //   company: "Smartgenix (Client)",
+    //   position: "Freelance Full Stack Software Developer",
+    //   period: "06/2025 - present",
+    //   description: [
+    //     "Developed and enhanced a SaaS application by improving frontend design and backend performance",
+    //     "Strengthened security measures and integrated ElevenLabs AI Voice Agent",
+    //     "Built APIs for booking appointments seamlessly connected to the AI agent",
+    //     "Implemented additional features to optimize user experience and system efficiency"
+    //   ],
+    //   logo: "logo/smartgenix_logo.png",
+    //   skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Web Development", "Github", "Twilio"]
+    // },
     {
       company: "Callbox Iloilo",
       position: "Intern Software Developer",
