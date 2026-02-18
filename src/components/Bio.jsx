@@ -76,9 +76,6 @@ function Bio({ onOpenContact = () => {}}) {
               View CV
             </a>
           </Button>
-          <Button variant="outline" className="px-6 py-2" asChild>
-            <Link to="/blog">Weekly notes</Link>
-          </Button>
         </div>
       </div>
     </section>
