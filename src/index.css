@@ -219,6 +219,16 @@ button:focus-visible {
 
 
 
+/* Newspaper drop cap for first paragraph */
+.chronicle-drop-cap::first-letter {
+  float: left;
+  font-family: "Playfair Display", "Libre Baskerville", Georgia, serif;
+  font-size: 3.2em;
+  line-height: 1;
+  padding-right: 0.08em;
+  padding-top: 0.05em;
+}
+
 @layer base {
   * {
     @apply border-border;

@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import Dock from "../Dock/Dock";
+import { Home, Newspaper } from "lucide-react";
 import {
   VscGithub,
   VscMail,
@@ -6,9 +8,19 @@ import {
 import { FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
+  const navigate = useNavigate();
 
-  // Social links as dock items
-  const socialDockItems = [
+  const dockItems = [
+    {
+      icon: <Home size={20} className="text-white" />,
+      label: "Home",
+      onClick: () => navigate("/"),
+    },
+    {
+      icon: <Newspaper size={20} className="text-white" />,
+      label: "Blog",
+      onClick: () => navigate("/blog"),
+    },
     {
       icon: <VscGithub size={20} className="text-white" />,
       label: 'GitHub',
@@ -29,7 +41,7 @@ const Footer = () => {
   return (
     <div className="fixed bottom-0 left-0 w-full z-50 flex flex-col items-center">
       <Dock
-        items={socialDockItems}
+        items={dockItems}
         panelHeight={58}
         baseItemSize={38}
         magnification={60}

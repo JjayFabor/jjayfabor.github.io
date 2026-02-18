@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const ROLES_LIST = ["Software", "Backend"];
@@ -74,6 +75,9 @@ function Bio({ onOpenContact = () => {}}) {
             >
               View CV
             </a>
+          </Button>
+          <Button variant="outline" className="px-6 py-2" asChild>
+            <Link to="/blog">Weekly notes</Link>
           </Button>
         </div>
       </div>

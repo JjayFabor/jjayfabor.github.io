@@ -1,0 +1,75 @@
+{
+  "slug": "week-01",
+  "dateRange": "May 3-10, 2025",
+  "volume": 1,
+  "issue": 1,
+  "frontPageStory": {
+    "headline": "Major Milestone Achieved at Work",
+    "bylineDate": "Monday, May 5, 2025",
+    "body": [
+      "In what could be described as a pivotal moment in our professional journey, this week marked the successful completion of the quarterly project that has consumed much of our resources over the past three months. The presentation to senior management on Tuesday went exceptionally well, with key stakeholders expressing satisfaction with the delivered results.",
+      "This achievement represents not just a professional victory, but a testament to the dedication and late nights invested in ensuring quality deliverables. The recognition received from the department head serves as validation of our strategic approach to problem-solving."
+    ]
+  },
+  "engineeringDesk": {
+    "title": "Engineering Desk",
+    "subtitle": "Technical Progress",
+    "bullets": [
+      "Deployed Laravel app to production via GitHub Actions → cPanel SSH",
+      "Fixed MySQL 1130 host permission error",
+      "Implemented branch protection to prevent main deploy override",
+      "Integrated webhook attachment handling in n8n",
+      "Optimized Vite dependency conflicts"
+    ]
+  },
+  "technicalDispatch": {
+    "title": "Resolving MySQL Host 127.0.0.1 Access Denied in cPanel",
+    "sections": [
+      { "label": "The problem", "body": "Laravel on cPanel returned 'Host 127.0.0.1 is not allowed to connect' when the app tried to reach MySQL." },
+      { "label": "Root cause", "body": "MySQL user was bound to a specific host; cPanel's PHP/CLI often resolves as 127.0.0.1, which wasn't granted." },
+      { "label": "Fix", "body": "Created a MySQL user with host '%' (or 'localhost' / '127.0.0.1' as needed) and granted privileges. Updated .env DB_HOST to match." },
+      { "label": "Lessons learned", "body": "Always align DB_USER host with how the app connects; Remote MySQL in cPanel shows allowed hosts." },
+      { "label": "Preventative strategy", "body": "Document DB setup in the project README and use the same credentials in staging so this is caught before production." }
+    ]
+  },
+  "highlights": {
+    "title": "This Week's Highlights",
+    "items": [
+      { "category": "Accomplishment", "emoji": "🚀", "text": "Migrated dev environment safely" },
+      { "category": "Problem Solved", "emoji": "🧩", "text": "Git checkout log file conflict" },
+      { "category": "Fitness", "emoji": "🏋", "text": "4/5 gym sessions completed" },
+      { "category": "Learning", "emoji": "📚", "text": "Improved Git branch strategy" },
+      { "category": "Experiment", "emoji": "🧪", "text": "Tested Cursor for code refactoring" }
+    ]
+  },
+  "personalSection": {
+    "title": "Personal Section",
+    "subtitle": "Human Layer",
+    "entries": [
+      { "topic": "Fitness", "body": "4/5 gym sessions; morning routine holding." },
+      { "topic": "Family", "body": "Game night Wednesday; Catan again." },
+      { "topic": "Learning", "body": "Halfway through the Git deep-dive course." },
+      { "topic": "Mental clarity", "body": "One screen-free evening helped reset." }
+    ]
+  },
+  "metrics": {
+    "title": "Metrics",
+    "items": [
+      { "label": "Commits this week", "value": "24" },
+      { "label": "Bugs fixed", "value": "7" },
+      { "label": "Features shipped", "value": "3" },
+      { "label": "Workout sessions", "value": "5" },
+      { "label": "Hours deep work", "value": "18" }
+    ]
+  },
+  "lookingAhead": {
+    "title": "Looking Ahead",
+    "body": [
+      "Next week: ship the reporting feature and run the first deploy from the new GitHub Actions workflow. Improving: branch naming convention and PR templates. Risk: certificate renewal on staging. Skill focus: cPanel automation and n8n error handling."
+    ],
+    "pullQuote": {
+      "quote": "Each week builds upon the last, creating a tapestry of experiences that define our year.",
+      "attribution": "Weekly Reflection"
+    }
+  }
+}

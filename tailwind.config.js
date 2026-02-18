@@ -9,6 +9,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        newspaper: ['"Libre Baskerville"', "Georgia", "Cambria", "serif"],
+        newspaperHeadline: ['"Playfair Display"', "Libre Baskerville", "Georgia", "serif"],
+        newspaperBody: ['"Source Serif 4"', "Georgia", "serif"],
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
