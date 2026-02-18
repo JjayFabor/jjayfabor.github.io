@@ -1,6 +1,6 @@
 {
   "slug": "week-01",
-  "dateRange": "May 3-10, 2025",
+  "dateRange": "Feb 9-13, 2026",
   "volume": 1,
   "issue": 1,
   "frontPageStory": {
@@ -25,41 +25,103 @@
   "technicalDispatch": {
     "title": "Resolving MySQL Host 127.0.0.1 Access Denied in cPanel",
     "sections": [
-      { "label": "The problem", "body": "Laravel on cPanel returned 'Host 127.0.0.1 is not allowed to connect' when the app tried to reach MySQL." },
-      { "label": "Root cause", "body": "MySQL user was bound to a specific host; cPanel's PHP/CLI often resolves as 127.0.0.1, which wasn't granted." },
-      { "label": "Fix", "body": "Created a MySQL user with host '%' (or 'localhost' / '127.0.0.1' as needed) and granted privileges. Updated .env DB_HOST to match." },
-      { "label": "Lessons learned", "body": "Always align DB_USER host with how the app connects; Remote MySQL in cPanel shows allowed hosts." },
-      { "label": "Preventative strategy", "body": "Document DB setup in the project README and use the same credentials in staging so this is caught before production." }
+      {
+        "label": "The problem",
+        "body": "Laravel on cPanel returned 'Host 127.0.0.1 is not allowed to connect' when the app tried to reach MySQL."
+      },
+      {
+        "label": "Root cause",
+        "body": "MySQL user was bound to a specific host; cPanel's PHP/CLI often resolves as 127.0.0.1, which wasn't granted."
+      },
+      {
+        "label": "Fix",
+        "body": "Created a MySQL user with host '%' (or 'localhost' / '127.0.0.1' as needed) and granted privileges. Updated .env DB_HOST to match."
+      },
+      {
+        "label": "Lessons learned",
+        "body": "Always align DB_USER host with how the app connects; Remote MySQL in cPanel shows allowed hosts."
+      },
+      {
+        "label": "Preventative strategy",
+        "body": "Document DB setup in the project README and use the same credentials in staging so this is caught before production."
+      }
     ]
   },
   "highlights": {
     "title": "This Week's Highlights",
     "items": [
-      { "category": "Accomplishment", "emoji": "🚀", "text": "Migrated dev environment safely" },
-      { "category": "Problem Solved", "emoji": "🧩", "text": "Git checkout log file conflict" },
-      { "category": "Fitness", "emoji": "🏋", "text": "4/5 gym sessions completed" },
-      { "category": "Learning", "emoji": "📚", "text": "Improved Git branch strategy" },
-      { "category": "Experiment", "emoji": "🧪", "text": "Tested Cursor for code refactoring" }
+      {
+        "category": "Accomplishment",
+        "emoji": "🚀",
+        "text": "Migrated dev environment safely"
+      },
+      {
+        "category": "Problem Solved",
+        "emoji": "🧩",
+        "text": "Git checkout log file conflict"
+      },
+      {
+        "category": "Fitness",
+        "emoji": "🏋",
+        "text": "4/5 gym sessions completed"
+      },
+      {
+        "category": "Learning",
+        "emoji": "📚",
+        "text": "Improved Git branch strategy"
+      },
+      {
+        "category": "Experiment",
+        "emoji": "🧪",
+        "text": "Tested Cursor for code refactoring"
+      }
     ]
   },
   "personalSection": {
     "title": "Personal Section",
     "subtitle": "Human Layer",
     "entries": [
-      { "topic": "Fitness", "body": "4/5 gym sessions; morning routine holding." },
-      { "topic": "Family", "body": "Game night Wednesday; Catan again." },
-      { "topic": "Learning", "body": "Halfway through the Git deep-dive course." },
-      { "topic": "Mental clarity", "body": "One screen-free evening helped reset." }
+      {
+        "topic": "Fitness",
+        "body": "4/5 gym sessions; morning routine holding."
+      },
+      {
+        "topic": "Family",
+        "body": "Game night Wednesday; Catan again."
+      },
+      {
+        "topic": "Learning",
+        "body": "Halfway through the Git deep-dive course."
+      },
+      {
+        "topic": "Mental clarity",
+        "body": "One screen-free evening helped reset."
+      }
     ]
   },
   "metrics": {
     "title": "Metrics",
     "items": [
-      { "label": "Commits this week", "value": "24" },
-      { "label": "Bugs fixed", "value": "7" },
-      { "label": "Features shipped", "value": "3" },
-      { "label": "Workout sessions", "value": "5" },
-      { "label": "Hours deep work", "value": "18" }
+      {
+        "label": "Commits this week",
+        "value": "24"
+      },
+      {
+        "label": "Bugs fixed",
+        "value": "7"
+      },
+      {
+        "label": "Features shipped",
+        "value": "3"
+      },
+      {
+        "label": "Workout sessions",
+        "value": "5"
+      },
+      {
+        "label": "Hours deep work",
+        "value": "18"
+      }
     ]
   },
   "lookingAhead": {
