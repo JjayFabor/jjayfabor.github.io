@@ -65,6 +65,16 @@ const Projects = () => {
       category: "Mobile Application",
       link: "https://github.com/JjayFabor/bridgeAI"
     },
+    {
+      id: 7,
+      title: "Overload Workout Tracker",
+      description: "A PWA for tracking science-based workout programs with progress analytics, rest timer, and offline support.",
+      image: "projects/overload-workout-tracker.png",
+      techStack: ["Next.js", "TypeScript", "TailwindCSS", "Supabase", "SWR", "Recharts"],
+      status: "ongoing",
+      category: "Full-Stack Application",
+      link: "https://github.com/JjayFabor/overload-workout-tracker"
+    },
   ];
 
   const [selectedCategory, setSelectedCategory] = useState("All");

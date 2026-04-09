@@ -33,6 +33,11 @@ const techColors = {
     Arduino: "bg-teal-600/30 text-teal-100",
     "Machine Learning (ML)": "bg-yellow-600/30 text-yellow-100",
     GeminiAPI: "bg-pink-500/30 text-pink-100",
+    "Next.js": "bg-gray-800/30 text-gray-100",
+    TypeScript: "bg-blue-500/30 text-blue-100",
+    Supabase: "bg-emerald-500/30 text-emerald-100",
+    SWR: "bg-gray-500/30 text-gray-100",
+    Recharts: "bg-violet-500/30 text-violet-100",
   };
 
   export default techColors;

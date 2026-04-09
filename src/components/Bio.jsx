@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const ROLES_LIST = ["Software", "Backend"];
 
-function Bio({ onOpenContact = () => {}}) {
+function Bio({ onOpenContact = () => {} }) {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState('');
+  const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
   const pauseDuration = 2000;
@@ -24,7 +24,7 @@ function Bio({ onOpenContact = () => {}}) {
 
       if (!isDeleting && displayedText === currentRole) {
         setTimeout(() => setIsDeleting(true), pauseDuration);
-      } else if (isDeleting && displayedText === '') {
+      } else if (isDeleting && displayedText === "") {
         setIsDeleting(false);
         setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % ROLES_LIST.length);
       }
@@ -35,7 +35,10 @@ function Bio({ onOpenContact = () => {}}) {
   }, [displayedText, isDeleting, currentRoleIndex, typingSpeed, pauseDuration]);
 
   return (
-    <section id="bio" className="py-4 pb-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+    <section
+      id="bio"
+      className="py-4 pb-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900"
+    >
       <div className="p-6 max-w-4xl w-full mx-auto shadow-none bg-transparent">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1 text-left md:pr-4">
@@ -48,8 +51,10 @@ function Bio({ onOpenContact = () => {}}) {
               <span className="animate-pulse"> Developer</span>
             </p>
             <p className="text-gray-700 dark:text-gray-300">
-                Hey there! I'm more of a backend kind of person — I love setting up a clean, well-structured backend,
-                but don't expect the frontend to look too pretty. 😆 As long as it works, right? Let's keep it functional!
+              Hey there! I'm more of a backend kind of person — I love setting
+              up a clean, well-structured backend, but don't expect the frontend
+              to look too pretty. 😆 As long as it works, right? Let's keep it
+              functional!
             </p>
           </div>
           <div className="flex-shrink-0 order-first md:order-last">
@@ -64,12 +69,12 @@ function Bio({ onOpenContact = () => {}}) {
           <Button onClick={onOpenContact} className="px-6 py-2">
             Get in touch
           </Button>
-          <Button 
+          <Button
             className="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 text-black"
             asChild
           >
-            <a 
-              href="https://docs.google.com/document/d/1VQs6h8NJPEx_FUvsaaHDd1DYauJ5jI1y/edit?usp=sharing&ouid=108342282876658747339&rtpof=true&sd=true"
+            <a
+              href="/JaylordVhanFabor_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -80,6 +85,6 @@ function Bio({ onOpenContact = () => {}}) {
       </div>
     </section>
   );
-};
+}
 
 export default Bio;
