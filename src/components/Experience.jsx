@@ -5,44 +5,44 @@ const Experience = () => {
 
   const experiences = [
     {
-      company: "Callbox Iloilo",
+      company: "Callbox Inc — Iloilo City, PH",
       position: "Junior Software Developer",
       period: "10/2025 - present",
       description: [
-        "Streamline development workflows by creating comprehensive project documentation, enabling faster onboarding and reducing knowledge gaps across teams",
-        "Bridge communication between developers and operations teams to ensure smooth feature rollouts and minimize deployment risks",
-        "Accelerate issue resolution through proactive code debugging and troubleshooting, reducing system downtime and improving overall reliability",
-        "Automate business processes using n8n workflows, saving hours of manual work and increasing operational efficiency",
-        "Enhance customer engagement by implementing VAPI AI Voice Agents for webinar invitations and event reminders, improving attendance rates and user experience"
+        "Designed and developed AI Voice Agents using Vapi, fine-tuning responses for consistency and human-like conversational quality",
+        "Leveraged AI coding tools, particularly Claude and Claude Code, to accelerate development workflows and improve code quality",
+        "Utilized OpenClaw's multi-agent framework to build applications faster, creating custom skills to maximize token efficiency and reduce repetitive prompting overhead",
+        "Applied AI-assisted development practices within Callbox projects, resulting in faster feature delivery and reduced development overhead"
       ],
       logo: "logo/callbox_logo.jpg",
-      skills: ["Laravel", "PHP", "MySQL", "n8n", "VAPI AI", "API Development", "Documentation", "Git", "Automation"]
+      skills: ["Laravel", "PHP", "MySQL", "Vapi AI", "Claude Code", "OpenClaw", "API Development", "Git"]
     },
-    // {
-    //   company: "Smartgenix (Client)",
-    //   position: "Freelance Full Stack Software Developer",
-    //   period: "06/2025 - present",
-    //   description: [
-    //     "Developed and enhanced a SaaS application by improving frontend design and backend performance",
-    //     "Strengthened security measures and integrated ElevenLabs AI Voice Agent",
-    //     "Built APIs for booking appointments seamlessly connected to the AI agent",
-    //     "Implemented additional features to optimize user experience and system efficiency"
-    //   ],
-    //   logo: "logo/smartgenix_logo.png",
-    //   skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Web Development", "Github", "Twilio"]
-    // },
     {
-      company: "Callbox Iloilo",
-      position: "Intern Software Developer",
+      company: "Callbox Inc — Iloilo City, PH",
+      position: "Software Development Intern",
       period: "02/2025 - 05/2025",
       description: [
-        "Working primarily as a backend developer using Laravel",
-        "Focusing on building and optimizing APIs, database management, and system integrations",
-        "Assisting in implementing additional features and enhancements for the company's portal",
-        "Collaborating with the team to ensure seamless functionality and performance improvements"
+        "Assisted in the development and implementation of Laravel-based applications",
+        "Helped optimize application performance across multiple modules",
+        "Collaborated with the development team to integrate frontend and backend components",
+        "Gained hands-on experience with Laravel, MySQL, and best practices in web development"
       ],
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git", "PhpMyAdmin"]
+    },
+    {
+      company: "Freelance — Iloilo City, PH",
+      position: "Software Developer",
+      period: "Freelance",
+      description: [
+        "Improved overall UI/UX design of the application to enhance user engagement and accessibility",
+        "Integrated Stripe Wallet for secure and seamless payment processing",
+        "Developed and implemented a custom API utilized by the ElevenLabs AI Voice Agent as a webhook for handling user authentication and data exchange",
+        "Implemented ElevenLabs AI Voice Agent with Twilio integration to handle OTP verification and voice interactions",
+        "Explored and integrated OpenClaw for multi-agent orchestration, creating custom skills and agents to streamline development productivity"
+      ],
+      logo: "logo/smartgenix_logo.png",
+      skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Stripe", "Twilio", "OpenClaw"]
     },
     {
       company: "Central Philippine University - Thesis Project",

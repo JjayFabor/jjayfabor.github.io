@@ -14,7 +14,7 @@ const About = () => {
       },
       {
         school: "Professional Electronics Institute, Inc.",
-        degree: "Associate's Degree in Computer Technology",
+        degree: "Vocational Degree in Computer Technology",
         year: "2019 - 2021",
         description: "Completed an intensive program focused on computer hardware servicing, networking, and software development, gaining hands-on experience in troubleshooting, system maintenance, and programming.",
         logo: "logo/peii_logo.png",
@@ -46,14 +46,17 @@ const About = () => {
             </h3>
             <div className="bg-white dark:bg-gray-800 p-7 rounded-xl border border-gray-100 dark:border-gray-700 shadow-[0_5px_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_5px_15px_-3px_rgba(0,0,0,0.3)] hover:shadow-[0_10px_30px_-12px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)] transition-shadow duration-300">
               <p className="text-gray-700 dark:text-gray-300 mb-5 leading-relaxed">
-                I'm a backend developer who started out with Python and Django, but life had other plans!
-                My current company got me into the Laravel and PHP world, and now I'm all about building
-                efficient, scalable backends with it. Backend structure and clean code? That's my jam. 😎
+                I'm a software developer specializing in backend development and AI integration. I work
+                primarily with Laravel and PHP, building efficient and scalable systems. Recently, I've been
+                diving deep into AI-assisted development — designing Voice Agents with Vapi, leveraging
+                Claude Code to accelerate workflows, and using OpenClaw's multi-agent framework to build
+                applications faster.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 It all started with a curiosity about how systems work behind the scenes, and that curiosity
-                turned into a career focused on building reliable infrastructure and APIs. When I'm not
-                knee-deep in code, you'll probably find me hiking or geeking out over new tech.
+                turned into a career focused on building reliable APIs, integrating AI tools, and shipping
+                features fast. When I'm not deep in code, you'll probably find me exploring new tech or
+                working on side projects.
               </p>
             </div>
           </div>
