@@ -26,6 +26,13 @@ const techColors = {
     MongoDB: "bg-green-600/30 text-green-100",
     SQLite: "bg-blue-300/30 text-blue-100",
 
+    // AI & Messaging
+    "Claude Agent SDK": "bg-violet-600/30 text-violet-100",
+    Telegram: "bg-sky-500/30 text-sky-100",
+    Discord: "bg-indigo-500/30 text-indigo-100",
+    FastAPI: "bg-teal-500/30 text-teal-100",
+    PostgreSQL: "bg-blue-700/30 text-blue-100",
+
     // Tools & Others
     Vite: "bg-purple-500/30 text-purple-100",
     Git: "bg-orange-600/30 text-orange-100",
