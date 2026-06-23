@@ -1,52 +1,55 @@
-import { useNavigate } from "react-router-dom";
-import Dock from "../Dock/Dock";
-import { Home, Newspaper } from "lucide-react";
-import {
-  VscGithub,
-  VscMail,
-} from 'react-icons/vsc';
+import { VscGithub, VscMail } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
 
-const Footer = () => {
-  const navigate = useNavigate();
+const socialLinks = [
+  {
+    icon: <VscGithub className="h-5 w-5" />,
+    label: "GitHub",
+    href: "https://github.com/JjayFabor",
+  },
+  {
+    icon: <FaLinkedin className="h-5 w-5" />,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/jjayfabor/",
+  },
+  {
+    icon: <VscMail className="h-5 w-5" />,
+    label: "Email",
+    href: "mailto:faborjaylordvhan@gmail.com",
+  },
+];
 
-  const dockItems = [
-    {
-      icon: <Home size={20} className="text-white" />,
-      label: "Home",
-      onClick: () => navigate("/"),
-    },
-    {
-      icon: <Newspaper size={20} className="text-white" />,
-      label: "Blog",
-      onClick: () => navigate("/blog"),
-    },
-    {
-      icon: <VscGithub size={20} className="text-white" />,
-      label: 'GitHub',
-      onClick: () => window.open('https://github.com/JjayFabor', '_blank')
-    },
-    {
-      icon: <FaLinkedin size={20} className="text-white" />,
-      label: 'LinkedIn',
-      onClick: () => window.open('https://www.linkedin.com/in/jjayfabor/', '_blank')
-    },
-    {
-      icon: <VscMail size={20} className="text-white" />,
-      label: 'Email',
-      onClick: () => window.open('mailto:faborjaylordvhan@gmail.com', '_blank')
-    },
-  ];
+const Footer = () => {
+  const year = new Date().getFullYear();
 
   return (
-    <div className="fixed bottom-0 left-0 w-full z-50 flex flex-col items-center">
-      <Dock
-        items={dockItems}
-        panelHeight={58}
-        baseItemSize={38}
-        magnification={60}
-      />
-    </div>
+    <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+      <div className="max-w-6xl mx-auto px-6 py-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <p className="text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">
+            &copy; {year} Jaylord Vhan Fabor
+          </p>
+
+          <nav aria-label="Social links">
+            <ul className="flex flex-wrap items-center justify-center gap-2">
+              {socialLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 h-11 px-4 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    {link.icon}
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
   );
 };
 

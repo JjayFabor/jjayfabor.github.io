@@ -1,16 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import { DarkModeProvider } from './context/ThemeContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
-      <DarkModeProvider>
-        <App />
-      </DarkModeProvider>
-    </HashRouter>
+    <DarkModeProvider>
+      <App />
+    </DarkModeProvider>
   </StrictMode>,
 )

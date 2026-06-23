@@ -60,23 +60,25 @@ const Contact = ({ open = false, onClose = () => {} }) => {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center px-4"
+      aria-label="Get in touch"
+      className="fixed inset-0 z-50 flex items-center justify-center sm:p-4"
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/50"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Modal */}
-      <div className="relative z-10 max-w-2xl w-full bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+      <div className="relative z-10 max-w-2xl w-full h-full sm:h-auto sm:max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 sm:rounded-lg border border-gray-200 dark:border-gray-800">
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">Get in touch</h3>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Get in touch</h3>
           <button
+            type="button"
             aria-label="Close contact form"
             onClick={onClose}
-            className="bg-transparent text-gray-600 hover:text-gray-900 dark:text-gray-300"
+            className="flex items-center justify-center w-11 h-11 -mr-2 rounded-md bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             ✕
           </button>
@@ -96,7 +98,7 @@ const Contact = ({ open = false, onClose = () => {} }) => {
                   <FormItem>
                     <Label htmlFor="name">Your Name</Label>
                     <FormControl>
-                      <Input {...field} id="name" placeholder="John Doe" required />
+                      <Input {...field} id="name" className="h-12" placeholder="e.g. Maria Santos" required />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -114,7 +116,8 @@ const Contact = ({ open = false, onClose = () => {} }) => {
                         {...field}
                         id="email"
                         type="email"
-                        placeholder="johndoe@example.com"
+                        className="h-12"
+                        placeholder="you@example.com"
                         required
                       />
                     </FormControl>
@@ -143,11 +146,20 @@ const Contact = ({ open = false, onClose = () => {} }) => {
                 )}
               />
 
-              <div className="flex items-center gap-3">
-                <Button type="submit" className="h-12" disabled={submitting}>
-                  {submitting ? "Sending..." : "Send Message"}
+              <div className="flex flex-col-reverse sm:flex-row gap-3 pt-2">
+                <Button
+                  type="submit"
+                  className="h-12 px-6 w-full sm:w-auto"
+                  disabled={submitting}
+                >
+                  {submitting ? "Sending..." : "Send message"}
                 </Button>
-                <Button variant="outline" onClick={onClose} className="h-12">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={onClose}
+                  className="h-12 px-6 w-full sm:w-auto"
+                >
                   Cancel
                 </Button>
               </div>

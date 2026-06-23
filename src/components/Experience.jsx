@@ -1,48 +1,56 @@
 import { useState } from 'react';
+import ResumeSection from './ResumeSection';
 
 const Experience = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const experiences = [
     {
-      company: "Callbox Inc — Iloilo City, PH",
+      company: "Callbox Iloilo",
       position: "Junior Software Developer",
-      period: "10/2025 - present",
+      period: "10/2025 - 07/2026",
       description: [
-        "Designed and developed AI Voice Agents using Vapi, fine-tuning responses for consistency and human-like conversational quality",
-        "Leveraged AI coding tools, particularly Claude and Claude Code, to accelerate development workflows and improve code quality",
-        "Utilized OpenClaw's multi-agent framework to build applications faster, creating custom skills to maximize token efficiency and reduce repetitive prompting overhead",
-        "Applied AI-assisted development practices within Callbox projects, resulting in faster feature delivery and reduced development overhead"
+        "Streamline development workflows by creating comprehensive project documentation, enabling faster onboarding and reducing knowledge gaps across teams",
+        "Develop and customize HubSpot CRM solutions — building automated workflows, custom-coded actions, and API integrations to streamline sales and marketing operations",
+        "Bridge communication between developers and operations teams to ensure smooth feature rollouts and minimize deployment risks",
+        "Accelerate issue resolution through proactive code debugging and troubleshooting, reducing system downtime and improving overall reliability",
+        "Automate business processes using n8n workflows, saving hours of manual work and increasing operational efficiency",
+        "Enhance customer engagement by implementing VAPI AI Voice Agents for webinar invitations and event reminders, improving attendance rates and user experience"
       ],
       logo: "logo/callbox_logo.jpg",
-      skills: ["Laravel", "PHP", "MySQL", "Vapi AI", "Claude Code", "OpenClaw", "API Development", "Git"]
+      skills: ["Laravel", "PHP", "MySQL", "HubSpot CRM", "n8n", "VAPI AI", "API Development", "Documentation", "Git", "Automation"]
     },
     {
-      company: "Callbox Inc — Iloilo City, PH",
-      position: "Software Development Intern",
+      company: "Personal",
+      position: "Freelance Software Engineer",
+      period: "06/2025 - present",
+      logo: "logo/jjayntic.png",
+      clients: [
+        {
+          name: "Smartgenix",
+          description: [
+            "Developed and enhanced a SaaS application by improving frontend design and backend performance",
+            "Built a cross-platform mobile app with Flutter to extend the platform to mobile users, with access to core features and AI-powered booking",
+            "Strengthened security measures and integrated an ElevenLabs AI Voice Agent",
+            "Built APIs for appointment booking, seamlessly connected to the AI agent",
+            "Implemented additional features to optimize user experience and system efficiency"
+          ],
+          skills: ["Laravel", "PHP", "Livewire", "Flutter", "Mobile Development", "API Development", "ElevenLabs", "Twilio", "Git"]
+        }
+      ]
+    },
+    {
+      company: "Callbox Iloilo",
+      position: "Intern Software Developer",
       period: "02/2025 - 05/2025",
       description: [
-        "Assisted in the development and implementation of Laravel-based applications",
-        "Helped optimize application performance across multiple modules",
-        "Collaborated with the development team to integrate frontend and backend components",
-        "Gained hands-on experience with Laravel, MySQL, and best practices in web development"
+        "Working primarily as a backend developer using Laravel",
+        "Focusing on building and optimizing APIs, database management, and system integrations",
+        "Assisting in implementing additional features and enhancements for the company's portal",
+        "Collaborating with the team to ensure seamless functionality and performance improvements"
       ],
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git", "PhpMyAdmin"]
-    },
-    {
-      company: "Freelance — Iloilo City, PH",
-      position: "Software Developer",
-      period: "Freelance",
-      description: [
-        "Improved overall UI/UX design of the application to enhance user engagement and accessibility",
-        "Integrated Stripe Wallet for secure and seamless payment processing",
-        "Developed and implemented a custom API utilized by the ElevenLabs AI Voice Agent as a webhook for handling user authentication and data exchange",
-        "Implemented ElevenLabs AI Voice Agent with Twilio integration to handle OTP verification and voice interactions",
-        "Explored and integrated OpenClaw for multi-agent orchestration, creating custom skills and agents to streamline development productivity"
-      ],
-      logo: "logo/smartgenix_logo.png",
-      skills: ["Laravel", "PHP", "Livewire", "API", "ElevenLabs", "Stripe", "Twilio", "OpenClaw"]
     },
     {
       company: "Central Philippine University - Thesis Project",
@@ -59,94 +67,112 @@ const Experience = () => {
   ];
 
   const toggleExpand = (index) => {
-    if (expandedIndex === index) {
-      setExpandedIndex(null);
-    } else {
-      setExpandedIndex(index);
-    }
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   return (
-    <section id="experience" className="py-4 bg-gray-50 dark:bg-gray-900">
-      <div className="p-6 max-w-4xl w-full mx-auto">
-        <h2 className="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">Experience</h2>
-        
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
+    <ResumeSection id="experience" title="Experience">
+      <div className="space-y-3">
+        {experiences.map((exp, index) => {
+          const isOpen = expandedIndex === index;
+          return (
             <div
               key={index}
-              className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 overflow-hidden transition-all duration-300 ease-in-out
-                ${expandedIndex === index
-                  ? 'shadow-[0_10px_40px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.4)]'
-                  : 'shadow-[0_5px_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_5px_15px_-3px_rgba(0,0,0,0.3)]'}
-                hover:shadow-[0_15px_50px_-12px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_15px_50px_-12px_rgba(0,0,0,0.5)]`}
-              onClick={() => toggleExpand(index)}
+              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
             >
-              <div className="p-5 cursor-pointer flex items-center gap-5">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-lg overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
-                    <img
-                      src={exp.logo}
-                      alt={`${exp.company} logo`}
-                      className="w-full h-full object-contain p-1"
-                    />
-                  </div>
+              <button
+                type="button"
+                onClick={() => toggleExpand(index)}
+                aria-expanded={isOpen}
+                className="w-full text-left p-4 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+              >
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700">
+                  <img
+                    src={exp.logo}
+                    alt={`${exp.company} logo`}
+                    className="w-full h-full object-contain p-1"
+                  />
                 </div>
 
-                <div className="flex-grow">
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{exp.position}</h3>
-                    <span className="text-blue-600 dark:text-blue-400 font-medium text-sm md:text-base bg-blue-50 dark:bg-blue-900/50 px-3 py-1 rounded-full">
+                <div className="flex-grow min-w-0">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-1">
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">
+                      {exp.position}
+                    </h3>
+                    <span className="text-sm font-medium text-blue-700 dark:text-blue-300 self-start whitespace-nowrap">
                       {exp.period}
                     </span>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400 mt-1">{exp.company}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{exp.company}</p>
                 </div>
 
-                <div className="flex-shrink-0">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors
-                    ${expandedIndex === index ? 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300' : 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400'}`}>
-                    <svg
-                      className={`w-5 h-5 transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+                <svg
+                  className={`flex-shrink-0 w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
 
-              <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  expandedIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <div className="p-5 pt-0 border-t border-gray-100 dark:border-gray-700">
-                  <div className="pl-0 md:pl-[calc(4rem+1.25rem)]">
-                    <ul className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3 space-y-2 list-disc list-inside">
-                      {exp.description.map((point, i) => (
-                        <li key={i}>{point}</li>
+              {isOpen && (
+                <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+                  {exp.clients ? (
+                    <div className="mt-3 space-y-5">
+                      {exp.clients.map((client, ci) => (
+                        <div key={ci}>
+                          <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                            {client.name}
+                          </h4>
+                          <ul className="text-gray-700 dark:text-gray-300 leading-relaxed mt-2 space-y-2 list-disc pl-5">
+                            {client.description.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                          {client.skills && client.skills.length > 0 && (
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                              {client.skills.map((skill, skillIndex) => (
+                                <span
+                                  key={skillIndex}
+                                  className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs px-2 py-0.5 rounded-full"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       ))}
-                    </ul>
-                    {exp.skills && exp.skills.length > 0 && (
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {exp.skills.map((skill, skillIndex) => (
-                          <span key={skillIndex} className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs px-3 py-1 rounded-full">
-                            {skill}
-                          </span>
+                    </div>
+                  ) : (
+                    <>
+                      <ul className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3 space-y-2 list-disc pl-5">
+                        {exp.description.map((point, i) => (
+                          <li key={i}>{point}</li>
                         ))}
-                      </div>
-                    )}
-                  </div>
+                      </ul>
+                      {exp.skills && exp.skills.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          {exp.skills.map((skill, skillIndex) => (
+                            <span
+                              key={skillIndex}
+                              className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs px-2 py-0.5 rounded-full"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  )}
                 </div>
-              </div>
+              )}
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
-    </section>
+    </ResumeSection>
   );
 };
 

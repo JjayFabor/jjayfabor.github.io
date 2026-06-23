@@ -1,86 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const ROLES_LIST = ["Software", "Backend", "AI"];
-
 function Bio({ onOpenContact = () => {} }) {
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
-  const pauseDuration = 2000;
-
-  useEffect(() => {
-    const handleTyping = () => {
-      const currentRole = ROLES_LIST[currentRoleIndex];
-      if (isDeleting) {
-        setDisplayedText(currentRole.substring(0, displayedText.length - 1));
-        setTypingSpeed(75);
-      } else {
-        setDisplayedText(currentRole.substring(0, displayedText.length + 1));
-        setTypingSpeed(150);
-      }
-
-      if (!isDeleting && displayedText === currentRole) {
-        setTimeout(() => setIsDeleting(true), pauseDuration);
-      } else if (isDeleting && displayedText === "") {
-        setIsDeleting(false);
-        setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % ROLES_LIST.length);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, currentRoleIndex, typingSpeed, pauseDuration]);
-
   return (
-    <section
-      id="bio"
-      className="py-4 pb-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900"
-    >
-      <div className="p-6 max-w-4xl w-full mx-auto shadow-none bg-transparent">
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <div className="flex-1 text-left md:pr-4">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-              <span className="wave-emoji inline-block mr-2 text-7xl">👋</span>
-              Hi, I'm Jaylord Vhan Fabor
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-2 mb-4 h-8 text-3xl">
-              <span className="underline font-extrabold">{displayedText}</span>
-              <span className="animate-pulse"> Developer</span>
-            </p>
-            <p className="text-gray-700 dark:text-gray-300">
-              Hey there! I'm more of a backend kind of person — I love setting
-              up a clean, well-structured backend, but don't expect the frontend
-              to look too pretty. 😆 As long as it works, right? Let's keep it
-              functional!
-            </p>
-          </div>
-          <div className="flex-shrink-0 order-first md:order-last">
-            <img
-              src="logo/profile.jpg"
-              alt="Profile"
-              className="w-32 h-32 md:w-48 md:h-48 rounded-lg object-cover"
-            />
-          </div>
+    <section id="bio" className="border-b border-gray-200 dark:border-gray-700">
+      <div className="max-w-6xl w-full mx-auto px-6 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-10 gap-y-6 items-center">
+        <div className="flex justify-center md:block">
+          <img
+            src="logo/profile.jpg"
+            alt="Jaylord Vhan Fabor"
+            className="w-32 h-32 md:w-full md:h-auto md:aspect-square rounded-lg object-cover border border-gray-200 dark:border-gray-700"
+          />
         </div>
-        <div className="mt-6 flex gap-3 flex-wrap">
-          <Button onClick={onOpenContact} className="px-6 py-2">
-            Get in touch
-          </Button>
-          <Button
-            className="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 text-black"
-            asChild
-          >
-            <a
-              href="/JaylordVhanFabor_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+
+        <div className="text-center md:text-left">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+            Jaylord Vhan Fabor
+          </h1>
+          <p className="mt-2 text-lg md:text-xl font-semibold text-blue-600 dark:text-blue-400">
+            Software Engineer
+          </p>
+          <p className="mt-3 text-base text-gray-700 dark:text-gray-300 leading-relaxed max-w-prose mx-auto md:mx-0">
+            I build clean, reliable, and scalable backend systems &mdash; from
+            APIs and database design to automation. I care about
+            well-structured code that's easy to maintain and built to last.
+          </p>
+
+          <div className="mt-5 flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+            <Button
+              onClick={onOpenContact}
+              className="h-11 px-6 text-base w-full sm:w-auto"
             >
-              View CV
-            </a>
-          </Button>
+              Get in touch
+            </Button>
+            <Button
+              variant="outline"
+              asChild
+              className="h-11 px-6 text-base w-full sm:w-auto"
+            >
+              <a
+                href="https://docs.google.com/document/d/1VQs6h8NJPEx_FUvsaaHDd1DYauJ5jI1y/edit?usp=sharing&ouid=108342282876658747339&rtpof=true&sd=true"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View CV
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>

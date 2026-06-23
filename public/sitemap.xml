@@ -3,26 +3,12 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://jjayfabor.github.io/</loc>
-    <lastmod>2025-01-22</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://jjayfabor.github.io/logo/jjayntic.png</image:loc>
       <image:title>Jjayntic Portfolio</image:title>
     </image:image>
-  </url>
-
-  <url>
-    <loc>https://jjayfabor.github.io/#projects</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://jjayfabor.github.io/#experience</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 </urlset>
