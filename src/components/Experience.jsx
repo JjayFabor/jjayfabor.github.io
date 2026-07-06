@@ -29,13 +29,13 @@ const Experience = () => {
         {
           name: "Smartgenix",
           description: [
-            "Developed and enhanced a SaaS application by improving frontend design and backend performance",
-            "Built a cross-platform mobile app with Flutter to extend the platform to mobile users, with access to core features and AI-powered booking",
-            "Strengthened security measures and integrated an ElevenLabs AI Voice Agent",
-            "Built APIs for appointment booking, seamlessly connected to the AI agent",
-            "Implemented additional features to optimize user experience and system efficiency"
+            "Developed and enhanced a SaaS application by improving frontend UI/UX design and backend performance",
+            "Built a cross-platform mobile app with Flutter to extend the platform to mobile users, with access to core features and AI-powered appointment booking",
+            "Integrated Stripe Wallet for secure, seamless payment processing",
+            "Built a custom API consumed by an ElevenLabs AI Voice Agent (via Twilio) as a webhook for user authentication, OTP verification, and appointment booking",
+            "Strengthened application security measures and optimized overall user experience and system efficiency"
           ],
-          skills: ["Laravel", "PHP", "Livewire", "Flutter", "Mobile Development", "API Development", "ElevenLabs", "Twilio", "Git"]
+          skills: ["Laravel", "PHP", "Livewire", "Flutter", "Mobile Development", "API Development", "Stripe", "ElevenLabs", "Twilio", "Git"]
         }
       ]
     },

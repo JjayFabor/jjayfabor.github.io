@@ -2,12 +2,16 @@ import ResumeSection from "./ResumeSection";
 
 const skillGroups = [
   {
+    title: "Languages",
+    skills: ["PHP", "Python", "JavaScript", "TypeScript", "Dart", "C++", "C#"],
+  },
+  {
     title: "Frontend",
-    skills: ["React", "Vite", "Tailwind CSS", "Bootstrap", "JavaScript", "HTML5", "CSS3"],
+    skills: ["React", "Vite", "Tailwind CSS", "Bootstrap", "HTML5", "CSS3"],
   },
   {
     title: "Backend",
-    skills: ["Laravel", "PHP", "Livewire", "Python", "Django", "Linux"],
+    skills: ["Laravel", "Livewire", "Django", "Flask", "Linux"],
   },
   {
     title: "Mobile",
@@ -15,7 +19,7 @@ const skillGroups = [
   },
   {
     title: "AI & Automation",
-    skills: ["VAPI AI", "ElevenLabs", "Twilio", "n8n"],
+    skills: ["VAPI AI", "ElevenLabs", "Twilio", "n8n", "LLM Integration"],
   },
   {
     title: "Databases",
@@ -23,7 +27,7 @@ const skillGroups = [
   },
   {
     title: "Tools & Platforms",
-    skills: ["Git", "GitHub", "HubSpot CRM", "Vercel", "Render", "cPanel"],
+    skills: ["Git", "GitHub", "Docker", "Postman", "HubSpot CRM", "Vercel", "Render", "cPanel"],
   },
 ];
 
