@@ -3,7 +3,7 @@
 const ResumeSection = ({ id, title, children, className = "" }) => {
   return (
     <section id={id} className={className}>
-      <h2 className="text-base font-bold uppercase tracking-wide text-gray-900 dark:text-white pb-2 border-b border-gray-200 dark:border-gray-700">
+      <h2 className="text-base font-bold uppercase tracking-wide text-brand-text pb-2 border-b border-brand-border">
         {title}
       </h2>
       <div className="mt-4">{children}</div>

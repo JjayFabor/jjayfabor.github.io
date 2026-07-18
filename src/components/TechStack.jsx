@@ -33,14 +33,14 @@ const skillGroups = [
 
 const SkillGroup = ({ title, skills }) => (
   <div className="mb-5 last:mb-0">
-    <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
+    <h3 className="text-sm font-semibold uppercase tracking-wide text-brand-accent mb-2">
       {title}
     </h3>
     <div className="flex flex-wrap gap-2">
       {skills.map((skill) => (
         <span
           key={skill}
-          className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-sm px-3 py-1 rounded-full"
+          className="bg-brand-accent/10 text-brand-accent font-mono text-[11px] px-3 py-1 rounded-full"
         >
           {skill}
         </span>

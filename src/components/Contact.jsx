@@ -71,21 +71,21 @@ const Contact = ({ open = false, onClose = () => {} }) => {
       />
 
       {/* Modal */}
-      <div className="relative z-10 max-w-2xl w-full h-full sm:h-auto sm:max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 sm:rounded-lg border border-gray-200 dark:border-gray-800">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Get in touch</h3>
+      <div className="relative z-10 max-w-2xl w-full h-full sm:h-auto sm:max-h-[90vh] overflow-y-auto bg-brand-surface sm:rounded-lg border border-brand-border">
+        <div className="flex items-center justify-between p-4 border-b border-brand-border">
+          <h3 className="text-lg font-semibold text-brand-text">Get in touch</h3>
           <button
             type="button"
             aria-label="Close contact form"
             onClick={onClose}
-            className="flex items-center justify-center w-11 h-11 -mr-2 rounded-md bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="flex items-center justify-center w-11 h-11 -mr-2 rounded-md bg-transparent text-brand-muted hover:bg-brand-border/50 hover:text-brand-text"
           >
             ✕
           </button>
         </div>
 
         <div className="p-6">
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+          <p className="text-sm text-brand-muted mb-4">
             Have a question or want to work together? Send me a message and I'll get back to you.
           </p>
 

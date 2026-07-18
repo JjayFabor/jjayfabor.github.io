@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- "Jj" monogram — surface rounded square, accent J, light j.
+       Letterforms are drawn as paths (SVG favicons cannot load webfonts). -->
+  <rect width="64" height="64" rx="14" fill="#1C1E26"/>
+  <!-- Capital J (accent) -->
+  <path d="M27 16 v21 a7.5 7.5 0 0 1 -15 0 v-2" fill="none" stroke="#06B6D4" stroke-width="5.5" stroke-linecap="round"/>
+  <!-- Lowercase j (light): dot + hooked stem with descender -->
+  <circle cx="45" cy="17" r="3.4" fill="#E2E8F0"/>
+  <path d="M45 27 v15 a6.5 6.5 0 0 1 -13 0 v-1" fill="none" stroke="#E2E8F0" stroke-width="5.5" stroke-linecap="round"/>
+</svg>

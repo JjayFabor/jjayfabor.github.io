@@ -8,19 +8,19 @@ const ProjectCard = ({ project }) => {
   const extraTags = project.techStack.length - tags.length;
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="flex flex-col h-full bg-brand-surface rounded-lg border border-brand-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_8px_24px_rgb(var(--brand-accent)/0.25)]">
       {/* Project image */}
       <div className="relative">
         <img
           src={project.image}
           alt={`${project.title} screenshot`}
-          className="w-full h-28 object-cover border-b border-gray-200 dark:border-gray-700"
+          className="w-full h-28 object-cover border-b border-brand-border"
         />
         <span
           className={`absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-medium ${
             isCompleted
-              ? "bg-green-100 text-green-800 dark:bg-green-900/60 dark:text-green-200"
-              : "bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200"
+              ? "bg-brand-accent/90 text-brand-bg"
+              : "bg-brand-bg/85 text-brand-accent border border-brand-accent/50"
           }`}
         >
           {isCompleted ? "Completed" : "Ongoing"}
@@ -29,10 +29,10 @@ const ProjectCard = ({ project }) => {
 
       {/* Content */}
       <div className="flex flex-col flex-grow p-3.5">
-        <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+        <h3 className="text-base font-semibold text-brand-text">
           {project.title}
         </h3>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 leading-snug line-clamp-2">
+        <p className="mt-1 text-sm text-brand-muted leading-snug line-clamp-2">
           {project.description}
         </p>
 
@@ -40,13 +40,13 @@ const ProjectCard = ({ project }) => {
           {tags.map((tech, index) => (
             <span
               key={index}
-              className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs px-2 py-0.5 rounded-full"
+              className="bg-brand-accent/10 text-brand-accent font-mono text-[11px] px-2 py-0.5 rounded-full"
             >
               {tech}
             </span>
           ))}
           {extraTags > 0 && (
-            <span className="text-xs text-gray-500 dark:text-gray-400 px-1 py-0.5">
+            <span className="text-xs text-brand-muted px-1 py-0.5">
               +{extraTags}
             </span>
           )}
@@ -59,14 +59,14 @@ const ProjectCard = ({ project }) => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+              className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium bg-brand-accent text-brand-bg hover:bg-brand-accent-hover transition-colors"
             >
               <Github className="h-4 w-4" />
               GitHub
             </a>
           )}
           {!project.link && !project.preview && (
-            <span className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium border border-dashed border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400">
+            <span className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium border border-dashed border-brand-border text-brand-muted">
               <Lock className="h-4 w-4" />
               Internal company project
             </span>
@@ -76,7 +76,7 @@ const ProjectCard = ({ project }) => {
               href={project.preview}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium border border-gray-300 text-gray-800 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium border border-brand-accent/50 text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover transition-colors"
             >
               <ExternalLink className="h-4 w-4" />
               Preview

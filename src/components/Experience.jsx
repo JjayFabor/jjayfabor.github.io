@@ -24,7 +24,7 @@ const Experience = () => {
       company: "Personal",
       position: "Freelance Software Engineer",
       period: "06/2025 - present",
-      logo: "logo/jjayntic.png",
+      logo: "favicon.svg",
       clients: [
         {
           name: "Smartgenix",
@@ -78,15 +78,15 @@ const Experience = () => {
           return (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+              className="bg-brand-surface rounded-lg border border-brand-border overflow-hidden"
             >
               <button
                 type="button"
                 onClick={() => toggleExpand(index)}
                 aria-expanded={isOpen}
-                className="w-full text-left p-4 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                className="w-full text-left p-4 flex items-center gap-4 hover:bg-brand-border/40 transition-colors"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border border-brand-border bg-white">
                   <img
                     src={exp.logo}
                     alt={`${exp.company} logo`}
@@ -96,18 +96,18 @@ const Experience = () => {
 
                 <div className="flex-grow min-w-0">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-1">
-                    <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">
+                    <h3 className="text-base font-semibold text-brand-text">
                       {exp.position}
                     </h3>
-                    <span className="text-sm font-medium text-blue-700 dark:text-blue-300 self-start whitespace-nowrap">
+                    <span className="text-sm font-medium text-brand-accent self-start whitespace-nowrap">
                       {exp.period}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{exp.company}</p>
+                  <p className="text-sm text-brand-muted mt-0.5">{exp.company}</p>
                 </div>
 
                 <svg
-                  className={`flex-shrink-0 w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                  className={`flex-shrink-0 w-5 h-5 text-brand-accent transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -117,15 +117,15 @@ const Experience = () => {
               </button>
 
               {isOpen && (
-                <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="px-4 pb-4 border-t border-brand-border">
                   {exp.clients ? (
                     <div className="mt-3 space-y-5">
                       {exp.clients.map((client, ci) => (
                         <div key={ci}>
-                          <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                          <h4 className="text-sm font-semibold text-brand-text">
                             {client.name}
                           </h4>
-                          <ul className="text-gray-700 dark:text-gray-300 leading-relaxed mt-2 space-y-2 list-disc pl-5">
+                          <ul className="text-brand-text/85 leading-relaxed mt-2 space-y-2 list-disc pl-5">
                             {client.description.map((point, i) => (
                               <li key={i}>{point}</li>
                             ))}
@@ -135,7 +135,7 @@ const Experience = () => {
                               {client.skills.map((skill, skillIndex) => (
                                 <span
                                   key={skillIndex}
-                                  className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs px-2 py-0.5 rounded-full"
+                                  className="bg-brand-accent/10 text-brand-accent font-mono text-[11px] px-2 py-0.5 rounded-full"
                                 >
                                   {skill}
                                 </span>
@@ -147,7 +147,7 @@ const Experience = () => {
                     </div>
                   ) : (
                     <>
-                      <ul className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3 space-y-2 list-disc pl-5">
+                      <ul className="text-brand-text/85 leading-relaxed mt-3 space-y-2 list-disc pl-5">
                         {exp.description.map((point, i) => (
                           <li key={i}>{point}</li>
                         ))}
@@ -157,7 +157,7 @@ const Experience = () => {
                           {exp.skills.map((skill, skillIndex) => (
                             <span
                               key={skillIndex}
-                              className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs px-2 py-0.5 rounded-full"
+                              className="bg-brand-accent/10 text-brand-accent font-mono text-[11px] px-2 py-0.5 rounded-full"
                             >
                               {skill}
                             </span>

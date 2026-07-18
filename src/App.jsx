@@ -13,7 +13,7 @@ const App = () => {
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-brand-bg">
       <LightSwitch />
       <Bio onOpenContact={() => setContactOpen(true)} />
 

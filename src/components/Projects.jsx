@@ -125,8 +125,8 @@ const Projects = () => {
             onClick={() => setSelectedCategory(category)}
             className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors
               ${selectedCategory === category
-                ? "bg-blue-600 text-white"
-                : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-700"
+                ? "bg-brand-accent text-brand-bg"
+                : "bg-brand-surface text-brand-text border border-brand-border hover:border-brand-accent/60 hover:text-brand-accent"
               }`}
           >
             {category}
@@ -145,7 +145,7 @@ const Projects = () => {
             href="https://github.com/JjayFabor?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-blue-700 dark:text-blue-300 hover:underline"
+            className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand-accent hover:text-brand-accent-hover hover:underline"
           >
             {hiddenCount > 0 ? `View all ${matchingProjects.length} projects on GitHub` : "View more on GitHub"}
             <span aria-hidden="true">&rarr;</span>
@@ -153,12 +153,12 @@ const Projects = () => {
         </>
       ) : (
         <div className="text-center py-10">
-          <p className="text-gray-700 dark:text-gray-300 font-medium">
+          <p className="text-brand-text/85 font-medium">
             No projects in this category yet.
           </p>
           <button
             onClick={() => setSelectedCategory("All")}
-            className="mt-4 px-4 py-2 rounded-md text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            className="mt-4 px-4 py-2 rounded-md text-sm font-medium bg-brand-accent text-brand-bg hover:bg-brand-accent-hover transition-colors"
           >
             View all projects
           </button>

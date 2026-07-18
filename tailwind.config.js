@@ -10,9 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        newspaper: ['"Libre Baskerville"', "Georgia", "Cambria", "serif"],
-        newspaperHeadline: ['"Playfair Display"', "Libre Baskerville", "Georgia", "serif"],
-        newspaperBody: ['"Source Serif 4"', "Georgia", "serif"],
+        sans: ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -20,6 +19,17 @@ export default {
         sm: 'calc(var(--radius) - 4px)'
       },
       colors: {
+        // Theme-aware brand tokens — RGB triplets defined in src/index.css
+        // (:root = light variant, .dark = the primary dark palette).
+        brand: {
+          bg: 'rgb(var(--brand-bg) / <alpha-value>)',             // page background
+          surface: 'rgb(var(--brand-surface) / <alpha-value>)',   // cards and raised surfaces
+          border: 'rgb(var(--brand-border) / <alpha-value>)',     // borders and dividers
+          accent: 'rgb(var(--brand-accent) / <alpha-value>)',     // main accent
+          'accent-hover': 'rgb(var(--brand-accent-hover) / <alpha-value>)',
+          text: 'rgb(var(--brand-text) / <alpha-value>)',         // primary text
+          muted: 'rgb(var(--brand-muted) / <alpha-value>)',       // secondary / muted text
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

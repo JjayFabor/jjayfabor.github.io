@@ -11,8 +11,8 @@ const LightSwitch = () => {
   return (
     <button
       onClick={handleClick}
-      className={`fixed top-4 right-4 z-50 w-16 h-8 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2  focus:ring-offset-2 dark:focus:ring-offset-gray-800
-                  ${darkMode ? 'bg-indigo-600 focus:ring-indigo-400' : 'bg-yellow-400 focus:ring-yellow-300'}`}
+      className={`fixed top-4 right-4 z-50 w-16 h-8 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg
+                  ${darkMode ? 'bg-brand-accent' : 'bg-brand-border'}`}
       aria-label={darkMode ? "Activate light mode" : "Activate dark mode"}
       title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
     >
@@ -21,9 +21,9 @@ const LightSwitch = () => {
                     ${darkMode ? 'translate-x-8' : 'translate-x-0'}`}
       >
         {darkMode ? (
-          <MoonIcon className="h-4 w-4 text-indigo-600" />
+          <MoonIcon className="h-4 w-4 text-brand-accent" />
         ) : (
-          <SunIcon className="h-4 w-4 text-yellow-500" />
+          <SunIcon className="h-4 w-4 text-brand-accent" />
         )}
       </div>
     </button>

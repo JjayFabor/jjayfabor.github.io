@@ -1,5 +1,6 @@
 import { VscGithub, VscMail } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
+import Monogram from "./Monogram";
 
 const socialLinks = [
   {
@@ -23,12 +24,15 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+    <footer className="bg-brand-surface border-t border-brand-border">
       <div className="max-w-6xl mx-auto px-6 py-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">
-            &copy; {year} Jaylord Vhan Fabor
-          </p>
+          <div className="flex items-center gap-3">
+            <Monogram className="w-8 h-8 rounded-lg text-lg" />
+            <p className="text-sm text-brand-muted text-center sm:text-left">
+              &copy; {year} Jaylord Vhan Fabor
+            </p>
+          </div>
 
           <nav aria-label="Social links">
             <ul className="flex flex-wrap items-center justify-center gap-2">
@@ -38,7 +42,7 @@ const Footer = () => {
                     href={link.href}
                     target={link.href.startsWith("mailto:") ? undefined : "_blank"}
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 h-11 px-4 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+                    className="inline-flex items-center gap-2 h-11 px-4 rounded-md text-sm font-medium text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover transition-colors"
                   >
                     {link.icon}
                     {link.label}

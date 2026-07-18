@@ -29,19 +29,19 @@ const About = () => {
 
   return (
     <ResumeSection id="about" title="About">
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+      <p className="text-brand-text/85 leading-relaxed">
         I'm a software engineer focused on building productive, real-world
         applications &mdash; from clean, scalable backends and APIs to
         automated workflows that save teams hours of manual work.
       </p>
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3">
+      <p className="text-brand-text/85 leading-relaxed mt-3">
         Lately I've been leveraging AI to make products genuinely more useful:
         integrating AI voice agents, automating business processes with n8n, and
         wiring LLMs into real workflows. My goal is always the same &mdash;
         practical tools that help people work faster and smarter.
       </p>
 
-      <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mt-8 mb-3">
+      <h3 className="text-sm font-semibold uppercase tracking-wide text-brand-accent mt-8 mb-3">
         Education
       </h3>
       <div className="space-y-3">
@@ -50,15 +50,15 @@ const About = () => {
           return (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+              className="bg-brand-surface rounded-lg border border-brand-border overflow-hidden"
             >
               <button
                 type="button"
                 onClick={() => toggleExpand(index)}
                 aria-expanded={isOpen}
-                className="w-full text-left p-4 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                className="w-full text-left p-4 flex items-center gap-4 hover:bg-brand-border/40 transition-colors"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border border-brand-border bg-white">
                   <img
                     src={edu.logo}
                     alt={`${edu.school} logo`}
@@ -66,16 +66,16 @@ const About = () => {
                   />
                 </div>
                 <div className="flex-grow min-w-0">
-                  <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-snug">
+                  <h4 className="text-sm font-semibold text-brand-text leading-snug">
                     {edu.school}
                   </h4>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">{edu.degree}</p>
-                  <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
+                  <p className="text-xs text-brand-muted mt-0.5">{edu.degree}</p>
+                  <span className="text-xs font-medium text-brand-accent">
                     {edu.year}
                   </span>
                 </div>
                 <svg
-                  className={`flex-shrink-0 w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                  className={`flex-shrink-0 w-5 h-5 text-brand-accent transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -85,15 +85,15 @@ const About = () => {
               </button>
 
               {isOpen && (
-                <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3">
+                <div className="px-4 pb-4 border-t border-brand-border">
+                  <p className="text-brand-text/85 leading-relaxed mt-3">
                     {edu.description}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {edu.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs px-2 py-0.5 rounded-full"
+                        className="bg-brand-accent/10 text-brand-accent font-mono text-[11px] px-2 py-0.5 rounded-full"
                       >
                         {skill}
                       </span>
