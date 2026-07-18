@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Lock } from "lucide-react";
 
 const MAX_TAGS = 4;
 
@@ -54,15 +54,23 @@ const ProjectCard = ({ project }) => {
 
         {/* Actions pinned to the bottom */}
         <div className="mt-auto pt-3 flex gap-2">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
-          >
-            <Github className="h-4 w-4" />
-            GitHub
-          </a>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
+          )}
+          {!project.link && !project.preview && (
+            <span className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium border border-dashed border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400">
+              <Lock className="h-4 w-4" />
+              Internal company project
+            </span>
+          )}
           {project.preview && (
             <a
               href={project.preview}

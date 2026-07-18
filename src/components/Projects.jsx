@@ -85,6 +85,24 @@ const projectsData = [
     category: "Full-Stack Application",
     link: "https://github.com/JjayFabor/overload-workout-tracker"
   },
+  {
+    id: 9,
+    title: "Secure File Transfer & Sharing",
+    description: "n8n workflow automating secure Google Drive file transfers — provisioning dedicated folders and enforcing role-based sharing access for employees. Built at Callbox.",
+    image: "projects/n8n-file-transfer.svg",
+    techStack: ["n8n", "Google Drive API", "Webhooks", "Role-Based Access"],
+    status: "completed",
+    category: "Automation",
+  },
+  {
+    id: 10,
+    title: "HubSpot Pipeline Data Sync",
+    description: "HubSpot workflow integration syncing CRM data into the internal pipeline database, keeping sales records consistent without manual exports. Built at Callbox.",
+    image: "projects/hubspot-pipeline-sync.svg",
+    techStack: ["HubSpot CRM", "HubSpot Workflows", "REST API", "MySQL"],
+    status: "completed",
+    category: "Automation",
+  },
 ];
 
 const Projects = () => {
