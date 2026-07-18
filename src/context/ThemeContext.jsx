@@ -4,9 +4,11 @@ const DarkModeContext = createContext();
 
 function DarkModeProvider(props) {
   const [ darkMode, setDarkMode ] = useState(() => {
-    const savedThemed = localStorage.getItem('darkMode');
-    if (savedThemed) {
-      return savedThemed === 'dark';
+    // Must read the same key the effect below writes ('theme'),
+    // otherwise the saved choice is never restored on reload.
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme === 'dark';
     }
 
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
