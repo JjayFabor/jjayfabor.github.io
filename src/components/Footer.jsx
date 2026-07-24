@@ -1,6 +1,10 @@
 import { VscGithub, VscMail } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
 import Monogram from "./Monogram";
+import { useContact } from "../context/ContactContext";
+
+const linkClass =
+  "inline-flex items-center gap-2 h-11 px-4 rounded-md text-sm font-medium text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover transition-colors";
 
 const socialLinks = [
   {
@@ -14,14 +18,18 @@ const socialLinks = [
     href: "https://www.linkedin.com/in/jjayfabor/",
   },
   {
+    // Opens the in-page contact form. A mailto: link silently does nothing when
+    // the visitor has no default mail app (e.g. webmail users), so we trigger
+    // the shared Contact modal instead.
     icon: <VscMail className="h-5 w-5" />,
     label: "Email",
-    href: "mailto:contact@jjayfabor.com",
+    action: "contact",
   },
 ];
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const { openContact } = useContact();
 
   return (
     <footer className="bg-brand-surface border-t border-brand-border">
@@ -38,15 +46,26 @@ const Footer = () => {
             <ul className="flex flex-wrap items-center justify-center gap-2">
               {socialLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 h-11 px-4 rounded-md text-sm font-medium text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover transition-colors"
-                  >
-                    {link.icon}
-                    {link.label}
-                  </a>
+                  {link.href ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClass}
+                    >
+                      {link.icon}
+                      {link.label}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={openContact}
+                      className={linkClass}
+                    >
+                      {link.icon}
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
