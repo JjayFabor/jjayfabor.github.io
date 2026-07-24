@@ -40,6 +40,24 @@ async function sendContactEmail(env, { name, email, message }) {
   });
 }
 
+// Verify a Turnstile token server-side (browser -> Worker -> siteverify).
+// Never call siteverify from the browser. Returns true only on success.
+async function verifyTurnstile(secret, token, ip) {
+  const res = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ secret, response: token, remoteip: ip }),
+    },
+  );
+  const data = await res.json();
+  if (!data.success) {
+    console.error("turnstile verify failed:", (data["error-codes"] || []).join(","));
+  }
+  return data.success === true;
+}
+
 export default {
   // Producer: validate and enqueue, then respond instantly.
   async fetch(request, env) {
@@ -64,6 +82,12 @@ export default {
       return json({ error: "Invalid request." }, 400);
     }
 
+    // Honeypot: real users never fill this. If it's set, accept-and-drop —
+    // the bot sees success and moves on, but nothing is enqueued or sent.
+    if (clean(body.company, 100)) {
+      return json({ ok: true });
+    }
+
     const name = clean(body.name, 100);
     const email = clean(body.email, 200);
     const message = clean(body.message, 5000);
@@ -72,6 +96,16 @@ export default {
       return json(
         { error: "Please provide your name, a valid email, and a message." },
         400,
+      );
+    }
+
+    // Bot check: verify the Turnstile token before doing any work.
+    const token = clean(body.turnstileToken, 4096);
+    const ip = request.headers.get("CF-Connecting-IP") || "";
+    if (!token || !(await verifyTurnstile(env.TURNSTILE_SECRET, token, ip))) {
+      return json(
+        { error: "Verification failed. Please refresh and try again." },
+        403,
       );
     }
 

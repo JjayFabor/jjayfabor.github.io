@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,16 +7,25 @@ import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 import { toast } from "sonner";
 
+// Public Turnstile sitekey — safe to ship in the client. The secret lives
+// only in the Worker (TURNSTILE_SECRET) and is used for server-side verify.
+const TURNSTILE_SITEKEY = "0x4AAAAAAD8ttvZFTMonWRDg";
+
 const Contact = ({ open = false, onClose = () => {} }) => {
   const form = useForm({
     defaultValues: {
       name: "",
       email: "",
       message: "",
+      // Honeypot: hidden from real users; bots that fill it get dropped.
+      company: "",
     },
   });
 
   const [submitting, setSubmitting] = useState(false);
+  const [token, setToken] = useState("");
+  const widgetRef = useRef(null);
+  const widgetIdRef = useRef(null);
 
   useEffect(() => {
     function onKey(e) {
@@ -26,7 +35,51 @@ const Contact = ({ open = false, onClose = () => {} }) => {
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
+  // Load the Turnstile script once (explicit mode — we render it ourselves).
+  useEffect(() => {
+    if (document.getElementById("cf-turnstile-script")) return;
+    const s = document.createElement("script");
+    s.id = "cf-turnstile-script";
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  }, []);
+
+  // Render the widget when the modal opens; remove it when it closes.
+  useEffect(() => {
+    if (!open) return;
+    let cancelled = false;
+    const render = () => {
+      if (cancelled) return;
+      if (window.turnstile && widgetRef.current && widgetIdRef.current == null) {
+        widgetIdRef.current = window.turnstile.render(widgetRef.current, {
+          sitekey: TURNSTILE_SITEKEY,
+          action: "turnstile-spin-v2",
+          callback: (t) => setToken(t),
+          "expired-callback": () => setToken(""),
+          "error-callback": () => setToken(""),
+        });
+      } else if (!window.turnstile) {
+        setTimeout(render, 200);
+      }
+    };
+    render();
+    return () => {
+      cancelled = true;
+      if (window.turnstile && widgetIdRef.current != null) {
+        window.turnstile.remove(widgetIdRef.current);
+      }
+      widgetIdRef.current = null;
+      setToken("");
+    };
+  }, [open]);
+
   const handleSubmit = async (data) => {
+    if (!token) {
+      toast.error("Please complete the verification challenge.");
+      return;
+    }
     setSubmitting(true);
 
     try {
@@ -35,13 +88,13 @@ const Contact = ({ open = false, onClose = () => {} }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, turnstileToken: token }),
       });
 
       if (response.ok) {
         toast.success("Your message has been sent successfully.");
         form.reset();
-        // close modal after success
+        // close modal after success (widget is removed by the cleanup effect)
         onClose();
       } else {
         throw new Error("Failed to submit form");
@@ -49,6 +102,11 @@ const Contact = ({ open = false, onClose = () => {} }) => {
     } catch (error) {
       console.error("Error:", error);
       toast.error("Oops! Something went wrong. Please try again.");
+      // Reset the widget so the user can retry with a fresh token.
+      if (window.turnstile && widgetIdRef.current != null) {
+        window.turnstile.reset(widgetIdRef.current);
+      }
+      setToken("");
     } finally {
       setSubmitting(false);
     }
@@ -144,6 +202,29 @@ const Contact = ({ open = false, onClose = () => {} }) => {
                     <FormMessage />
                   </FormItem>
                 )}
+              />
+
+              {/* Honeypot — off-screen; real users never fill it, bots do */}
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                {...form.register("company")}
+                style={{
+                  position: "absolute",
+                  left: "-9999px",
+                  width: "1px",
+                  height: "1px",
+                  opacity: 0,
+                }}
+              />
+
+              {/* Cloudflare Turnstile — bot verification */}
+              <div
+                ref={widgetRef}
+                className="cf-turnstile"
+                data-action="turnstile-spin-v2"
               />
 
               <div className="flex flex-col-reverse sm:flex-row gap-3 pt-2">
