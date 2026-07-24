@@ -40,5 +40,17 @@
         "dead_letter_queue": "contact-emails-dlq"
       }
     ]
-  }
+  },
+
+  // Per-IP rate limiting via a strongly-consistent Durable Object (one
+  // instance per IP). SQLite-backed DOs are free-tier eligible. The limit
+  // itself lives in worker/index.js (RATE_LIMIT / RATE_PERIOD_MS).
+  "durable_objects": {
+    "bindings": [
+      { "name": "RATE_LIMITER", "class_name": "RateLimiter" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["RateLimiter"] }
+  ]
 }

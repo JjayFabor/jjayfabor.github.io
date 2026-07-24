@@ -12,8 +12,16 @@
 //   env.CONTACT_QUEUE producer binding for the "contact-emails" queue
 //   env.CONTACT_TO    recipient — a verified Email Routing destination address
 //                     (secret: `npx wrangler secret put CONTACT_TO`)
+//   env.RATE_LIMITER  Durable Object binding for strongly-consistent per-IP
+//                     rate limiting (one DO instance per IP).
+
+import { DurableObject } from "cloudflare:workers";
 
 const FROM = { email: "contact@jjayfabor.com", name: "jjayfabor.com" };
+
+// Per-IP rate limit: at most RATE_LIMIT submissions per RATE_PERIOD_MS.
+const RATE_LIMIT = 5;
+const RATE_PERIOD_MS = 60_000;
 
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
@@ -43,12 +51,14 @@ async function sendContactEmail(env, { name, email, message }) {
 // Verify a Turnstile token server-side (browser -> Worker -> siteverify).
 // Never call siteverify from the browser. Returns true only on success.
 async function verifyTurnstile(secret, token, ip) {
+  const params = new URLSearchParams({ secret, response: token });
+  if (ip) params.set("remoteip", ip); // optional; omit when unknown
   const res = await fetch(
     "https://challenges.cloudflare.com/turnstile/v0/siteverify",
     {
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ secret, response: token, remoteip: ip }),
+      body: params,
     },
   );
   const data = await res.json();
@@ -58,6 +68,23 @@ async function verifyTurnstile(secret, token, ip) {
   return data.success === true;
 }
 
+// Strongly-consistent per-IP fixed-window rate limiter. One DO instance per
+// key holds the count; check() returns true while under the limit.
+export class RateLimiter extends DurableObject {
+  async check(limit, periodMs) {
+    const now = Date.now();
+    let windowStart = (await this.ctx.storage.get("windowStart")) ?? 0;
+    let count = (await this.ctx.storage.get("count")) ?? 0;
+    if (now - windowStart >= periodMs) {
+      windowStart = now;
+      count = 0;
+    }
+    count += 1;
+    await this.ctx.storage.put({ windowStart, count });
+    return count <= limit;
+  }
+}
+
 export default {
   // Producer: validate and enqueue, then respond instantly.
   async fetch(request, env) {
@@ -65,6 +92,21 @@ export default {
 
     if (pathname !== "/api/contact") return json({ error: "Not found" }, 404);
     if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
+
+    // Per-IP rate limit — runs before any work (incl. siteverify) so a flood
+    // from one IP is shed cheaply. Backed by a strongly-consistent DO.
+    const clientIp = request.headers.get("CF-Connecting-IP") || "";
+    const rlId = env.RATE_LIMITER.idFromName(`contact:${clientIp || "unknown"}`);
+    const withinLimit = await env.RATE_LIMITER.get(rlId).check(
+      RATE_LIMIT,
+      RATE_PERIOD_MS,
+    );
+    if (!withinLimit) {
+      return json(
+        { error: "Too many messages. Please wait a minute and try again." },
+        429,
+      );
+    }
 
     // Fail fast if the recipient secret is misconfigured, so the user isn't
     // told "sent" for a message that could never be delivered.
@@ -101,8 +143,7 @@ export default {
 
     // Bot check: verify the Turnstile token before doing any work.
     const token = clean(body.turnstileToken, 4096);
-    const ip = request.headers.get("CF-Connecting-IP") || "";
-    if (!token || !(await verifyTurnstile(env.TURNSTILE_SECRET, token, ip))) {
+    if (!token || !(await verifyTurnstile(env.TURNSTILE_SECRET, token, clientIp))) {
       return json(
         { error: "Verification failed. Please refresh and try again." },
         403,
