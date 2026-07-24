@@ -6,7 +6,8 @@
 // Config:
 //   env.EMAIL      send_email binding (wrangler.jsonc)
 //   env.CONTACT_TO recipient, a verified Email Routing destination address
-//                  (set as a secret: `npx wrangler secret put CONTACT_TO`)
+//                  (set as a secret: `npx wrangler secret put CONTACT_TO`).
+//                  MUST be a valid email — the send rejects anything else.
 
 const FROM = { email: "contact@jjayfabor.com", name: "jjayfabor.com" };
 
@@ -25,6 +26,17 @@ export default {
 
     if (pathname !== "/api/contact") return json({ error: "Not found" }, 404);
     if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
+
+    // Misconfiguration guard: CONTACT_TO must be a valid destination email.
+    // (Without this, a bad secret surfaces only as a cryptic send failure.)
+    const to = clean(env.CONTACT_TO, 200);
+    if (!isEmail(to)) {
+      console.error(
+        `CONTACT_TO is not a valid email (length ${to.length}). ` +
+          `Fix it with: npx wrangler secret put CONTACT_TO`,
+      );
+      return json({ error: "The contact form is temporarily unavailable." }, 500);
+    }
 
     let body;
     try {
@@ -46,15 +58,15 @@ export default {
 
     try {
       await env.EMAIL.send({
-        to: env.CONTACT_TO,
+        to,
         from: FROM,
-        // So a reply from your inbox goes straight back to the visitor.
-        replyTo: { email, name },
+        // Bare string so a reply from your inbox goes straight to the visitor.
+        replyTo: email,
         subject: `New portfolio message from ${name}`,
         text: `Name: ${name}\nEmail: ${email}\n\n${message}\n`,
       });
     } catch (err) {
-      console.error("send_email failed:", err?.message || err);
+      console.error("send_email failed:", err?.code ?? "", err?.message ?? err);
       return json(
         { error: "Could not send your message. Please try again later." },
         502,
