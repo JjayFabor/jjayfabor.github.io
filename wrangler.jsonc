@@ -23,5 +23,22 @@
   // destination addresses, so the recipient (CONTACT_TO secret) must be one.
   "send_email": [
     { "name": "EMAIL" }
-  ]
+  ],
+
+  // Queue: the fetch handler enqueues submissions (instant response); the
+  // queue() handler consumes them and sends the email, retrying on failure.
+  "queues": {
+    "producers": [
+      { "queue": "contact-emails", "binding": "CONTACT_QUEUE" }
+    ],
+    "consumers": [
+      {
+        "queue": "contact-emails",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 3,
+        "dead_letter_queue": "contact-emails-dlq"
+      }
+    ]
+  }
 }
