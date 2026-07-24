@@ -5,11 +5,23 @@
   "name": "personal-website",
   "compatibility_date": "2026-07-24",
 
-  // Static-assets-only Worker: no server code, just serve the Vite build.
+  // Server entry: handles POST /api/contact (see run_worker_first below).
+  "main": "./worker/index.js",
+
   "assets": {
     "directory": "./dist",
     // Serve index.html (200) for unknown paths so client-side
     // react-router routes work on refresh / direct links.
-    "not_found_handling": "single-page-application"
-  }
+    "not_found_handling": "single-page-application",
+    // Only /api/* hits the Worker; every other path is served straight
+    // from ./dist as a static asset (the Worker never runs for those).
+    "run_worker_first": ["/api/*"]
+  },
+
+  // Cloudflare Email Routing binding used by worker/index.js to send
+  // contact-form messages. Email Routing only permits sending to verified
+  // destination addresses, so the recipient (CONTACT_TO secret) must be one.
+  "send_email": [
+    { "name": "EMAIL" }
+  ]
 }

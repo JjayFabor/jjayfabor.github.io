@@ -30,7 +30,7 @@ const Contact = ({ open = false, onClose = () => {} }) => {
     setSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/xeojqone", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

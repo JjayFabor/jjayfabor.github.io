@@ -16,7 +16,7 @@ const socialLinks = [
   {
     icon: <VscMail className="h-5 w-5" />,
     label: "Email",
-    href: "mailto:faborjaylordvhan@gmail.com",
+    href: "mailto:contact@jjayfabor.com",
   },
 ];
 
