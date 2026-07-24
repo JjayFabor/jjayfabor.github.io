@@ -1,0 +1,15 @@
+{
+  // IMPORTANT: this "name" must match the Worker name in your Cloudflare
+  // dashboard (the one your custom domain is attached to), or wrangler will
+  // deploy to a different Worker.
+  "name": "jjayntic",
+  "compatibility_date": "2026-07-24",
+
+  // Static-assets-only Worker: no server code, just serve the Vite build.
+  "assets": {
+    "directory": "./dist",
+    // Serve index.html (200) for unknown paths so client-side
+    // react-router routes work on refresh / direct links.
+    "not_found_handling": "single-page-application"
+  }
+}
