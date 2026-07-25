@@ -95,12 +95,19 @@ Open data TODOs left in the files (grep `TODO`):
       Verified live via headless-Chromium screenshots (list, 2 detail pages, internal
       no-links case, not-found). Build + lint clean.
 
-### Phase 2 — Feature B (`portfolio-mcp`, separate repo)
-- [ ] New repo: TS + `@modelcontextprotocol/sdk`, stdio server, `GITHUB_TOKEN`,
-      `PORTFOLIO_DIR` write target.
-- [ ] Tool `scaffold_project_from_repo` (guess-with-TODO contract, README→overview/
-      features, social-image hero fallback, topics→display-name tech mapping).
-- [ ] Tool `list_unshowcased_repos` (owned repos − existing Projects, minus forks/archived).
+### Phase 2 — Feature B (`portfolio-mcp`, separate repo)  ✅ DONE (verified, committed)
+Location: `/home/jjayfabor/JjayFiles/portfolio-mcp` (own git repo, initial commit made).
+- [x] Repo: TS + `@modelcontextprotocol/sdk` 1.29 over stdio; GitHub REST via native
+      `fetch` (no Octokit); `GITHUB_TOKEN` auth; writes into `$PORTFOLIO_DIR`.
+- [x] `scaffold_project_from_repo` — guess-with-TODO, README→overview/features,
+      social-image hero fallback, topics+language→display-name mapping, prettified title,
+      no-overwrite (frozen-slug) guard, never commits/deploys.
+- [x] `list_unshowcased_repos` — owned repos − existing project links/slugs, minus
+      forks/archived, newest-first.
+- Verified: live logic (28 unshowcased found, 8 showcased correctly excluded); generated
+  Markdown round-trips through js-yaml (the portfolio loader's parser); MCP stdio
+  `initialize` + `tools/list` handshake advertises both tools; `tsc` clean.
+- To use: wire into an MCP host (see repo README) with `PORTFOLIO_DIR` = this repo.
 
 ### Phase 3 — later
 - [ ] Worker-injected per-project OG/meta (the SEO upgrade).
@@ -108,13 +115,15 @@ Open data TODOs left in the files (grep `TODO`):
 
 ## Status
 - Done: design locked (14 decisions) + [CONTEXT.md](CONTEXT.md) glossary + ADRs 0001/0002.
-  **Phase 0** (Markdown migration + loader) and **Phase 1** (clickable cards + detail
-  pages) implemented and verified live. Nothing committed yet.
+  **Phase 0** (Markdown migration + loader), **Phase 1** (clickable cards + detail pages),
+  and **Phase 2** (the `portfolio-mcp` server) all implemented and verified.
+  - Phases 0–1 committed on branch `feat/project-detail-pages` (not yet merged/deployed).
+  - Phase 2 committed in the sibling repo `/home/jjayfabor/JjayFiles/portfolio-mcp`.
 - Remaining:
-  - Data: real `date`s for the two Callbox projects; confirm Portfolio Website repo
-    (answered → `jjayfabor.github.io`, TODO comment can be dropped once you're happy).
-  - Content: detail-page bodies are thin (seeded from the one-line description) — enrich
-    them (great first dogfood job for `portfolio-mcp`: draft from each README).
-  - **Phase 2**: build the `portfolio-mcp` server (separate repo).
-  - **Phase 3**: Worker OG/meta; add `portfolio-mcp` as its own Project.
-  - Commit when ready (currently on `main`, working tree dirty).
+  - Ship Phases 0–1: `git checkout main && git merge feat/project-detail-pages && npm run deploy`.
+  - Data: real `date`s for the two Callbox projects; the Portfolio Website repo is
+    confirmed (`jjayfabor.github.io`).
+  - Content: detail-page bodies are thin — enrich them (dogfood `portfolio-mcp` to redraft
+    from each README).
+  - **Phase 3**: push `portfolio-mcp` to GitHub, then use it to scaffold itself as a
+    Project; Worker-injected OG/meta for per-project link previews.
