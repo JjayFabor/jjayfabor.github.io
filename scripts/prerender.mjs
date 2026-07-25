@@ -25,6 +25,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { load as loadYaml } from "js-yaml";
+import { faq } from "../src/data/faq.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
@@ -302,9 +303,25 @@ const homeInner = `
 <ul>
 ${projectListItems}
 </ul>
+<h2>FAQ</h2>
+<dl>
+${faq.map((f) => `<dt>${text(f.q)}</dt><dd>${text(f.a)}</dd>`).join("\n")}
+</dl>
 <h2>Contact</h2>
 <p><a href="https://github.com/JjayFabor">GitHub</a> &middot; <a href="https://www.linkedin.com/in/jjayfabor/">LinkedIn</a></p>
 `.trim();
+
+// FAQPage structured data — the same Q&A as the visible section, so answer
+// engines can extract self-contained questions and answers.
+const faqLd = jsonLd({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+});
 
 writePage("/", stampPage({
   title: "Jjay Fabor — Software Engineer | Backend, AI & Automation",
@@ -312,6 +329,7 @@ writePage("/", stampPage({
     "Jjay Fabor (Jjayntic) is a Software Engineer who builds productive, real-world apps — scalable Laravel/PHP & Python backends, REST APIs, React & mobile apps (React Native, Flutter), HubSpot CRM development, and AI-powered automation with n8n and VAPI AI.",
   canonical: "/",
   ogImage: "/logo/jjayntic.png",
+  extraJsonLd: faqLd,
   root: shell(homeInner),
 }));
 

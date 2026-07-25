@@ -159,10 +159,22 @@ still `createRoot().render()`s over the shell).
   `https://jjayfabor.com/sitemap.xml`, and URL-Inspect → Request indexing for the home +
   a couple of project URLs.
 
+### Phase 3b — AEO content pass  ✅ DONE (built + verified live)
+- [x] Shared FAQ (`src/data/faq.js`) → visible `Faq.jsx` section on the homepage
+      (answers always shown, not accordion) + baked into the prerendered shell +
+      `FAQPage` JSON-LD. One source of truth so the citable Q&A can't drift.
+- [x] Enriched `lettuce-watch.md` into a full case study (Problem/Approach/Key features/
+      Tech stack & role/Outcome) as the template for the rest — its 5 `## ` sections also
+      light up the detail page's sticky jump-nav.
+- User action for AEO (not code): **Bing Webmaster Tools** (feeds ChatGPT/Copilot —
+  import from Google Search Console), keep LinkedIn/GitHub bios consistent with the site,
+  optionally enable Cloudflare IndexNow.
+
 ### Phase 4 — later
 - [ ] Add `portfolio-mcp` itself as a Project (self-referential card + detail page).
-- [ ] Enrich thin detail-page bodies (dogfood `portfolio-mcp`) — richer bodies now also
-      directly improve AEO, since the body is prerendered into the crawlable shell.
+- [ ] Enrich the remaining thin detail-page bodies using the lettuce-watch case study as
+      the template (dogfood `portfolio-mcp`) — richer bodies improve both SEO and AEO,
+      since the body is prerendered into the crawlable shell.
 
 ## Status
 - Done: design locked (14 decisions) + [CONTEXT.md](CONTEXT.md) glossary + ADRs 0001/0002.
