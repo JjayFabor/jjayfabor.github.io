@@ -1,75 +1,120 @@
-# Task: Palette + font swap → dark slate / cyan (supersedes navy/indigo rebrand)
+# Task: Clickable project detail pages + `portfolio-mcp` scaffolding server
+
+Design locked via a grilling session (2026-07-25). No code written yet.
+Domain terms live in [CONTEXT.md](CONTEXT.md).
 
 ## Goal
-Colors and fonts ONLY. No layout, structure, or content changes. Resume-style
-layout stays exactly as is.
+1. **Feature A** — project cards become clickable and open a full **Project Detail
+   Page** (medium case-study) per project.
+2. **Feature B** — a standalone MCP server (`portfolio-mcp`, its own repo) that
+   **scaffolds a curated Draft** project from a GitHub repo, on demand. PRIMARY goal
+   is the MCP-building skill / résumé + portfolio credential; utility is the bonus.
+3. **Migration** — move project data from the hardcoded `src/data/projects.js` array
+   to a **Markdown-per-project content collection** under `content/projects/`.
 
-## Palette (user-specified, single dark theme)
-- bg `#0F1117` (hsl 225 21% 7%) · surface `#1C1E26` (hsl 228 15% 13%)
-- border `#252836` (hsl 229 19% 18%) · accent `#06B6D4` (hsl 189 95% 43%)
-- accent-hover `#22D3EE` (hsl 188 86% 53%) · text `#E2E8F0` (hsl 214 32% 91%)
-- text-muted `#64748B` (hsl 215 16% 47%)
-
-## Fonts
-- Inter 400/500/600 → body AND headings (Space Grotesk removed).
-- JetBrains Mono → tech/skill tags at 11px.
+## Decisions (why + rejected alternative)
+1. **Curated-with-assist**, not auto-publish. Owner is the source of truth; GitHub is
+   only a *source* to scaffold from. Rejected full-auto (would flood the portfolio with
+   forks/experiments and lose category/status/ordering/curated prose the API can't give).
+2. **On-demand trigger**, not automatic-on-new-repo. The scarce input is judgment about
+   which repos belong, not typing. Rejected polling/webhook auto-draft.
+3. **Build a real MCP server**, not a Claude Code Skill/CLI script. Chosen *because*
+   the learning/credential goal is primary; a standalone MCP is the stronger artifact
+   and becomes its own portfolio project. Rejected in-repo Skill (weaker showcase).
+4. **Markdown-per-project, no database.** Flat files, git-tracked (git = the DB: history,
+   diffs, review, rollback; zero runtime cost). Frontmatter = card fields, body =
+   case-study prose. Rejected: single big JS array (fragile MCP edits, ugly prose-in-
+   strings) and JSON-per-project (prose-in-JSON clunky, not README/LLM-native). Rejected
+   a database (no scale/search/multi-user need at <50 entries).
+5. **Detail page = medium case-study**: header (title, status, category, date, tags,
+   GitHub/Preview links) · large hero · 2–3¶ overview · key-features list · optional
+   screenshots gallery · back link. Rejected lightweight (too thin to be worth a click)
+   and full case-study (too much hand-writing for ~10 projects; upgrade standouts later).
+6. **Slug**: explicit `slug` in frontmatter, MCP-proposed from repo name (slugified title
+   for repo-less projects), **frozen after publish**; filename = slug = URL. Numeric `id`
+   retired — slug is the identity/key/route param. Rejected raw-title-derived (renames
+   break URLs) and pure-repo-name (repo-less Callbox projects need a slug too).
+7. **Ordering**: `featured: true` floats to top, else sort by manual `date` (MCP-seeded
+   from `pushed_at`) descending. Rejected explicit `order` int (renumbering pain) and
+   pure-date (can't pin a favorite).
+8. **Whole card is the link**; GitHub/Preview action buttons **move to the detail page**
+   (can't nest links; also routes visitors through the curated story before GitHub).
+   Rejected keeping buttons on the card (nested-link/a11y mess) and title-only-clickable
+   (weak affordance).
+9. **Images optional, graceful degrade.** Hero falls back to GitHub's per-repo social
+   image (`opengraph.githubassets.com/<hash>/<owner>/<repo>`); gallery hidden if empty.
+   Screenshots live in `public/projects/<slug>-*.png`. Rejected images-required (kills
+   one-shot scaffolding).
+10. **Scaffold contract — guess-with-TODO.** Auto-fill factual fields; the fields GitHub
+    can't know (`category`, `status`) are guessed and marked `# TODO: confirm` so a wrong
+    guess never silently ships. Rejected leave-blank-required (breaks one-shot feel).
+    Field sources: slug/title/description/link←repo, preview←repo `homepage`, date←
+    `pushed_at`, techStack←topics+language (mapped to display names), image←social-image
+    fallback, overview/features←drafted from README, category/status←guessed+TODO,
+    featured←false.
+11. **MCP tools (v1)**: `scaffold_project_from_repo(repo)` + `list_unshowcased_repos()`
+    (diffs owned repos against existing Projects, excludes forks/archived). Deferred a
+    third `validate_projects` (scope creep).
+12. **MCP = standalone repo** `portfolio-mcp`, TypeScript + official MCP TS SDK, **stdio**
+    transport (nothing to host). Writes into the site via a `PORTFOLIO_DIR` env var.
+    Rejected in-repo `mcp/` folder (weaker résumé artifact).
+13. **Auth**: `GITHUB_TOKEN` env var (portable for a reusable repo; `gh auth token` to
+    populate). Optional `gh` fallback later. **Git boundary**: MCP writes files ONLY —
+    never `git commit/push`, never deploys. Human reviews diff → commits → `npm run deploy`.
+14. **SEO/link-previews**: v1 = client-side `document.title` per project only. Deferred
+    (planned) upgrade = Cloudflare Worker injects per-project `<title>`/OG tags into
+    index.html via `HTMLRewriter` for `/projects/:slug`. Rejected full SSG (overkill).
 
 ## Steps
-1. tailwind.config.js — brand tokens → { bg, surface, border, accent, accent-hover,
-   text, muted }; fontFamily: sans=Inter, mono=JetBrains Mono; drop `display`.
-2. index.html — swap Google Fonts import (remove Space Grotesk; add JetBrains Mono);
-   theme-color → #0F1117. All other meta untouched.
-3. src/index.css — :root AND .dark get the same new palette (spec has no light
-   variants); remove the h1–h6 Space Grotesk rule.
-4. Monogram.jsx + public/favicon.svg — Jj mark recolored: #1C1E26 square,
-   J #06B6D4, j #E2E8F0, Inter 600. Same size/placement (nav structure untouched).
-5. Component color-class sweep (no markup changes): App, Bio, ResumeSection, About,
-   Experience, TechStack, Projects, ProjectCard, Footer, Contact, LightSwitch.
-   Tags → bg accent/10, text accent, font-mono 11px. Links → accent, hover accent-hover.
-6. Verify: build, screenshots (both toggle states + mobile), lint.
+### Phase 0 — shared data migration  ✅ DONE (built + verified, not committed)
+- [x] Frontmatter schema: `title, slug, description, techStack[], status, category,
+      image?, preview?, link?, featured, date` + Markdown body.
+- [x] Vite `import.meta.glob('/content/projects/*.md', {eager, query:'?raw'})` loader in
+      `src/data/projects.js` (js-yaml frontmatter parse; sorts featured-then-date-desc;
+      undated last). Exports `projectsData`, `categories`, `getProjectBySlug` — drop-in.
+      NOTE: js-yaml v4 ESM has no default export — use `import { load } from "js-yaml"`.
+- [x] Migrated all **10** entries into `content/projects/<slug>.md` (real dates from
+      `gh api` pushed_at). Fixed `key={project.id}` → `key={project.slug}` in the two
+      consumers. `npm run build` + loader verification + lint all pass.
 
-## Decisions
-- Spec defines ONE dark palette; site has a light/dark toggle. Applied the palette
-  to both :root and .dark so both states render the specified design. Consequence:
-  the toggle is now visually inert (still functional). Flag to user; options are
-  removing the toggle or deriving a light variant (both out of scope here).
-- No #0f172a occurrences exist (replaced with #1A1040 in prior rebrand); took the
-  CSS-variable path per spec.
-- Buttons/badges on cyan use #0F1117 text (white on #06B6D4 fails contrast).
-- Pre-existing ThemeContext localStorage bug (reads `darkMode`, writes `theme`)
-  still NOT fixed — out of scope, reported to user previously.
+Open data TODOs left in the files (grep `TODO`):
+- `portfolio-website.md` — dead link `github.com/JjayFabor/portfolio`; guessed this repo,
+  needs confirm (vs `react-portfolio` / `Online-Portfolio`).
+- `secure-file-transfer.md`, `hubspot-pipeline-sync.md` — no repo (Callbox), no `date`;
+  currently sort last until real dates are set.
 
-## Follow-up: "theme toggle not working" (debugged + fixed)
-- Symptom: clicking the toggle changed nothing on the page; choice also lost on reload.
-- Root causes (evidence via instrumented headless-browser click test):
-  1. Both theme states had identical palette values (by design of the single-palette
-     spec) → toggle was visually inert even though the `dark` class flipped correctly.
-  2. Pre-existing: ThemeContext wrote localStorage key `theme` but read `darkMode`
-     on init → saved state never restored.
-- Fix (user chose "add a light theme"):
-  1. brand.* tokens now resolve via CSS variables (`rgb(var(--brand-*))`) — :root
-     holds a derived light variant (bg #F8FAFC, surface #FFF, border #E2E8F0,
-     accent cyan-700 #0E7490 for AA contrast on white, hover #0891B2, text #0F1117,
-     muted #64748B); .dark holds the user's exact spec palette. shadcn vars updated
-     to match. ProjectCard hover glow now uses var-based color.
-  2. ThemeContext init now reads `theme` (same key the effect writes).
-- Verified live: click test shows body bg flipping #F8FAFC ↔ #0F1117; state persists
-  across reload; both themes + mobile screenshot-checked; build + lint clean.
+### Phase 1 — Feature A (clickable detail pages)  ✅ DONE (verified live, not committed)
+- [x] Added `react-markdown` + `remark-gfm`.
+- [x] Route `/projects/:slug` → `ProjectDetailPage`; friendly not-found → `/projects`.
+- [x] `ProjectCard` is now a `<Link>` to `/projects/<slug>` with a "View details →"
+      affordance; action buttons removed (they live on the detail page). Both home + list.
+- [x] `ProjectDetailPage` built per the skeleton (back link, title/badge/category/date,
+      full tech tags, GitHub/Preview or internal-lock, hero, Markdown body); sets
+      `document.title`. Bug found + fixed: relative `image` paths 404'd on the depth-2
+      route — loader now normalizes them to root-absolute (`/projects/x.svg`).
+      Verified live via headless-Chromium screenshots (list, 2 detail pages, internal
+      no-links case, not-found). Build + lint clean.
 
-## Follow-up: favicon
-- favicon.svg already carries the new Jj mark (dark surface square + cyan J + light j);
-  single mark for both browser themes (self-contained background — no adaptive variant).
-- Regenerated the stale public/favicon.ico (old pre-rebrand icon) from favicon.svg:
-  16/32/48px PNG-in-ICO via headless Chromium. Gotcha: file:// subresources are
-  blocked from setContent() pages — must page.goto() the SVG directly or captures
-  are transparent blanks. Verified by extracting and viewing the embedded PNGs.
-- Old favicon.ico recoverable from git history if ever needed.
+### Phase 2 — Feature B (`portfolio-mcp`, separate repo)
+- [ ] New repo: TS + `@modelcontextprotocol/sdk`, stdio server, `GITHUB_TOKEN`,
+      `PORTFOLIO_DIR` write target.
+- [ ] Tool `scaffold_project_from_repo` (guess-with-TODO contract, README→overview/
+      features, social-image hero fallback, topics→display-name tech mapping).
+- [ ] Tool `list_unshowcased_repos` (owned repos − existing Projects, minus forks/archived).
+
+### Phase 3 — later
+- [ ] Worker-injected per-project OG/meta (the SEO upgrade).
+- [ ] Add `portfolio-mcp` itself as a Project (self-referential card + detail page).
 
 ## Status
-- Done: all steps 1–6. Verified live: `npm run build` clean; `vite preview` +
-  headless-Chromium screenshots of both toggle states (render identically, as
-  intended) and 390px mobile; favicon render checked. Lint: 0 errors
-  (2 pre-existing warnings in untouched shadcn ui/ files).
-- Remaining: nothing. Not committed/deployed (user to review first).
-- Open question for user: theme toggle is now visually inert (single dark palette
-  in both states). Options: remove the toggle, or derive a light variant.
+- Done: design locked (14 decisions) + [CONTEXT.md](CONTEXT.md) glossary + ADRs 0001/0002.
+  **Phase 0** (Markdown migration + loader) and **Phase 1** (clickable cards + detail
+  pages) implemented and verified live. Nothing committed yet.
+- Remaining:
+  - Data: real `date`s for the two Callbox projects; confirm Portfolio Website repo
+    (answered → `jjayfabor.github.io`, TODO comment can be dropped once you're happy).
+  - Content: detail-page bodies are thin (seeded from the one-line description) — enrich
+    them (great first dogfood job for `portfolio-mcp`: draft from each README).
+  - **Phase 2**: build the `portfolio-mcp` server (separate repo).
+  - **Phase 3**: Worker OG/meta; add `portfolio-mcp` as its own Project.
+  - Commit when ready (currently on `main`, working tree dirty).

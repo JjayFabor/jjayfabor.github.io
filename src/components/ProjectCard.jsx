@@ -1,14 +1,22 @@
-import { ExternalLink, Github, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 const MAX_TAGS = 4;
 
+// The whole card is a link into the Project Detail Page. Action links
+// (GitHub / Preview) deliberately live on the detail page, not here — the
+// card's one job is to invite the click. See ADR-0001 / PLAN.md decision 8.
 const ProjectCard = ({ project }) => {
   const isCompleted = project.status === "completed";
   const tags = project.techStack.slice(0, MAX_TAGS);
   const extraTags = project.techStack.length - tags.length;
 
   return (
-    <div className="flex flex-col h-full bg-brand-surface rounded-lg border border-brand-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_8px_24px_rgb(var(--brand-accent)/0.25)]">
+    <Link
+      to={`/projects/${project.slug}`}
+      aria-label={`View details for ${project.title}`}
+      className="group flex flex-col h-full bg-brand-surface rounded-lg border border-brand-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_8px_24px_rgb(var(--brand-accent)/0.25)]"
+    >
       {/* Project image */}
       <div className="relative">
         <img
@@ -29,7 +37,7 @@ const ProjectCard = ({ project }) => {
 
       {/* Content */}
       <div className="flex flex-col flex-grow p-3.5">
-        <h3 className="text-base font-semibold text-brand-text">
+        <h3 className="text-base font-semibold text-brand-text group-hover:text-brand-accent transition-colors">
           {project.title}
         </h3>
         <p className="mt-1 text-sm text-brand-muted leading-snug line-clamp-2">
@@ -52,39 +60,13 @@ const ProjectCard = ({ project }) => {
           )}
         </div>
 
-        {/* Actions pinned to the bottom */}
-        <div className="mt-auto pt-3 flex gap-2">
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium bg-brand-accent text-brand-bg hover:bg-brand-accent-hover transition-colors"
-            >
-              <Github className="h-4 w-4" />
-              GitHub
-            </a>
-          )}
-          {!project.link && !project.preview && (
-            <span className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium border border-dashed border-brand-border text-brand-muted">
-              <Lock className="h-4 w-4" />
-              Internal company project
-            </span>
-          )}
-          {project.preview && (
-            <a
-              href={project.preview}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-3 rounded-md text-sm font-medium border border-brand-accent/50 text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover transition-colors"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Preview
-            </a>
-          )}
+        {/* Affordance pinned to the bottom — signals the card is clickable */}
+        <div className="mt-auto pt-3 inline-flex items-center gap-1.5 text-sm font-medium text-brand-accent">
+          View details
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

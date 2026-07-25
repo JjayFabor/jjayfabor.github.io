@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ContactProvider } from "./context/ContactProvider";
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
 
 // Reset scroll to the top whenever the route (path or query) changes, so
 // navigating between pages doesn't preserve the previous scroll position.
@@ -22,6 +23,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:slug" element={<ProjectDetailPage />} />
       </Routes>
       <Toaster />
     </ContactProvider>

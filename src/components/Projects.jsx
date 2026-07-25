@@ -36,7 +36,7 @@ const Projects = () => {
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
           <Link
