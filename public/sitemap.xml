@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Baseline sitemap used in dev. The deployed sitemap is regenerated at build
+     time by scripts/prerender.mjs with every /projects/:slug URL included. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://jjayfabor.github.io/</loc>
-    <lastmod>2026-06-23</lastmod>
+    <loc>https://jjayfabor.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://jjayfabor.github.io/logo/jjayntic.png</image:loc>
+      <image:loc>https://jjayfabor.com/logo/jjayntic.png</image:loc>
       <image:title>Jjayntic Portfolio</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://jjayfabor.com/projects</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

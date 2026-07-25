@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Bio from "../components/Bio";
 import Projects from "../components/Projects";
 import TechStack from "../components/TechStack";
@@ -9,6 +10,12 @@ import { useContact } from "../context/ContactContext";
 
 const HomePage = () => {
   const { openContact } = useContact();
+
+  // Keep the tab title correct when navigating back to home within the SPA
+  // (the prerendered <title> already covers first load and crawlers).
+  useEffect(() => {
+    document.title = "Jjay Fabor — Software Engineer | Backend, AI & Automation";
+  }, []);
 
   return (
     <div className="min-h-screen bg-brand-bg">

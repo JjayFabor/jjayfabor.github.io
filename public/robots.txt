@@ -3,5 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
-Sitemap: https://jjayfabor.github.io/sitemap.xml
-Host: jjayfabor.github.io
+Sitemap: https://jjayfabor.com/sitemap.xml

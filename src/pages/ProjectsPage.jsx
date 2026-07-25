@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import ProjectCard from "../components/ProjectCard";
@@ -11,6 +11,10 @@ const PAGE_SIZE = 10;
 
 const ProjectsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    document.title = "Projects — Jjay Fabor";
+  }, []);
 
   // Read filter + page from the URL. Guard against hand-edited values.
   const rawCategory = searchParams.get("category") || "All";

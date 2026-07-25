@@ -131,9 +131,38 @@ Location: `/home/jjayfabor/JjayFiles/portfolio-mcp` (own git repo, initial commi
   `initialize` + `tools/list` handshake advertises both tools; `tsc` clean.
 - To use: wire into an MCP host (see repo README) with `PORTFOLIO_DIR` = this repo.
 
-### Phase 3 — later
-- [ ] Worker-injected per-project OG/meta (the SEO upgrade).
+### Phase 3 — SEO / AEO  ✅ DONE (built + verified live over HTTP, not committed)
+Superseded decision 14's deferred plan: chose **build-time prerender** over a Worker
+`HTMLRewriter` because prerender puts real *body content* (not just meta) into the raw
+HTML — the thing AI answer engines (ChatGPT/Perplexity/AI Overviews) and link-preview
+bots read without executing JS. Zero runtime cost (static assets), no hydration (the app
+still `createRoot().render()`s over the shell).
+- [x] **Root cause of "jjayfabor.com not in search"**: every SEO signal pointed at
+      `jjayfabor.github.io`, which is now a 404 (GitHub Pages disabled). The
+      `<link rel="canonical">` → dead github.io told Google not to index jjayfabor.com.
+      Fixed canonical/OG/Twitter/JSON-LD/sitemap/robots/`homepage` → `jjayfabor.com`.
+- [x] Enriched Person JSON-LD (address = Iloilo City PH, alumniOf = CPU).
+- [x] `scripts/prerender.mjs` (runs in `build`, before `deploy`): writes per-route static
+      `index.html` for `/`, `/projects`, and every `/projects/:slug`, each with route-
+      correct `<head>` (title/description/canonical/OG/Twitter) + JSON-LD
+      (CreativeWork + BreadcrumbList per project; CollectionPage for the list) + a
+      crawlable content shell in `#root`. Reuses the app's own react-markdown+remark-gfm
+      via `renderToStaticMarkup` so project bodies can't drift from the UI. Also
+      regenerates `dist/sitemap.xml` with all project URLs.
+- [x] Client-side `document.title` on Home + Projects pages for SPA-nav polish.
+- Verified: `npm run build` → 10 project pages + home + list; all 12 pages' JSON-LD parse;
+      served over HTTP (python http.server) — `/projects/lettuce-watch/` returns 200 with
+      the prerendered title/canonical/body; homepage delivers real bio text + 10 project
+      links with no JS. Lint clean (0 errors).
+- **User action still required** (not code): add a Google Search Console **Domain
+  property** for `jjayfabor.com` (DNS TXT via Cloudflare), submit
+  `https://jjayfabor.com/sitemap.xml`, and URL-Inspect → Request indexing for the home +
+  a couple of project URLs.
+
+### Phase 4 — later
 - [ ] Add `portfolio-mcp` itself as a Project (self-referential card + detail page).
+- [ ] Enrich thin detail-page bodies (dogfood `portfolio-mcp`) — richer bodies now also
+      directly improve AEO, since the body is prerendered into the crawlable shell.
 
 ## Status
 - Done: design locked (14 decisions) + [CONTEXT.md](CONTEXT.md) glossary + ADRs 0001/0002.
