@@ -7,6 +7,10 @@ status: "completed"
 featured: false
 date: "2026-07-24"
 image: "projects/portfolio.png"
+screenshots:
+  - "projects/portfolio-light.png"
+  - "projects/portfolio-projects.png"
+  - "projects/portfolio-detail.png"
 link: "https://github.com/JjayFabor/jjayfabor.github.io"
 techStack: ["React", "TailwindCSS", "Vite", "Shadcn/ui"]
 ---
