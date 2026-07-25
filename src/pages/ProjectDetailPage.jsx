@@ -8,10 +8,33 @@ import Footer from "../components/Footer";
 import LightSwitch from "../components/LightSwitch";
 import Monogram from "../components/Monogram";
 
+const slugify = (s) =>
+  String(s)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+// Flatten React children back to plain text (for deriving a heading's anchor id).
+const nodeText = (node) => {
+  if (node == null) return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(nodeText).join("");
+  if (typeof node === "object" && node.props) return nodeText(node.props.children);
+  return "";
+};
+
 // Brand-styled renderers for the Markdown case-study body (no typography plugin).
+// H2s get an anchor id + scroll offset so the sticky jump-nav can target them.
 const markdownComponents = {
-  h2: (props) => (
-    <h2 className="text-xl font-semibold text-brand-text mt-8 mb-3" {...props} />
+  h2: ({ children, ...props }) => (
+    <h2
+      id={slugify(nodeText(children))}
+      className="scroll-mt-24 text-xl font-semibold text-brand-text mt-8 mb-3"
+      {...props}
+    >
+      {children}
+    </h2>
   ),
   h3: (props) => (
     <h3 className="text-lg font-semibold text-brand-text mt-6 mb-2" {...props} />
@@ -49,6 +72,19 @@ const formatDate = (d) => {
   const parsed = new Date(`${d}T00:00:00`);
   if (Number.isNaN(parsed.getTime())) return null;
   return parsed.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+};
+
+// The opt-in sections a project declares are just its `## ` headings — the
+// jump-nav is derived from them, never authored separately, so it can't drift.
+const sectionsFromBody = (body) => {
+  const sections = [];
+  const re = /^##\s+(.+)$/gm;
+  let m;
+  while ((m = re.exec(body))) {
+    const label = m[1].replace(/[*_`]/g, "").trim();
+    if (label) sections.push({ id: slugify(label), label });
+  }
+  return sections;
 };
 
 // Shared page shell: fixed theme toggle, home-linking header, footer.
@@ -90,6 +126,17 @@ const ProjectDetailPage = () => {
     };
   }, [project]);
 
+  // Honor a deep link like /projects/delphi#architecture on load (after the
+  // route-change ScrollToTop has run — hence the rAF).
+  useEffect(() => {
+    if (!project || !window.location.hash) return;
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const raf = requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ block: "start" });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [project]);
+
   if (!project) {
     return (
       <Shell>
@@ -113,6 +160,21 @@ const ProjectDetailPage = () => {
   const formattedDate = formatDate(project.date);
   // Strip authoring TODO comments; render the rest as the case-study body.
   const body = (project.body || "").replace(/<!--[\s\S]*?-->/g, "").trim();
+
+  const hasGallery = Array.isArray(project.screenshots) && project.screenshots.length > 0;
+  const sections = sectionsFromBody(body);
+  if (hasGallery) sections.push({ id: "gallery", label: "Gallery" });
+  // A jump-nav only earns its place once there are a couple of sections.
+  const showNav = sections.length >= 2;
+
+  const handleJump = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", `#${id}`);
+    }
+  };
 
   return (
     <Shell>
@@ -203,6 +265,28 @@ const ProjectDetailPage = () => {
         />
       )}
 
+      {/* Sticky jump-nav — derived from the body's H2 sections (+ Gallery) */}
+      {showNav && (
+        <nav
+          aria-label="On this page"
+          className="sticky top-0 z-10 -mx-6 mt-8 px-6 py-3 bg-brand-bg/90 backdrop-blur border-b border-brand-border"
+        >
+          <ul className="flex flex-wrap gap-2">
+            {sections.map((s) => (
+              <li key={s.id}>
+                <a
+                  href={`#${s.id}`}
+                  onClick={(e) => handleJump(e, s.id)}
+                  className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-brand-surface text-brand-text border border-brand-border hover:border-brand-accent/60 hover:text-brand-accent transition-colors"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
       {/* Case-study body */}
       {body && (
         <div className="mt-8">
@@ -210,6 +294,23 @@ const ProjectDetailPage = () => {
             {body}
           </ReactMarkdown>
         </div>
+      )}
+
+      {/* Gallery — opt-in, from the `screenshots` frontmatter array */}
+      {hasGallery && (
+        <section id="gallery" className="scroll-mt-24 mt-10">
+          <h2 className="text-xl font-semibold text-brand-text mb-4">Gallery</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {project.screenshots.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`${project.title} screenshot ${i + 1}`}
+                className="w-full rounded-lg border border-brand-border object-cover"
+              />
+            ))}
+          </div>
+        </section>
       )}
     </Shell>
   );

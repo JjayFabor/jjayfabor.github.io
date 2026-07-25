@@ -65,6 +65,20 @@ Domain terms live in [CONTEXT.md](CONTEXT.md).
     (planned) upgrade = Cloudflare Worker injects per-project `<title>`/OG tags into
     index.html via `HTMLRewriter` for `/projects/:slug`. Rejected full SSG (overkill).
 
+### Detail-page deep-dive sections (added after Phase 1)
+15. **Opt-in per-project**, not universal tabs. Detail page is a clean single scroll by
+    default; a flagship project *declares* extra sections. Rejected universal (most of
+    the 10 projects have no architecture/docs story → padded/empty sections).
+16. **Docs link out, never re-hosted.** The portfolio curates narrative + links to the
+    canonical repo/docs. Rejected mirroring docs (duplication + staleness).
+17. **Anchored sections + sticky jump-nav, NOT hide-behind tabs.** Tabs hurt skim-reading,
+    SPA SEO (content only renders on click), and deep-linking, and look broken with 0–1
+    sections. Sections stay visible, crawlable, and give free `#anchor` deep-links.
+18. **Content model = H2 headings in the single body.** `## Architecture` etc. → the page
+    derives the jump-nav from the H2s (id = slugified heading); Gallery from a
+    `screenshots: [...]` frontmatter array. Zero change to storage format or the MCP.
+    Rejected multiple-files-per-project and structured-frontmatter-sections.
+
 ## Steps
 ### Phase 0 — shared data migration  ✅ DONE (built + verified, not committed)
 - [x] Frontmatter schema: `title, slug, description, techStack[], status, category,
@@ -94,6 +108,14 @@ Open data TODOs left in the files (grep `TODO`):
       route — loader now normalizes them to root-absolute (`/projects/x.svg`).
       Verified live via headless-Chromium screenshots (list, 2 detail pages, internal
       no-links case, not-found). Build + lint clean.
+
+### Phase 1b — deep-dive sections + sticky jump-nav  ✅ DONE (verified live)
+- [x] `ProjectDetailPage` derives a sticky jump-nav from the body's `## ` headings
+      (anchor id = slugified heading; `scroll-mt` offset; smooth-scroll + `#hash` update;
+      honors deep-link hash on load). Nav shows only when ≥2 sections exist.
+- [x] Opt-in Gallery from a `screenshots: [...]` frontmatter array (loader normalizes
+      those paths root-absolute too). Isolated to `ProjectDetailPage.jsx` + the loader —
+      no storage/MCP change. Verified live by temporarily enriching delphi (then reverted).
 
 ### Phase 2 — Feature B (`portfolio-mcp`, separate repo)  ✅ DONE (verified, committed)
 Location: `/home/jjayfabor/JjayFiles/portfolio-mcp` (own git repo, initial commit made).

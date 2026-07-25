@@ -26,9 +26,10 @@ const parse = (raw) => {
   const data = loadYaml(match[1]) || {};
   // Normalize image paths to root-absolute so they resolve at any route depth.
   // A bare `projects/x.svg` would resolve relative to `/projects/:slug` and 404.
-  if (data.image && !/^https?:\/\//.test(data.image) && !data.image.startsWith("/")) {
-    data.image = `/${data.image}`;
-  }
+  const toAbsolute = (p) =>
+    typeof p === "string" && !/^https?:\/\//.test(p) && !p.startsWith("/") ? `/${p}` : p;
+  if (data.image) data.image = toAbsolute(data.image);
+  if (Array.isArray(data.screenshots)) data.screenshots = data.screenshots.map(toAbsolute);
   return { ...data, body: match[2].trim() };
 };
 
