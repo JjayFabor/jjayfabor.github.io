@@ -7,6 +7,7 @@ import { getProjectBySlug } from "../data/projects";
 import Footer from "../components/Footer";
 import LightSwitch from "../components/LightSwitch";
 import Monogram from "../components/Monogram";
+import ScreenshotCarousel from "../components/ScreenshotCarousel";
 
 const slugify = (s) =>
   String(s)
@@ -300,16 +301,7 @@ const ProjectDetailPage = () => {
       {hasGallery && (
         <section id="gallery" className="scroll-mt-24 mt-10">
           <h2 className="text-xl font-semibold text-brand-text mb-4">Gallery</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {project.screenshots.map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt={`${project.title} screenshot ${i + 1}`}
-                className="w-full rounded-lg border border-brand-border object-cover"
-              />
-            ))}
-          </div>
+          <ScreenshotCarousel images={project.screenshots} title={project.title} />
         </section>
       )}
     </Shell>
