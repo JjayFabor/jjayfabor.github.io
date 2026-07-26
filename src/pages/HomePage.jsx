@@ -15,7 +15,7 @@ const HomePage = () => {
   // Keep the tab title correct when navigating back to home within the SPA
   // (the prerendered <title> already covers first load and crawlers).
   useEffect(() => {
-    document.title = "Jjay Fabor — Software Engineer | Backend, AI & Automation";
+    document.title = "Jaylord Vhan Fabor (Jjay Fabor) — Software Engineer";
   }, []);
 
   return (

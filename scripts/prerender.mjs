@@ -324,9 +324,9 @@ const faqLd = jsonLd({
 });
 
 writePage("/", stampPage({
-  title: "Jjay Fabor — Software Engineer | Backend, AI & Automation",
+  title: "Jaylord Vhan Fabor (Jjay Fabor) — Software Engineer",
   description:
-    "Jjay Fabor (Jjayntic) is a Software Engineer who builds productive, real-world apps — scalable Laravel/PHP & Python backends, REST APIs, React & mobile apps (React Native, Flutter), HubSpot CRM development, and AI-powered automation with n8n and VAPI AI.",
+    "Jaylord Vhan Fabor (Jjay Fabor / Jjayntic) is a Software Engineer based in Iloilo, Philippines who builds productive, real-world apps — scalable Laravel/PHP & Python backends, REST APIs, React & mobile apps (React Native, Flutter), HubSpot CRM development, and AI-powered automation with n8n and VAPI AI.",
   canonical: "/",
   ogImage: "/logo/jjayntic.png",
   extraJsonLd: faqLd,
