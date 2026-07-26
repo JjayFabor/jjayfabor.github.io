@@ -257,15 +257,6 @@ const ProjectDetailPage = () => {
         )}
       </div>
 
-      {/* Hero image */}
-      {/* {project.image && (
-        <img
-          src={project.image}
-          alt={`${project.title} screenshot`}
-          className="mt-8 w-full max-h-[420px] object-contain rounded-lg border border-brand-border bg-brand-surface"
-        />
-      )} */}
-
       {/* Sticky jump-nav — derived from the body's H2 sections (+ Gallery) */}
       {showNav && (
         <nav
