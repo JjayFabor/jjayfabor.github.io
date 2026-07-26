@@ -162,7 +162,13 @@ const ProjectDetailPage = () => {
   // Strip authoring TODO comments; render the rest as the case-study body.
   const body = (project.body || "").replace(/<!--[\s\S]*?-->/g, "").trim();
 
-  const hasGallery = Array.isArray(project.screenshots) && project.screenshots.length > 0;
+  // Every image a project has — its main `image` plus any extra `screenshots` —
+  // shown together in one carousel (main image first, de-duplicated).
+  const galleryImages = [
+    ...(project.image ? [project.image] : []),
+    ...(Array.isArray(project.screenshots) ? project.screenshots : []),
+  ].filter((src, i, arr) => arr.indexOf(src) === i);
+  const hasGallery = galleryImages.length > 0;
   const sections = sectionsFromBody(body);
   if (hasGallery) sections.push({ id: "gallery", label: "Gallery" });
   // A jump-nav only earns its place once there are a couple of sections.
@@ -292,7 +298,7 @@ const ProjectDetailPage = () => {
       {hasGallery && (
         <section id="gallery" className="scroll-mt-24 mt-10">
           <h2 className="text-xl font-semibold text-brand-text mb-4">Gallery</h2>
-          <ScreenshotCarousel images={project.screenshots} title={project.title} />
+          <ScreenshotCarousel images={galleryImages} title={project.title} />
         </section>
       )}
     </Shell>
