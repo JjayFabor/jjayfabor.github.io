@@ -17,7 +17,7 @@
 // Project content is parsed from the SAME `content/projects/*.md` files the app
 // uses (js-yaml frontmatter) and rendered through the SAME markdown pipeline
 // (react-markdown + remark-gfm), so the crawlable HTML can't drift from the UI.
-import { readFileSync, writeFileSync, readdirSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import React from "react";
@@ -195,6 +195,17 @@ const projectListItems = projects
   )
   .join("\n");
 
+// Social cards are pre-generated at exactly 1200x630 by scripts/og-cards.py, which
+// is what the og:image:width/height tags claim. Falling back to the raw project
+// image would reinstate the mismatch — those range from portrait to ultra-wide, and
+// three are SVG, which most platforms refuse to render in a card.
+function ogCardFor(p) {
+  const card = `/og/${p.slug}.png`;
+  if (existsSync(new URL(`../public${card}`, import.meta.url))) return card;
+  console.warn(`prerender: no og card for ${p.slug} — run \`npm run og:cards\``);
+  return p.image;
+}
+
 for (const p of projects) {
   const canonical = `/projects/${p.slug}`;
   const metaBits = [p.status === "completed" ? "Completed" : "Ongoing", p.category, p.date]
@@ -252,7 +263,7 @@ for (const p of projects) {
     title: `${p.title} — Jjay Fabor`,
     description: p.description || `${p.title} — a project by Jjay Fabor.`,
     canonical,
-    ogImage: p.image,
+    ogImage: ogCardFor(p),
     extraJsonLd: ld,
     root: shell(inner),
   }));
