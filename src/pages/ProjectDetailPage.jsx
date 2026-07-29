@@ -169,8 +169,11 @@ const ProjectDetailPage = () => {
     ...(Array.isArray(project.screenshots) ? project.screenshots : []),
   ].filter((src, i, arr) => arr.indexOf(src) === i);
   const hasGallery = galleryImages.length > 0;
-  const sections = sectionsFromBody(body);
-  if (hasGallery) sections.push({ id: "gallery", label: "Gallery" });
+  // Gallery leads the page, so it leads the jump-nav too — the nav order has to
+  // match the document order or the links read as out of sequence.
+  const sections = hasGallery
+    ? [{ id: "gallery", label: "Gallery" }, ...sectionsFromBody(body)]
+    : sectionsFromBody(body);
   // A jump-nav only earns its place once there are a couple of sections.
   const showNav = sections.length >= 2;
 
@@ -285,21 +288,23 @@ const ProjectDetailPage = () => {
         </nav>
       )}
 
+      {/* Gallery — opt-in, from the `screenshots` frontmatter array. Sits above the
+          write-up so the first thing on the page is what the project looks like,
+          rather than several paragraphs before any visual. */}
+      {hasGallery && (
+        <section id="gallery" className="scroll-mt-24 mt-8">
+          <h2 className="text-xl font-semibold text-brand-text mb-4">Gallery</h2>
+          <ScreenshotCarousel images={galleryImages} title={project.title} />
+        </section>
+      )}
+
       {/* Case-study body */}
       {body && (
-        <div className="mt-8">
+        <div className={hasGallery ? "mt-10" : "mt-8"}>
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
             {body}
           </ReactMarkdown>
         </div>
-      )}
-
-      {/* Gallery — opt-in, from the `screenshots` frontmatter array */}
-      {hasGallery && (
-        <section id="gallery" className="scroll-mt-24 mt-10">
-          <h2 className="text-xl font-semibold text-brand-text mb-4">Gallery</h2>
-          <ScreenshotCarousel images={galleryImages} title={project.title} />
-        </section>
       )}
     </Shell>
   );

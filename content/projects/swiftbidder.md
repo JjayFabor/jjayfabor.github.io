@@ -8,6 +8,7 @@ featured: false
 date: "2026-05-26"
 image: "projects/swiftbidder.png"
 screenshots:
+  - "projects/swiftbidder-detail.png"
   - "projects/swiftbidder-dark.png"
   - "projects/swiftbidder-login.png"
 link: "https://github.com/JjayFabor/swift-bidder"
