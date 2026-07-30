@@ -10,9 +10,14 @@
 
   "assets": {
     "directory": "./dist",
-    // Serve index.html (200) for unknown paths so client-side
-    // react-router routes work on refresh / direct links.
-    "not_found_handling": "single-page-application",
+    // Serve /404.html with a real 404 for unknown paths. Every route the
+    // router knows about (/, /projects, /projects/:slug) is prerendered by
+    // scripts/prerender.mjs, so direct links and refreshes still hit a real
+    // file — the SPA fallback only ever caught URLs that genuinely don't
+    // exist, and answering those with 200 kept dead pages indexed as soft 404s.
+    // NOTE: any future client-side route must be prerendered too, or it will
+    // 404 on direct load.
+    "not_found_handling": "404-page",
     // Serve prerendered pages at their no-slash URL (200 direct) and redirect
     // the trailing-slash form to it. This matches our canonical/sitemap URLs
     // and react-router routes (all no-slash), so the canonical URL is never a
