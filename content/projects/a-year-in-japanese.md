@@ -14,11 +14,23 @@ preview: "https://nihongo.jjayfabor.com"
 techStack: ["Next.js", "React", "TypeScript", "TailwindCSS", "Web Audio API", "Vercel"]
 ---
 
-二十四節気 is a book I wrote for one person who wanted to learn Japanese. Japan
-divides the year into twenty-four *sekki* — micro-seasons of about fifteen days
-each: the start of autumn, white dew, frost descending, greater cold. The book
-has one chapter for each of them. It opens in August at 立秋 and closes the
-following July, and by the end of it a total beginner can read kana.
+二十四節気 is a book I wrote because my girlfriend asked me to teach her
+Japanese. That was the whole brief: she wanted to learn, and I wanted her to
+have something better than a streak counter to learn from. So I wrote her a
+book, and built the thing it needed to live in.
+
+Japan divides the year into twenty-four *sekki* — micro-seasons of about fifteen
+days each: the start of autumn, white dew, frost descending, greater cold. The
+book has one chapter for each of them. It opens in August at 立秋 and closes the
+following July, and by the end of it a total beginner can read kana. A year is
+the honest timescale for the promise I was making to her — not thirty days, not
+a weekend.
+
+Writing for one specific reader changed the engineering, not just the tone. The
+progress model is conservative because I didn't want the book flattering her.
+The pronunciation view has no score because I didn't want it grading her. Her
+name and her saved progress sit behind a password because the copy is hers even
+though the book isn't private.
 
 Anyone can read it. Only one person has the copy that remembers her.
 
