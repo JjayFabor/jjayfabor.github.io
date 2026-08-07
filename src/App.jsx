@@ -5,6 +5,7 @@ import { ContactProvider } from "./context/ContactProvider";
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import FaqPage from "./pages/FaqPage";
 
 // Reset scroll to the top whenever the route (path or query) changes, so
 // navigating between pages doesn't preserve the previous scroll position.
@@ -22,6 +23,7 @@ const App = () => {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/faq" element={<FaqPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:slug" element={<ProjectDetailPage />} />
       </Routes>

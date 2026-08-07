@@ -1,6 +1,6 @@
 // Shared FAQ content — the single source of truth for:
 //   1. the visible FAQ accordion (src/components/Faq.jsx),
-//   2. the prerendered homepage shell + FAQPage JSON-LD (scripts/prerender.mjs).
+//   2. the prerendered /faq shell + FAQPage JSON-LD (scripts/prerender.mjs).
 // Keeping it here means the answer-engine-facing copy can never drift from what
 // visitors see. Answers are first person (Jjay's own voice), but the questions
 // name "Jjay Fabor" and the first answer anchors the full name, so an AI engine

@@ -1,12 +1,19 @@
 import { VscGithub, VscMail } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
+import { CircleHelp } from "lucide-react";
+import { Link } from "react-router-dom";
 import Monogram from "./Monogram";
 import { useContact } from "../context/ContactContext";
 
 const linkClass =
-  "inline-flex items-center gap-2 h-11 px-4 rounded-md text-sm font-medium text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover transition-colors";
+  "inline-flex items-center gap-2 h-11 px-4 rounded-md text-sm font-medium text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface";
 
 const socialLinks = [
+  {
+    icon: <CircleHelp className="h-5 w-5" />,
+    label: "FAQ",
+    to: "/faq",
+  },
   {
     icon: <VscGithub className="h-5 w-5" />,
     label: "GitHub",
@@ -42,11 +49,16 @@ const Footer = () => {
             </p>
           </div>
 
-          <nav aria-label="Social links">
+          <nav aria-label="Footer links">
             <ul className="flex flex-wrap items-center justify-center gap-2">
               {socialLinks.map((link) => (
                 <li key={link.label}>
-                  {link.href ? (
+                  {link.to ? (
+                    <Link to={link.to} className={linkClass}>
+                      {link.icon}
+                      {link.label}
+                    </Link>
+                  ) : link.href ? (
                     <a
                       href={link.href}
                       target="_blank"

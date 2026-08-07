@@ -314,16 +314,34 @@ const homeInner = `
 <ul>
 ${projectListItems}
 </ul>
-<h2>FAQ</h2>
-<dl>
-${faq.map((f) => `<dt>${text(f.q)}</dt><dd>${text(f.a)}</dd>`).join("\n")}
-</dl>
 <h2>Contact</h2>
 <p><a href="https://github.com/JjayFabor">GitHub</a> &middot; <a href="https://www.linkedin.com/in/jjayfabor/">LinkedIn</a></p>
 `.trim();
 
-// FAQPage structured data — the same Q&A as the visible section, so answer
-// engines can extract self-contained questions and answers.
+writePage("/", stampPage({
+  title: "Jaylord Vhan Fabor (Jjay Fabor) — Software Engineer",
+  description:
+    "Jaylord Vhan Fabor (Jjay Fabor / Jjayntic) is a Software Engineer based in Iloilo, Philippines who builds productive, real-world apps — scalable Laravel/PHP & Python backends, REST APIs, React & mobile apps (React Native, Flutter), HubSpot CRM development, and AI-powered automation with n8n and VAPI AI.",
+  canonical: "/",
+  ogImage: "/logo/jjayntic.png",
+  root: shell(homeInner),
+}));
+
+// ---- /faq ---------------------------------------------------------------
+
+const faqDescription =
+  "Concise answers about Jjay Fabor's software engineering background, specialties, tools, availability, and location.";
+
+const faqInner = `
+<p><a href="/">← Back to home</a></p>
+<h1>Frequently asked questions</h1>
+<p>${text(faqDescription)}</p>
+<dl>
+${faq.map((f) => `<dt>${text(f.q)}</dt><dd>${text(f.a)}</dd>`).join("\n")}
+</dl>
+`.trim();
+
+// FAQPage structured data mirrors the visible /faq questions and answers.
 const faqLd = jsonLd({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -334,20 +352,20 @@ const faqLd = jsonLd({
   })),
 });
 
-writePage("/", stampPage({
-  title: "Jaylord Vhan Fabor (Jjay Fabor) — Software Engineer",
-  description:
-    "Jaylord Vhan Fabor (Jjay Fabor / Jjayntic) is a Software Engineer based in Iloilo, Philippines who builds productive, real-world apps — scalable Laravel/PHP & Python backends, REST APIs, React & mobile apps (React Native, Flutter), HubSpot CRM development, and AI-powered automation with n8n and VAPI AI.",
-  canonical: "/",
+writePage("/faq", stampPage({
+  title: "Frequently Asked Questions — Jjay Fabor",
+  description: faqDescription,
+  canonical: "/faq",
   ogImage: "/logo/jjayntic.png",
   extraJsonLd: faqLd,
-  root: shell(homeInner),
+  root: shell(faqInner),
 }));
 
 // ---- sitemap.xml (complete + always in sync with the project set) ---------
 
 const sitemapUrls = [
   { loc: `${SITE}/`, priority: "1.0", changefreq: "weekly" },
+  { loc: `${SITE}/faq`, priority: "0.7", changefreq: "monthly" },
   { loc: `${SITE}/projects`, priority: "0.8", changefreq: "weekly" },
   ...projects.map((p) => ({
     loc: `${SITE}/projects/${p.slug}`,
@@ -372,5 +390,5 @@ ${sitemapUrls
 writeFileSync(join(DIST, "sitemap.xml"), sitemap, "utf8");
 
 console.log(
-  `prerender: wrote ${projects.length} project pages + home + /projects + sitemap.xml`,
+  `prerender: wrote ${projects.length} project pages + home + /faq + /projects + sitemap.xml`,
 );

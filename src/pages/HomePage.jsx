@@ -5,7 +5,6 @@ import TechStack from "../components/TechStack";
 import Experience from "../components/Experience";
 import Footer from "../components/Footer";
 import About from "../components/About";
-import Faq from "../components/Faq";
 import LightSwitch from "../components/LightSwitch";
 import { useContact } from "../context/ContactContext";
 
@@ -38,10 +37,6 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Full-width FAQ — self-contained Q&A for readers and answer engines */}
-        <div className="mt-10">
-          <Faq />
-        </div>
       </main>
 
       <Footer />
