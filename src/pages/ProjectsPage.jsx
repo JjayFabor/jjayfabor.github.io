@@ -4,7 +4,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import ProjectCard from "../components/ProjectCard";
 import Footer from "../components/Footer";
 import LightSwitch from "../components/LightSwitch";
-import Monogram from "../components/Monogram";
+import BrandLockup from "../components/BrandLockup";
 import { projectsData, categories } from "../data/projects";
 
 const PAGE_SIZE = 10;
@@ -62,13 +62,10 @@ const ProjectsPage = () => {
           <Link
             to="/"
             aria-label="Back to home"
-            className="group inline-flex items-center gap-2.5 text-brand-text"
+            className="group inline-flex items-center gap-3 text-brand-text"
           >
             <ArrowLeft className="h-4 w-4 text-brand-accent transition-transform group-hover:-translate-x-0.5" />
-            <Monogram className="w-9 h-9 rounded-lg text-lg" />
-            <span className="font-semibold text-base group-hover:text-brand-accent transition-colors">
-              Jjay Fabor
-            </span>
+            <BrandLockup />
           </Link>
         </div>
       </header>

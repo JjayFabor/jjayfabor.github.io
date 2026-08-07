@@ -6,7 +6,7 @@ import { ArrowLeft, ExternalLink, Github, Lock } from "lucide-react";
 import { getProjectBySlug } from "../data/projects";
 import Footer from "../components/Footer";
 import LightSwitch from "../components/LightSwitch";
-import Monogram from "../components/Monogram";
+import BrandLockup from "../components/BrandLockup";
 import ScreenshotCarousel from "../components/ScreenshotCarousel";
 
 const slugify = (s) =>
@@ -97,12 +97,9 @@ const Shell = ({ children }) => (
         <Link
           to="/"
           aria-label="Back to home"
-          className="group inline-flex items-center gap-2.5 text-brand-text"
+          className="group inline-flex items-center text-brand-text"
         >
-          <Monogram className="w-9 h-9 rounded-lg text-lg" />
-          <span className="font-semibold text-base group-hover:text-brand-accent transition-colors">
-            Jjay Fabor
-          </span>
+          <BrandLockup />
         </Link>
       </div>
     </header>

@@ -30,15 +30,33 @@ const About = () => {
   return (
     <ResumeSection id="about" title="About">
       <p className="text-brand-text/85 leading-relaxed">
-        I'm a software engineer focused on building productive, real-world
-        applications &mdash; from clean, scalable backends and APIs to
-        automated workflows that save teams hours of manual work.
+        I&apos;m a Software Engineer working at the intersection of{" "}
+        <strong className="font-semibold text-brand-text">
+          software engineering, AI, and automation
+        </strong>
+        . I&apos;ve built backend applications, internal business tools, AI
+        voice agents, self-hosted AI agents, and automated workflows that
+        connect systems, APIs, and data.
       </p>
       <p className="text-brand-text/85 leading-relaxed mt-3">
-        Lately I've been leveraging AI to make products genuinely more useful:
-        integrating AI voice agents, automating business processes with n8n, and
-        wiring LLMs into real workflows. My goal is always the same &mdash;
-        practical tools that help people work faster and smarter.
+        I care about taking software beyond the prototype stage &mdash; building
+        systems that are maintainable, reliable, and useful in real production
+        environments.
+      </p>
+
+      <h3 className="text-sm font-semibold uppercase tracking-wide text-brand-accent mt-8 mb-3">
+        How I approach AI
+      </h3>
+      <p className="text-brand-text/85 leading-relaxed">
+        I don&apos;t see AI as simply a faster way to write code. I use it as
+        part of the software itself: building agents, automating workflows,
+        connecting business systems, and creating applications where AI
+        performs useful work.
+      </p>
+      <p className="text-brand-text/85 leading-relaxed mt-3">
+        I also use AI-assisted development tools to move faster while keeping
+        architecture, maintainability, reliability, and a clear understanding
+        of the systems I ship at the center of my work.
       </p>
 
       <h3 className="text-sm font-semibold uppercase tracking-wide text-brand-accent mt-8 mb-3">

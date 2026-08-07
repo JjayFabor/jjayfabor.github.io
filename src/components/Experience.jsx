@@ -10,30 +10,29 @@ const Experience = () => {
       position: "Junior Software Developer",
       period: "10/2025 - 07/2026",
       description: [
-        "Streamline development workflows by creating comprehensive project documentation, enabling faster onboarding and reducing knowledge gaps across teams",
-        "Develop and customize HubSpot CRM solutions — building automated workflows, custom-coded actions, and API integrations to streamline sales and marketing operations",
-        "Bridge communication between developers and operations teams to ensure smooth feature rollouts and minimize deployment risks",
-        "Accelerate issue resolution through proactive code debugging and troubleshooting, reducing system downtime and improving overall reliability",
-        "Automate business processes using n8n workflows, saving hours of manual work and increasing operational efficiency",
-        "Enhance customer engagement by implementing VAPI AI Voice Agents for webinar invitations and event reminders, improving attendance rates and user experience"
+        "Developed and customized HubSpot CRM solutions for sales and marketing teams — automated workflows, custom-coded actions (JavaScript/Python), and API integrations connecting HubSpot to the company pipeline database.",
+        "Built n8n workflows automating role-based document provisioning across the employee lifecycle — granting, revoking, and reassigning access to role-specific documents on hire, promotion, and demotion, with automated delivery via Google Drive, SFTP, and email.",
+        "Implemented VAPI AI voice agents for automated webinar invitations and event reminders, handling 300+  outbound calls per campaign and increasing attendance.",
+        "Coordinated between development and operations teams to ensure controlled, low-risk feature rollouts and deployments.",
+        "Performed proactive debugging and issue resolution to reduce downtime and improve overall platform reliability."
       ],
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "HubSpot CRM", "n8n", "VAPI AI", "API Development", "Documentation", "Git", "Automation"]
     },
     {
-      company: "Personal",
-      position: "Freelance Software Engineer",
+      company: "Freelance",
+      position: "Software Engineer",
       period: "06/2025 - present",
-      logo: "favicon.svg",
+      logo: "/logo-jf.png",
       clients: [
         {
           name: "Smartgenix",
           description: [
-            "Developed and enhanced a SaaS application by improving frontend UI/UX design and backend performance",
-            "Built a cross-platform mobile app with Flutter to extend the platform to mobile users, with access to core features and AI-powered appointment booking",
-            "Integrated Stripe Wallet for secure, seamless payment processing",
-            "Built a custom API consumed by an ElevenLabs AI Voice Agent (via Twilio) as a webhook for user authentication, OTP verification, and appointment booking",
-            "Strengthened application security measures and optimized overall user experience and system efficiency"
+            "Developing a custom REST API consumed as a webhook by an ElevenLabs AI voice agent via Twilio — handling user authentication, OTP verification, and appointment booking over live phone calls.",
+            "Building a cross-platform Flutter mobile app for iOS and Android, extending the platform's core booking features and AI-powered scheduling to mobile users.",
+            "Integrated Stripe for in-app payments and wallet functionality.",
+            "Designed the data model and API architecture supporting users, providers, availability, bookings.",
+            "Improved frontend UI/UX and optimized backend query performance ahead of launch.",
           ],
           skills: ["Laravel", "PHP", "Livewire", "Flutter", "Mobile Development", "API Development", "Stripe", "ElevenLabs", "Twilio", "Git"]
         }

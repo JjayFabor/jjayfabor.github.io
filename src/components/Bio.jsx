@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import Monogram from "./Monogram";
+import BrandLockup from "./BrandLockup";
 
 function Bio({ onOpenContact = () => {} }) {
   return (
     <section id="bio" className="bg-brand-bg border-b border-brand-border">
-      <div className="max-w-6xl w-full mx-auto px-6 pt-5">
-        <Monogram />
+      <div className="max-w-6xl w-full mx-auto px-6 pt-4 pr-24 sm:pt-5">
+        <BrandLockup />
       </div>
 
       <div className="max-w-6xl w-full mx-auto px-6 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-10 gap-y-6 items-center">
@@ -28,9 +28,8 @@ function Bio({ onOpenContact = () => {} }) {
             Software Engineer
           </p>
           <p className="mt-3 text-base text-brand-text/90 leading-relaxed max-w-prose mx-auto md:mx-0">
-            I build clean, reliable, and scalable backend systems &mdash; from
-            APIs and database design to automation. I care about
-            well-structured code that's easy to maintain and built to last.
+            I build reliable software, AI-powered products, and automation
+            systems that solve real business problems.
           </p>
 
           <div className="mt-5 flex flex-col sm:flex-row gap-3 justify-center md:justify-start">

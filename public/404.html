@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>Page not found — Jjay Fabor</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="theme-color" content="#0F1117" />
@@ -60,22 +61,11 @@
         max-width: 30rem;
       }
       .mark {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
         width: 40px;
         height: 40px;
-        border-radius: 12px;
-        background: var(--surface);
-        box-shadow: inset 0 0 0 1px var(--border);
-        font-weight: 600;
-        font-size: 1.5rem;
-        letter-spacing: -0.05em;
-        line-height: 1;
+        display: block;
+        object-fit: contain;
         user-select: none;
-      }
-      .mark .j-accent {
-        color: var(--accent);
       }
       .code {
         margin: 28px 0 0;
@@ -155,7 +145,7 @@
   <body>
     <main>
       <a href="/" aria-label="Jjay Fabor — home" style="text-decoration: none">
-        <span class="mark"><span class="j-accent">J</span>j</span>
+        <img class="mark" src="/logo-jf.png" alt="JF gear logo" />
       </a>
       <p class="code">404</p>
       <h1>This page isn't here.</h1>

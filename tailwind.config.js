@@ -29,6 +29,7 @@ export default {
           'accent-hover': 'rgb(var(--brand-accent-hover) / <alpha-value>)',
           text: 'rgb(var(--brand-text) / <alpha-value>)',         // primary text
           muted: 'rgb(var(--brand-muted) / <alpha-value>)',       // secondary / muted text
+          gold: 'rgb(var(--brand-gold) / <alpha-value>)',         // metallic logo identity accent
         },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
