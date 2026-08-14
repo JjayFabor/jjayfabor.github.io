@@ -120,7 +120,17 @@ const template = readFileSync(join(DIST, "index.html"), "utf8");
 const swap = (html, re, replacement) => html.replace(re, replacement);
 
 // Build one route's HTML from the shared template.
-function stampPage({ title, description, canonical, ogImage, extraJsonLd = "", root }) {
+function stampPage({
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  twitterCard = "summary_large_image",
+  extraJsonLd = "",
+  root,
+}) {
   let html = template;
   const url = `${SITE}${canonical}`;
   html = swap(html, /<title>[\s\S]*?<\/title>/, `<title>${text(title)}</title>`);
@@ -159,6 +169,11 @@ function stampPage({ title, description, canonical, ogImage, extraJsonLd = "", r
     /<meta\s+name="twitter:description"[\s\S]*?>/,
     `<meta name="twitter:description" content="${attr(description)}" />`,
   );
+  html = swap(
+    html,
+    /<meta\s+name="twitter:card"[\s\S]*?>/,
+    `<meta name="twitter:card" content="${attr(twitterCard)}" />`,
+  );
   if (ogImage) {
     const img = abs(ogImage);
     html = swap(
@@ -170,6 +185,16 @@ function stampPage({ title, description, canonical, ogImage, extraJsonLd = "", r
       html,
       /<meta\s+name="twitter:image"[\s\S]*?>/,
       `<meta name="twitter:image" content="${attr(img)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta\s+property="og:image:width"[\s\S]*?>/,
+      `<meta property="og:image:width" content="${attr(ogImageWidth)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta\s+property="og:image:height"[\s\S]*?>/,
+      `<meta property="og:image:height" content="${attr(ogImageHeight)}" />`,
     );
   }
   if (extraJsonLd) html = html.replace("</head>", `    ${extraJsonLd}\n  </head>`);
@@ -255,7 +280,7 @@ for (const p of projects) {
         keywords: tech.length ? tech.join(", ") : undefined,
         image: p.image ? abs(p.image) : undefined,
         ...(p.link ? { codeRepository: p.link } : {}),
-        isPartOf: { "@type": "WebSite", name: "Jjayntic Portfolio", url: `${SITE}/` },
+        isPartOf: { "@type": "WebSite", name: "Jaylord Vhan Fabor Portfolio", url: `${SITE}/` },
       },
       {
         "@type": "BreadcrumbList",
@@ -285,13 +310,16 @@ writePage("/projects", stampPage({
   description:
     "Projects by Jjay Fabor (Jaylord Vhan Fabor) — backend systems, REST APIs, full-stack and mobile apps, and AI automation across Laravel, Python, React, and n8n/VAPI.",
   canonical: "/projects",
-  ogImage: "/logo/jjayntic.png",
+  ogImage: "/logo-jf.png",
+  ogImageWidth: 1026,
+  ogImageHeight: 1026,
+  twitterCard: "summary",
   extraJsonLd: jsonLd({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Projects — Jjay Fabor",
     url: `${SITE}/projects`,
-    isPartOf: { "@type": "WebSite", name: "Jjayntic Portfolio", url: `${SITE}/` },
+    isPartOf: { "@type": "WebSite", name: "Jaylord Vhan Fabor Portfolio", url: `${SITE}/` },
     hasPart: projects.map((p) => ({
       "@type": "CreativeWork",
       name: p.title,
@@ -310,7 +338,7 @@ writePage("/projects", stampPage({
 // is without executing JS. Keep it in sync if the bio/experience change.
 const homeInner = `
 <h1>Jaylord Vhan Fabor (Jjay Fabor)</h1>
-<p><strong>Software Engineer</strong> — @JjayFabor / Jjayntic — based in Iloilo City, Philippines.</p>
+<p><strong>Software Engineer</strong> — @JjayFabor — based in Iloilo City, Philippines.</p>
 <p>I build clean, reliable, and scalable backend systems — from APIs and database design to automation — with well-structured code that's easy to maintain and built to last.</p>
 <p>I focus on productive, real-world applications: clean, scalable backends and APIs, and automated workflows that save teams hours of manual work. Lately I've been leveraging AI to make products genuinely more useful — integrating AI voice agents, automating business processes with n8n, and wiring LLMs into real workflows.</p>
 <h2>Currently</h2>
@@ -330,9 +358,12 @@ ${projectListItems}
 writePage("/", stampPage({
   title: "Jaylord Vhan Fabor (Jjay Fabor) — Software Engineer",
   description:
-    "Jaylord Vhan Fabor (Jjay Fabor / Jjayntic) is a Software Engineer based in Iloilo, Philippines who builds productive, real-world apps — scalable Laravel/PHP & Python backends, REST APIs, React & mobile apps (React Native, Flutter), HubSpot CRM development, and AI-powered automation with n8n and VAPI AI.",
+    "Jaylord Vhan Fabor (Jjay Fabor) is a Software Engineer based in Iloilo, Philippines who builds productive, real-world apps — scalable Laravel/PHP & Python backends, REST APIs, React & mobile apps (React Native, Flutter), HubSpot CRM development, and AI-powered automation with n8n and VAPI AI.",
   canonical: "/",
-  ogImage: "/logo/jjayntic.png",
+  ogImage: "/logo-jf.png",
+  ogImageWidth: 1026,
+  ogImageHeight: 1026,
+  twitterCard: "summary",
   root: shell(homeInner),
 }));
 
@@ -365,7 +396,10 @@ writePage("/faq", stampPage({
   title: "Frequently Asked Questions — Jjay Fabor",
   description: faqDescription,
   canonical: "/faq",
-  ogImage: "/logo/jjayntic.png",
+  ogImage: "/logo-jf.png",
+  ogImageWidth: 1026,
+  ogImageHeight: 1026,
+  twitterCard: "summary",
   extraJsonLd: faqLd,
   root: shell(faqInner),
 }));
@@ -432,7 +466,7 @@ const journeyLd = jsonLd({
       description: journeyDescription,
       url: `${SITE}/ai-journey`,
       author: { "@type": "Person", name: "Jjay Fabor", url: `${SITE}/` },
-      isPartOf: { "@type": "WebSite", name: "Jjayntic Portfolio", url: `${SITE}/` },
+      isPartOf: { "@type": "WebSite", name: "Jaylord Vhan Fabor Portfolio", url: `${SITE}/` },
       hasPart: journeyWeeks.map((week) => ({
         "@type": "CreativeWork",
         name: `Week ${week.week}: ${week.project?.name || week.title}`,
@@ -461,7 +495,10 @@ writePage("/ai-journey", stampPage({
   title: "AI Engineering Journey — Jjay Fabor",
   description: journeyDescription,
   canonical: "/ai-journey",
-  ogImage: "/logo/jjayntic.png",
+  ogImage: "/logo-jf.png",
+  ogImageWidth: 1026,
+  ogImageHeight: 1026,
+  twitterCard: "summary",
   extraJsonLd: journeyLd,
   root: shell(journeyInner),
 }));

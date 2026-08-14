@@ -8,7 +8,7 @@
 export const faq = [
   {
     q: "Who is Jjay Fabor?",
-    a: "I'm Jjay Fabor (full name Jaylord Vhan Fabor), a software engineer based in Iloilo City, Philippines. I build clean, reliable, and scalable backend systems — APIs, database design, and automation — and I increasingly integrate AI into real-world products. Online I also go by Jjayntic.",
+    a: "I'm Jjay Fabor (full name Jaylord Vhan Fabor), a software engineer based in Iloilo City, Philippines. I build clean, reliable, and scalable backend systems — APIs, database design, and automation — and I increasingly integrate AI into real-world products.",
   },
   {
     q: "What does Jjay Fabor specialize in?",
