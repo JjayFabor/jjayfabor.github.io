@@ -25,7 +25,7 @@ function Bio({ onOpenContact = () => {} }) {
             @JjayFabor
           </p>
           <p className="mt-2 text-lg md:text-xl font-semibold text-brand-accent">
-            Software Engineer
+            Software Engineer | AI Engineering Portfolio
           </p>
           <p className="mt-3 text-base text-brand-text/90 leading-relaxed max-w-prose mx-auto md:mx-0">
             I build reliable software, AI-powered products, and automation

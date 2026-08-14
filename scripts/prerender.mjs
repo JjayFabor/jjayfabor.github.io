@@ -26,6 +26,14 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { load as loadYaml } from "js-yaml";
 import { faq } from "../src/data/faq.js";
+import {
+  aiRoadmap,
+  activeWeek,
+  completedWeekCount,
+  journeyWeeks,
+  latestCompletedWeek,
+  roadmapStages,
+} from "../src/data/aiJourney.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
@@ -221,6 +229,7 @@ for (const p of projects) {
 
   const inner = [
     `<p><a href="/projects">← Back to projects</a></p>`,
+    p.contextLabel ? `<p>${text(p.contextLabel)}</p>` : "",
     `<h1>${text(p.title)}</h1>`,
     `<p>${text(metaBits)}</p>`,
     p.description ? `<p>${text(p.description)}</p>` : "",
@@ -361,11 +370,108 @@ writePage("/faq", stampPage({
   root: shell(faqInner),
 }));
 
+// ---- /ai-journey ---------------------------------------------------------
+
+const journeyDescription =
+  "Follow Jjay Fabor's project-based journey toward AI Engineering, from Python and data foundations to machine learning, LLMs, RAG, agents, and production AI systems.";
+
+const statusLabel = (status) =>
+  ({ completed: "Completed", "in-progress": "In Progress", upcoming: "Upcoming" })[
+    status
+  ] || status;
+
+const journeyInner = `
+<p><a href="/">← Back to home</a></p>
+<p>${text(aiRoadmap.title)}</p>
+<h1>Building toward AI Engineering</h1>
+<p>${text(aiRoadmap.introduction)}</p>
+<h2>${aiRoadmap.totalWeeks}-week project-based roadmap</h2>
+<p>Week ${completedWeekCount} of ${aiRoadmap.totalWeeks} completed</p>
+${latestCompletedWeek?.project ? `<h3>Latest completed capstone: ${text(latestCompletedWeek.project.name)}</h3>
+<p><a href="${attr(latestCompletedWeek.project.github)}">View GitHub repository</a></p>` : ""}
+${latestCompletedWeek && activeWeek ? `<h3>Active progression</h3>
+<p>Week ${latestCompletedWeek.week} shipped → Week ${activeWeek.week} · ${text(activeWeek.title)} · ${text(statusLabel(activeWeek.status))}</p>` : ""}
+<h2>Weekly progress</h2>
+${journeyWeeks
+  .map(
+    (week) => `<article>
+<h3>Week ${week.week}: ${text(week.title)}</h3>
+<p>${text(statusLabel(week.status))}${
+      week.dateCompleted ? ` · Completed ${text(week.dateCompleted)}` : ""
+    }</p>
+${week.summary ? `<p>${text(week.summary)}</p>` : ""}
+${week.project ? `<h4>Capstone: ${text(week.project.name)}</h4>
+${week.project.description ? `<p>${text(week.project.description)}</p>` : ""}
+${week.project.tech?.length ? `<p><strong>Tech:</strong> ${week.project.tech.map(text).join(", ")}</p>` : ""}
+<p>${week.project.github ? `<a href="${attr(week.project.github)}">GitHub repository</a>` : ""}${
+      week.project.liveDemo
+        ? ` · <a href="${attr(week.project.liveDemo)}">Live demo</a>`
+        : ""
+    }</p>` : ""}
+${week.skills?.length ? `<h4>Skills learned</h4>
+<ul>${week.skills.map((skill) => `<li>${text(skill)}</li>`).join("")}</ul>` : ""}
+${week.keyLessons?.length ? `<h4>Key lessons</h4>
+<ul>${week.keyLessons.map((lesson) => `<li>${text(lesson)}</li>`).join("")}</ul>` : ""}
+</article>`,
+  )
+  .join("\n")}
+<h2>Overall roadmap</h2>
+<ol>
+${roadmapStages
+  .map((stage) => `<li><strong>${text(stage.title)}</strong> — ${text(statusLabel(stage.status))}</li>`)
+  .join("\n")}
+</ol>
+`.trim();
+
+const journeyLd = jsonLd({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      name: "AI Engineering Journey — Jjay Fabor",
+      description: journeyDescription,
+      url: `${SITE}/ai-journey`,
+      author: { "@type": "Person", name: "Jjay Fabor", url: `${SITE}/` },
+      isPartOf: { "@type": "WebSite", name: "Jjayntic Portfolio", url: `${SITE}/` },
+      hasPart: journeyWeeks.map((week) => ({
+        "@type": "CreativeWork",
+        name: `Week ${week.week}: ${week.project?.name || week.title}`,
+        description: week.project?.description || week.summary,
+        dateCreated: week.dateCompleted || undefined,
+        codeRepository: week.project?.github || undefined,
+        keywords: week.project?.tech?.join(", ") || undefined,
+      })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "AI Engineering Journey",
+          item: `${SITE}/ai-journey`,
+        },
+      ],
+    },
+  ],
+});
+
+writePage("/ai-journey", stampPage({
+  title: "AI Engineering Journey — Jjay Fabor",
+  description: journeyDescription,
+  canonical: "/ai-journey",
+  ogImage: "/logo/jjayntic.png",
+  extraJsonLd: journeyLd,
+  root: shell(journeyInner),
+}));
+
 // ---- sitemap.xml (complete + always in sync with the project set) ---------
 
 const sitemapUrls = [
   { loc: `${SITE}/`, priority: "1.0", changefreq: "weekly" },
   { loc: `${SITE}/faq`, priority: "0.7", changefreq: "monthly" },
+  { loc: `${SITE}/ai-journey`, priority: "0.8", changefreq: "weekly" },
   { loc: `${SITE}/projects`, priority: "0.8", changefreq: "weekly" },
   ...projects.map((p) => ({
     loc: `${SITE}/projects/${p.slug}`,
@@ -390,5 +496,5 @@ ${sitemapUrls
 writeFileSync(join(DIST, "sitemap.xml"), sitemap, "utf8");
 
 console.log(
-  `prerender: wrote ${projects.length} project pages + home + /faq + /projects + sitemap.xml`,
+  `prerender: wrote ${projects.length} project pages + home + /faq + /ai-journey + /projects + sitemap.xml`,
 );

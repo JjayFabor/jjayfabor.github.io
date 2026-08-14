@@ -1,6 +1,6 @@
 import { VscGithub, VscMail } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
-import { CircleHelp } from "lucide-react";
+import { CircleHelp, Milestone } from "lucide-react";
 import { Link } from "react-router-dom";
 import Monogram from "./Monogram";
 import { useContact } from "../context/ContactContext";
@@ -9,6 +9,11 @@ const linkClass =
   "inline-flex items-center gap-2 h-11 px-4 rounded-md text-sm font-medium text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface";
 
 const socialLinks = [
+  {
+    icon: <Milestone className="h-5 w-5" />,
+    label: "AI Journey",
+    to: "/ai-journey",
+  },
   {
     icon: <CircleHelp className="h-5 w-5" />,
     label: "FAQ",

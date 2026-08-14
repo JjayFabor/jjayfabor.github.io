@@ -37,6 +37,11 @@ const ProjectCard = ({ project }) => {
 
       {/* Content */}
       <div className="flex flex-col flex-grow p-3.5">
+        {project.contextLabel && (
+          <p className="mb-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-brand-accent">
+            {project.contextLabel}
+          </p>
+        )}
         <h3 className="text-base font-semibold text-brand-text group-hover:text-brand-accent transition-colors">
           {project.title}
         </h3>

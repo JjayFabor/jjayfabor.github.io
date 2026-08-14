@@ -196,6 +196,11 @@ const ProjectDetailPage = () => {
 
       {/* Title + meta */}
       <div className="mt-5">
+        {project.contextLabel && (
+          <p className="mb-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-accent">
+            {project.contextLabel}
+          </p>
+        )}
         <h1 className="text-2xl md:text-3xl font-bold text-brand-text">
           {project.title}
         </h1>
