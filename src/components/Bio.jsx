@@ -45,11 +45,10 @@ function Bio({ onOpenContact = () => {} }) {
               className="h-11 px-6 text-base w-full sm:w-auto border-brand-border bg-transparent text-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent-hover"
             >
               <a
-                href="https://docs.google.com/document/d/1VQs6h8NJPEx_FUvsaaHDd1DYauJ5jI1y/edit?usp=sharing&ouid=108342282876658747339&rtpof=true&sd=true"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/Jaylord Vhan Fabor - Resume.pdf"
+                download="Jaylord-Vhan-Fabor-CV.pdf"
               >
-                View CV
+                Download CV
               </a>
             </Button>
           </div>
