@@ -6,23 +6,24 @@ const Experience = () => {
 
   const experiences = [
     {
-      company: "Callbox Iloilo",
+      company: "Callbox Inc, Iloilo City",
       position: "Junior Software Developer",
-      period: "10/2025 - 07/2026",
+      period: "10/2025 – 07/2026",
       description: [
         "Developed and customized HubSpot CRM solutions for sales and marketing teams — automated workflows, custom-coded actions (JavaScript/Python), and API integrations connecting HubSpot to the company pipeline database.",
+        "Built and deployed an AI-powered Google Chat bot on Google Cloud Run, integrating Vertex AI and a RAG pipeline that uses historical Google Chat Space conversations as a knowledge base to provide context-aware, grounded responses.",
         "Built n8n workflows automating role-based document provisioning across the employee lifecycle — granting, revoking, and reassigning access to role-specific documents on hire, promotion, and demotion, with automated delivery via Google Drive, SFTP, and email.",
-        "Implemented VAPI AI voice agents for automated webinar invitations and event reminders, handling 300+  outbound calls per campaign and increasing attendance.",
+        "Implemented VAPI AI voice agents for automated webinar invitations and event reminders, handling 300+ outbound calls per campaign and increasing attendance.",
         "Coordinated between development and operations teams to ensure controlled, low-risk feature rollouts and deployments.",
         "Performed proactive debugging and issue resolution to reduce downtime and improve overall platform reliability."
       ],
       logo: "logo/callbox_logo.jpg",
-      skills: ["Laravel", "PHP", "MySQL", "HubSpot CRM", "n8n", "VAPI AI", "API Development", "Documentation", "Git", "Automation"]
+      skills: ["HubSpot CRM", "JavaScript", "Python", "Vertex AI", "Google Cloud Run", "RAG", "n8n", "VAPI AI", "API Development", "Git"]
     },
     {
-      company: "Freelance",
-      position: "Software Engineer",
-      period: "06/2025 - present",
+      company: "Freelance, Iloilo City",
+      position: "Software Developer",
+      period: "06/2025 – present",
       logo: "/logo-jf.png",
       clients: [
         {
@@ -39,14 +40,14 @@ const Experience = () => {
       ]
     },
     {
-      company: "Callbox Iloilo",
-      position: "Intern Software Developer",
-      period: "02/2025 - 05/2025",
+      company: "Callbox Inc, Iloilo City",
+      position: "Software Development Intern",
+      period: "02/2025 – 05/2025",
       description: [
-        "Working primarily as a backend developer using Laravel",
-        "Focusing on building and optimizing APIs, database management, and system integrations",
-        "Assisting in implementing additional features and enhancements for the company's portal",
-        "Collaborating with the team to ensure seamless functionality and performance improvements"
+        "Assisted in the development and implementation of Laravel-based applications.",
+        "Helped optimize application performance.",
+        "Collaborated with the development team to integrate frontend and backend components.",
+        "Gained hands-on experience with Laravel, MySQL, and best practices in web development."
       ],
       logo: "logo/callbox_logo.jpg",
       skills: ["Laravel", "PHP", "MySQL", "Bootstrap", "API Development", "Git", "PhpMyAdmin"]
