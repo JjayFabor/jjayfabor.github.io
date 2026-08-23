@@ -75,8 +75,41 @@ export const aiRoadmap = {
     {
       id: "data-foundations",
       title: "Data Foundations",
-      status: "in-progress",
-      weeks: [{ week: 2, status: "in-progress" }],
+      status: "completed",
+      weeks: [
+        {
+          week: 2,
+          status: "completed",
+          summary:
+            "Built a Python data pipeline that cleans, validates, and analyzes messy AI model API usage logs, then exports analysis-ready results.",
+          skills: [
+            "Pandas DataFrames",
+            "CSV ingestion",
+            "Dataset inspection",
+            "Missing-value handling",
+            "Median imputation",
+            "Boolean filtering and domain validation",
+            "Duplicate detection",
+            "IQR outlier detection",
+            "groupby and aggregation",
+            "JSON export",
+            "Reproducible pipeline design",
+          ],
+          project: {
+            name: "AI Model Usage Analyzer",
+            description:
+              "A Python data pipeline built as my Week 2 capstone. It normalizes model names, imputes missing token counts with the median, removes records with missing latency, duplicates, and invalid measurements, and flags token-usage outliers using IQR without treating unusual observations as invalid. It calculates overall and per-model metrics, then exports cleaned CSV data and JSON summaries.",
+            tech: ["Python", "Pandas", "NumPy", "CSV", "JSON", "Git"],
+            github: "https://github.com/JjayFabor/ai-model-usage-analyzer",
+          },
+          keyLessons: [
+            "Clean and validate data before trusting the analytics built from it.",
+            "Keep domain validation separate from statistical anomaly detection; flag unusual observations instead of automatically deleting them.",
+            "Separate processing, reporting, and export responsibilities to keep the pipeline maintainable.",
+          ],
+          dateCompleted: "2026-08-23",
+        },
+      ],
     },
     { id: "machine-learning", title: "Machine Learning", status: "upcoming" },
     { id: "deep-learning", title: "Deep Learning", status: "upcoming" },
