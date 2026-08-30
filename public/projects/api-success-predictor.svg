@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">API Success Predictor machine learning workflow</title>
+  <desc id="description">A raw API request moves through leakage-safe preprocessing and five-fold model comparison. Logistic Regression is selected at 97.5 percent cross-validation accuracy, then evaluated at 90 percent on a ten-request held-out set before resilient raw-request inference.</desc>
+
+  <rect width="1200" height="630" fill="#0f1117"/>
+  <path d="M1 1h1198v628H1z" fill="none" stroke="#252836" stroke-width="2"/>
+  <g opacity=".28" stroke="#252836">
+    <path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200"/>
+    <path d="M120 0v630M240 0v630M360 0v630M480 0v630M600 0v630M720 0v630M840 0v630M960 0v630M1080 0v630"/>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="48" y="58" fill="#22d3ee" font-size="16" font-weight="700" letter-spacing="2">API SUCCESS PREDICTOR</text>
+    <text x="1152" y="58" fill="#64748b" font-size="13" text-anchor="end">WEEK 03 · CLASSIFICATION</text>
+  </g>
+
+  <!-- Raw request -->
+  <rect x="48" y="96" width="218" height="442" rx="10" fill="#1c1e26" stroke="#394052" stroke-width="2"/>
+  <path d="M48 150h218" stroke="#394052"/>
+  <circle cx="76" cy="123" r="6" fill="#06b6d4"/>
+  <circle cx="98" cy="123" r="6" fill="#64748b"/>
+  <circle cx="120" cy="123" r="6" fill="#64748b"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="72" y="184" fill="#64748b" font-size="12" letter-spacing="1.5">RAW REQUEST</text>
+    <text x="72" y="224" fill="#94a3b8" font-size="13">tokens</text>
+    <text x="242" y="224" fill="#e2e8f0" font-size="14" text-anchor="end">1200</text>
+    <path d="M72 238h170" stroke="#252836"/>
+    <text x="72" y="270" fill="#94a3b8" font-size="13">latency_ms</text>
+    <text x="242" y="270" fill="#fbbf24" font-size="14" text-anchor="end">null</text>
+    <path d="M72 284h170" stroke="#252836"/>
+    <text x="72" y="316" fill="#94a3b8" font-size="13">model</text>
+    <text x="242" y="316" fill="#e2e8f0" font-size="14" text-anchor="end">Gemini</text>
+    <path d="M72 330h170" stroke="#252836"/>
+    <text x="72" y="362" fill="#94a3b8" font-size="13">region</text>
+    <text x="242" y="362" fill="#fbbf24" font-size="14" text-anchor="end">south_america</text>
+    <path d="M72 376h170" stroke="#252836"/>
+    <text x="72" y="408" fill="#94a3b8" font-size="13">retries</text>
+    <text x="242" y="408" fill="#e2e8f0" font-size="14" text-anchor="end">1</text>
+    <rect x="72" y="448" width="170" height="48" rx="4" fill="#0f1117" stroke="#394052"/>
+    <text x="86" y="469" fill="#64748b" font-size="11">TRAINING DATA</text>
+    <text x="86" y="487" fill="#22d3ee" font-size="13">50 · BALANCED</text>
+  </g>
+
+  <!-- Flow 1 -->
+  <path d="M278 317h38" stroke="#06b6d4" stroke-width="3"/>
+  <path d="m306 309 10 8-10 8" fill="none" stroke="#06b6d4" stroke-width="3"/>
+
+  <!-- Preprocessing -->
+  <rect x="328" y="96" width="210" height="442" rx="10" fill="#1c1e26" stroke="#06b6d4" stroke-width="2"/>
+  <path d="M328 150h210" stroke="#394052"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="352" y="128" fill="#22d3ee" font-size="14" font-weight="700">PREPROCESS</text>
+    <text x="352" y="184" fill="#64748b" font-size="11" letter-spacing="1.4">SPLIT FIRST</text>
+    <text x="352" y="208" fill="#e2e8f0" font-size="13">80 / 20 · STRATIFIED</text>
+
+    <rect x="352" y="236" width="162" height="82" rx="5" fill="#0f1117" stroke="#394052"/>
+    <text x="366" y="258" fill="#64748b" font-size="11">NUMERIC</text>
+    <text x="366" y="283" fill="#e2e8f0" font-size="12">median impute</text>
+    <text x="366" y="302" fill="#22d3ee" font-size="12">→ standard scale</text>
+
+    <rect x="352" y="334" width="162" height="98" rx="5" fill="#0f1117" stroke="#394052"/>
+    <text x="366" y="356" fill="#64748b" font-size="11">CATEGORICAL</text>
+    <text x="366" y="381" fill="#e2e8f0" font-size="12">most-frequent</text>
+    <text x="366" y="400" fill="#22d3ee" font-size="12">→ one-hot encode</text>
+    <text x="366" y="419" fill="#94a3b8" font-size="10">unknowns ignored</text>
+
+    <rect x="352" y="458" width="162" height="38" rx="4" fill="#06b6d4" opacity=".11"/>
+    <text x="433" y="482" fill="#22d3ee" font-size="11" text-anchor="middle">FITTED IN PIPELINE</text>
+  </g>
+
+  <!-- Flow 2 -->
+  <path d="M550 317h38" stroke="#06b6d4" stroke-width="3"/>
+  <path d="m578 309 10 8-10 8" fill="none" stroke="#06b6d4" stroke-width="3"/>
+
+  <!-- Fair comparison -->
+  <rect x="600" y="96" width="244" height="442" rx="10" fill="#1c1e26" stroke="#394052" stroke-width="2"/>
+  <path d="M600 150h244" stroke="#394052"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="624" y="128" fill="#e2e8f0" font-size="14" font-weight="700">MODEL COMPARISON</text>
+    <text x="624" y="184" fill="#64748b" font-size="11" letter-spacing="1.4">5-FOLD CV · TRAINING ONLY</text>
+
+    <rect x="624" y="218" width="196" height="92" rx="5" fill="#06b6d4" opacity=".09"/>
+    <rect x="624" y="218" width="196" height="92" rx="5" fill="none" stroke="#06b6d4" stroke-width="2"/>
+    <text x="640" y="244" fill="#22d3ee" font-size="11">SELECTED</text>
+    <text x="640" y="271" fill="#e2e8f0" font-size="13">Logistic Regression</text>
+    <text x="804" y="294" fill="#22d3ee" font-size="20" font-weight="700" text-anchor="end">97.5%</text>
+
+    <rect x="624" y="328" width="196" height="76" rx="5" fill="#0f1117" stroke="#394052"/>
+    <text x="640" y="356" fill="#e2e8f0" font-size="13">Decision Tree · d=3</text>
+    <text x="804" y="386" fill="#94a3b8" font-size="18" text-anchor="end">95.0%</text>
+
+    <text x="624" y="452" fill="#64748b" font-size="11">SELECTION EVIDENCE</text>
+    <path d="M624 466h196" stroke="#06b6d4" stroke-width="3"/>
+    <text x="624" y="494" fill="#94a3b8" font-size="11">same preprocessing · fair folds</text>
+  </g>
+
+  <!-- Flow 3 -->
+  <path d="M856 317h38" stroke="#06b6d4" stroke-width="3"/>
+  <path d="m884 309 10 8-10 8" fill="none" stroke="#06b6d4" stroke-width="3"/>
+
+  <!-- Evaluation + prediction -->
+  <rect x="906" y="96" width="246" height="442" rx="10" fill="#1c1e26" stroke="#f59e0b" stroke-width="2"/>
+  <path d="M906 150h246" stroke="#394052"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="930" y="128" fill="#fbbf24" font-size="14" font-weight="700">HONEST EVALUATION</text>
+    <text x="930" y="184" fill="#64748b" font-size="11" letter-spacing="1.3">HELD-OUT TEST · N=10</text>
+    <text x="930" y="232" fill="#fbbf24" font-size="36" font-weight="700">90%</text>
+    <text x="1040" y="228" fill="#94a3b8" font-size="11">ACCURACY</text>
+
+    <rect x="930" y="260" width="198" height="62" rx="5" fill="#0f1117" stroke="#57461f"/>
+    <text x="946" y="283" fill="#64748b" font-size="10">CONFUSION MATRIX</text>
+    <text x="946" y="307" fill="#e2e8f0" font-size="14">[[5,0], [1,4]]</text>
+
+    <text x="930" y="360" fill="#64748b" font-size="11" letter-spacing="1.3">RAW INFERENCE</text>
+    <rect x="930" y="380" width="198" height="80" rx="5" fill="#06b6d4" opacity=".08"/>
+    <text x="946" y="406" fill="#94a3b8" font-size="11">missing latency +</text>
+    <text x="946" y="424" fill="#94a3b8" font-size="11">unseen region</text>
+    <text x="1112" y="446" fill="#22d3ee" font-size="15" font-weight="700" text-anchor="end">TRUE · 76.1%</text>
+
+    <text x="930" y="494" fill="#fbbf24" font-size="10">WORKFLOW DEMO · NOT PRODUCTION CLAIM</text>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">
+    <circle cx="452" cy="575" r="4" fill="#06b6d4"/>
+    <text x="464" y="579" fill="#94a3b8">PIPELINE + MODEL SELECTION</text>
+    <circle cx="710" cy="575" r="4" fill="#f59e0b"/>
+    <text x="722" y="579" fill="#94a3b8">FINAL EVALUATION + CAVEAT</text>
+  </g>
+</svg>

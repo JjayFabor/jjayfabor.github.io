@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { ArrowLeft, ExternalLink, Github, Lock } from "lucide-react";
+import { ArrowLeft, Clock3, ExternalLink, Github } from "lucide-react";
 import { getProjectBySlug } from "../data/projects";
 import Footer from "../components/Footer";
 import LightSwitch from "../components/LightSwitch";
@@ -262,8 +262,8 @@ const ProjectDetailPage = () => {
         )}
         {!project.link && !project.preview && (
           <span className="inline-flex items-center gap-2 h-10 px-4 rounded-md text-sm font-medium border border-dashed border-brand-border text-brand-muted">
-            <Lock className="h-4 w-4" />
-            Internal company project
+            <Clock3 className="h-4 w-4" aria-hidden="true" />
+            Source repository coming soon
           </span>
         )}
       </div>

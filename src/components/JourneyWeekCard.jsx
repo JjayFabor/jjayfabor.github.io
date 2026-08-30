@@ -1,4 +1,5 @@
-import { ExternalLink, Github } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
 const statusLabels = {
   completed: "Completed",
@@ -81,6 +82,16 @@ const JourneyWeekCard = ({ week }) => (
             )}
 
             <div className="mt-5 flex flex-wrap gap-2">
+              {week.project.projectUrl && (
+                <Link
+                  to={week.project.projectUrl}
+                  aria-label={`View the ${week.project.name} project details`}
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-brand-accent px-4 text-sm font-medium text-brand-bg transition-colors hover:bg-brand-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface"
+                >
+                  View project
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              )}
               {week.project.github && (
                 <a
                   href={week.project.github}

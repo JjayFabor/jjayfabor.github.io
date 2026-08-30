@@ -414,6 +414,21 @@ const statusLabel = (status) =>
     status
   ] || status;
 
+const journeyProjectLinks = (project) =>
+  [
+    project?.projectUrl
+      ? `<a href="${attr(project.projectUrl)}">View project</a>`
+      : "",
+    project?.github
+      ? `<a href="${attr(project.github)}">GitHub repository</a>`
+      : "",
+    project?.liveDemo
+      ? `<a href="${attr(project.liveDemo)}">Live demo</a>`
+      : "",
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
 const journeyInner = `
 <p><a href="/">← Back to home</a></p>
 <p>${text(aiRoadmap.title)}</p>
@@ -422,7 +437,7 @@ const journeyInner = `
 <h2>${aiRoadmap.totalWeeks}-week project-based roadmap</h2>
 <p>Week ${completedWeekCount} of ${aiRoadmap.totalWeeks} completed</p>
 ${latestCompletedWeek?.project ? `<h3>Latest completed capstone: ${text(latestCompletedWeek.project.name)}</h3>
-<p><a href="${attr(latestCompletedWeek.project.github)}">View GitHub repository</a></p>` : ""}
+${journeyProjectLinks(latestCompletedWeek.project) ? `<p>${journeyProjectLinks(latestCompletedWeek.project)}</p>` : ""}` : ""}
 ${latestCompletedWeek && activeWeek ? `<h3>Active progression</h3>
 <p>Week ${latestCompletedWeek.week} shipped → Week ${activeWeek.week} · ${text(activeWeek.title)} · ${text(statusLabel(activeWeek.status))}</p>` : ""}
 <h2>Weekly progress</h2>
@@ -437,11 +452,7 @@ ${week.summary ? `<p>${text(week.summary)}</p>` : ""}
 ${week.project ? `<h4>Capstone: ${text(week.project.name)}</h4>
 ${week.project.description ? `<p>${text(week.project.description)}</p>` : ""}
 ${week.project.tech?.length ? `<p><strong>Tech:</strong> ${week.project.tech.map(text).join(", ")}</p>` : ""}
-<p>${week.project.github ? `<a href="${attr(week.project.github)}">GitHub repository</a>` : ""}${
-      week.project.liveDemo
-        ? ` · <a href="${attr(week.project.liveDemo)}">Live demo</a>`
-        : ""
-    }</p>` : ""}
+${journeyProjectLinks(week.project) ? `<p>${journeyProjectLinks(week.project)}</p>` : ""}` : ""}
 ${week.skills?.length ? `<h4>Skills learned</h4>
 <ul>${week.skills.map((skill) => `<li>${text(skill)}</li>`).join("")}</ul>` : ""}
 ${week.keyLessons?.length ? `<h4>Key lessons</h4>
@@ -472,6 +483,9 @@ const journeyLd = jsonLd({
         name: `Week ${week.week}: ${week.project?.name || week.title}`,
         description: week.project?.description || week.summary,
         dateCreated: week.dateCompleted || undefined,
+        url: week.project?.projectUrl
+          ? abs(week.project.projectUrl)
+          : undefined,
         codeRepository: week.project?.github || undefined,
         keywords: week.project?.tech?.join(", ") || undefined,
       })),

@@ -109,6 +109,16 @@ const AiJourneyPage = () => {
                 <p className="mt-1 text-sm text-brand-muted">
                   Week {latestCompletedWeek.week} · Completed project
                 </p>
+                {latestCompletedWeek.project.projectUrl && (
+                  <Link
+                    to={latestCompletedWeek.project.projectUrl}
+                    aria-label={`View the ${latestCompletedWeek.project.name} project details`}
+                    className="mt-3 inline-flex h-10 items-center justify-center gap-2 rounded-md bg-brand-accent px-4 text-sm font-medium text-brand-bg transition-colors hover:bg-brand-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface sm:mt-4"
+                  >
+                    View project
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                )}
                 {latestCompletedWeek.project.github && (
                   <a
                     href={latestCompletedWeek.project.github}

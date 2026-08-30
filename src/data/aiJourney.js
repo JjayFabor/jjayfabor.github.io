@@ -7,6 +7,7 @@
  * @property {string[]} [tech]
  * @property {string} [github]
  * @property {string} [liveDemo]
+ * @property {string} [projectUrl]
  *
  * @typedef {Object} JourneyWeek
  * @property {number} week
@@ -111,7 +112,53 @@ export const aiRoadmap = {
         },
       ],
     },
-    { id: "machine-learning", title: "Machine Learning", status: "upcoming" },
+    {
+      id: "machine-learning",
+      title: "Machine Learning",
+      status: "completed",
+      weeks: [
+        {
+          week: 3,
+          status: "completed",
+          summary:
+            "Built a leakage-safe classification workflow that compares candidate models, evaluates the selected pipeline honestly, and accepts raw API request data for inference.",
+          skills: [
+            "Binary classification",
+            "Feature and target selection",
+            "Stratified train/test splits",
+            "scikit-learn pipelines",
+            "ColumnTransformer",
+            "Missing-value imputation",
+            "Feature scaling",
+            "One-hot encoding",
+            "5-fold cross-validation",
+            "Model comparison and selection",
+            "Confusion matrix analysis",
+            "Raw-request inference",
+            "Data leakage prevention",
+          ],
+          project: {
+            name: "API Success Predictor",
+            description:
+              "An end-to-end binary classification capstone trained on 50 balanced API request observations. It uses leakage-safe numerical and categorical preprocessing, compares Logistic Regression with a depth-3 Decision Tree using 5-fold cross-validation, selects Logistic Regression, and supports inference on raw requests with missing values and unseen categories.",
+            tech: [
+              "Python",
+              "Pandas",
+              "scikit-learn",
+              "Machine Learning",
+              "Classification",
+            ],
+            projectUrl: "/projects/api-success-predictor",
+          },
+          keyLessons: [
+            "Fit preprocessing only on training data by keeping every transformation inside the model pipeline.",
+            "Use cross-validation for model selection and preserve the held-out set for one honest final evaluation.",
+            "Report small-sample metrics with their limits; 90% accuracy on 10 held-out requests demonstrates the workflow, not production performance.",
+          ],
+          dateCompleted: "2026-08-30",
+        },
+      ],
+    },
     { id: "deep-learning", title: "Deep Learning", status: "upcoming" },
     { id: "llm-fundamentals", title: "LLM Fundamentals", status: "upcoming" },
     {
