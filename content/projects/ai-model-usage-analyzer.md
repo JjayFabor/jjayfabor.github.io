@@ -2,7 +2,7 @@
 title: "AI Model Usage Analyzer"
 slug: "ai-model-usage-analyzer"
 description: "A Python data pipeline that cleans, validates, and analyzes messy AI model API usage logs, flags IQR outliers, and exports analysis-ready results."
-category: "Learning Project"
+category: "Data Engineering"
 contextLabel: "Week 2 Capstone · AI Engineering Roadmap"
 status: "completed"
 featured: false

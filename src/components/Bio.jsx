@@ -25,7 +25,10 @@ function Bio({ onOpenContact = () => {} }) {
             @JjayFabor
           </p>
           <p className="mt-2 text-lg md:text-xl font-semibold text-brand-accent">
-            Software Engineer
+            <span className="inline-block">Software Engineer ·</span>{" "}
+            <span className="inline-block whitespace-nowrap">
+              Aspiring Data Engineer
+            </span>
           </p>
           <p className="mt-2 text-sm font-medium text-brand-muted">
             Open to remote roles; willing to relocate

@@ -40,8 +40,8 @@ const FaqPage = () => {
             Frequently asked questions
           </h1>
           <p className="mt-4 text-base md:text-lg leading-relaxed text-brand-muted">
-            Concise answers about my background, specialties, tools,
-            availability, and location.
+            Concise answers about my software engineering background, path
+            into Data Engineering, specialties, tools, and availability.
           </p>
         </header>
 

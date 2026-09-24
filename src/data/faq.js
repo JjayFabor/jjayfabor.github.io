@@ -8,15 +8,19 @@
 export const faq = [
   {
     q: "Who is Jjay Fabor?",
-    a: "I'm Jjay Fabor (full name Jaylord Vhan Fabor), a software engineer based in Iloilo City, Philippines. I build clean, reliable, and scalable backend systems — APIs, database design, and automation — and I increasingly integrate AI into real-world products.",
+    a: "I'm Jjay Fabor (full name Jaylord Vhan Fabor), a software engineer based in Iloilo City, Philippines, and an aspiring data engineer. I'm building toward Data Engineering through hands-on work with Python data pipelines, data quality, databases, and automation, while continuing to build reliable backend systems and AI-powered products.",
   },
   {
     q: "What does Jjay Fabor specialize in?",
-    a: "I focus on backend and full-stack development: Laravel/PHP and Python backends, REST API design, and business-process automation. Lately I specialize in AI integration — building AI voice agents, automating workflows with n8n, and wiring large language models into production apps.",
+    a: "I focus on backend and full-stack development: Laravel/PHP and Python backends, REST API design, and business-process automation. I'm also building Data Engineering skills through Python data pipelines, cleaning and validation, relational data modeling, and database integrations. My AI work includes voice agents, n8n workflows, and large language model integrations for production apps.",
   },
   {
     q: "What technologies and tools does Jjay Fabor use?",
-    a: "I work primarily with Laravel, PHP, Livewire, Python, and Django on the backend; React, React Native, Flutter, and TailwindCSS for web and mobile; MySQL, PostgreSQL, and Supabase for data; and n8n, VAPI AI, ElevenLabs, and Twilio for automation and AI voice agents.",
+    a: "I work primarily with Laravel, PHP, Livewire, Python, and Django on the backend; React, React Native, Flutter, and TailwindCSS for web and mobile; and MySQL, PostgreSQL, SQLite, and Supabase for databases. For hands-on Data Engineering work, I use Pandas for data pipelines, cleaning, and validation, and I practice relational data modeling with MySQL, PostgreSQL, and SQLite. I also use n8n, VAPI AI, ElevenLabs, and Twilio for automation and AI voice agents.",
+  },
+  {
+    q: "What Data Engineering projects has Jjay Fabor built?",
+    a: "I've built AI Model Usage Analyzer, a Python and Pandas pipeline that cleans and validates API usage logs, analyzes IQR outliers, and exports analysis-ready CSV and JSON results. I also built HubSpot Pipeline Data Sync, a workflow and REST API integration that synchronizes CRM records with MySQL. These are hands-on projects supporting my ongoing transition into Data Engineering, not professional Data Engineer employment.",
   },
   {
     q: "Is Jjay Fabor available for freelance work or hire?",

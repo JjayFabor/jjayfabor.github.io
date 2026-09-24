@@ -18,11 +18,13 @@ const socialLinks = [
     icon: <VscGithub className="h-5 w-5" />,
     label: "GitHub",
     href: "https://github.com/JjayFabor",
+    rel: "me noopener noreferrer",
   },
   {
     icon: <FaLinkedin className="h-5 w-5" />,
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/jjayfabor/",
+    rel: "me noopener noreferrer",
   },
   {
     // Opens the in-page contact form. A mailto: link silently does nothing when
@@ -62,7 +64,7 @@ const Footer = () => {
                     <a
                       href={link.href}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel={link.rel}
                       className={linkClass}
                     >
                       {link.icon}

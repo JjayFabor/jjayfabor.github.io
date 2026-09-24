@@ -5,21 +5,23 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://jjayfabor.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
     <image:image>
-      <image:loc>https://jjayfabor.com/logo-jf.png</image:loc>
-      <image:title>Jaylord Vhan Fabor Portfolio</image:title>
+      <image:loc>https://jjayfabor.com/logo/profile.jpg</image:loc>
+      <image:title>Jaylord Vhan Fabor — Software Engineer and aspiring Data Engineer</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://jjayfabor.com/projects</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://jjayfabor.com/logo-jf.png</image:loc>
+      <image:title>Software and Data Engineering projects by Jjay Fabor</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://jjayfabor.com/faq</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://jjayfabor.com/logo-jf.png</image:loc>
+      <image:title>Frequently asked questions about Jjay Fabor</image:title>
+    </image:image>
   </url>
 </urlset>

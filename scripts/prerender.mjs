@@ -117,14 +117,22 @@ function stampPage({
   description,
   canonical,
   ogImage,
+  imageAlt = title,
   ogImageWidth = 1200,
   ogImageHeight = 630,
   twitterCard = "summary_large_image",
   extraJsonLd = "",
+  keepHomepageJsonLd = false,
   root,
 }) {
   let html = template;
   const url = `${SITE}${canonical}`;
+  if (!keepHomepageJsonLd) {
+    html = html.replace(
+      /\s*<script\s+id="homepage-structured-data"[\s\S]*?<\/script>/,
+      "",
+    );
+  }
   html = swap(html, /<title>[\s\S]*?<\/title>/, `<title>${text(title)}</title>`);
   html = swap(
     html,
@@ -177,6 +185,16 @@ function stampPage({
       html,
       /<meta\s+name="twitter:image"[\s\S]*?>/,
       `<meta name="twitter:image" content="${attr(img)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta\s+property="og:image:alt"[\s\S]*?>/,
+      `<meta property="og:image:alt" content="${attr(imageAlt)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta\s+name="twitter:image:alt"[\s\S]*?>/,
+      `<meta name="twitter:image:alt" content="${attr(imageAlt)}" />`,
     );
     html = swap(
       html,
@@ -267,12 +285,13 @@ for (const p of projects) {
         name: p.title,
         description: p.description || undefined,
         url: `${SITE}${canonical}`,
-        author: { "@type": "Person", name: "Jjay Fabor", url: `${SITE}/` },
+        author: { "@id": `${SITE}/#person` },
+        mainEntityOfPage: `${SITE}${canonical}`,
         dateCreated: p.date || undefined,
         keywords: tech.length ? tech.join(", ") : undefined,
         image: p.image ? abs(p.image) : undefined,
         ...(p.link ? { codeRepository: p.link } : {}),
-        isPartOf: { "@type": "WebSite", name: "Jaylord Vhan Fabor Portfolio", url: `${SITE}/` },
+        isPartOf: { "@id": `${SITE}/#website` },
       },
       {
         "@type": "BreadcrumbList",
@@ -290,6 +309,7 @@ for (const p of projects) {
     description: p.description || `${p.title} — a project by Jjay Fabor.`,
     canonical,
     ogImage: ogCardFor(p),
+    imageAlt: `${p.title} project by Jjay Fabor`,
     extraJsonLd: ld,
     root: shell(inner),
   }));
@@ -300,9 +320,10 @@ for (const p of projects) {
 writePage("/projects", stampPage({
   title: "Projects — Jjay Fabor",
   description:
-    "Projects by Jjay Fabor (Jaylord Vhan Fabor) — backend systems, REST APIs, full-stack and mobile apps, and AI automation across Laravel, Python, React, and n8n/VAPI.",
+    "Projects by Jjay Fabor spanning backend and full-stack systems, Python data pipelines and Data Engineering practice, mobile apps, and AI automation.",
   canonical: "/projects",
   ogImage: "/logo-jf.png",
+  imageAlt: "Software and Data Engineering projects by Jjay Fabor",
   ogImageWidth: 1026,
   ogImageHeight: 1026,
   twitterCard: "summary",
@@ -311,7 +332,7 @@ writePage("/projects", stampPage({
     "@type": "CollectionPage",
     name: "Projects — Jjay Fabor",
     url: `${SITE}/projects`,
-    isPartOf: { "@type": "WebSite", name: "Jaylord Vhan Fabor Portfolio", url: `${SITE}/` },
+    isPartOf: { "@id": `${SITE}/#website` },
     hasPart: projects.map((p) => ({
       "@type": "CreativeWork",
       name: p.title,
@@ -330,13 +351,13 @@ writePage("/projects", stampPage({
 // is without executing JS. Keep it in sync if the bio/experience change.
 const homeInner = `
 <h1>Jaylord Vhan Fabor (Jjay Fabor)</h1>
-<p><strong>Software Engineer</strong> — @JjayFabor — based in Iloilo City, Philippines.</p>
-<p>I build clean, reliable, and scalable backend systems — from APIs and database design to automation — with well-structured code that's easy to maintain and built to last.</p>
-<p>I focus on productive, real-world applications: clean, scalable backends and APIs, and automated workflows that save teams hours of manual work. Lately I've been leveraging AI to make products genuinely more useful — integrating AI voice agents, automating business processes with n8n, and wiring LLMs into real workflows.</p>
-<h2>Currently</h2>
-<p>Junior Software Developer at Callbox Iloilo — HubSpot CRM development (custom workflows, coded actions, API integrations), n8n business-process automation, and VAPI AI voice agents.</p>
+<p><strong>Software Engineer · Aspiring Data Engineer</strong> — @JjayFabor — based in Iloilo City, Philippines.</p>
+<p>I'm a Software Engineer expanding into Data Engineering through hands-on work with Python data pipelines, data quality, databases, and automation.</p>
+<p>I build reliable backend applications, internal business tools, AI voice agents, self-hosted AI agents, and automated workflows that connect systems, APIs, and data. I care about maintainable, production-quality systems that solve real business problems.</p>
+<h2>Professional experience</h2>
+<p>My professional work includes HubSpot CRM development, custom workflows, API integrations connecting CRM data to an internal pipeline database, n8n business-process automation, and VAPI AI voice agents.</p>
 <h2>Core skills</h2>
-<p>Laravel, PHP, Livewire, Python, Django, REST API development, React, React Native, Expo, Flutter, TailwindCSS, MySQL, PostgreSQL, Supabase, HubSpot CRM, n8n automation, VAPI AI, ElevenLabs, Twilio, AI/LLM integration, Git &amp; GitHub.</p>
+<p>Laravel, PHP, Livewire, Python, Pandas, data pipelines, data quality, relational data modeling, Django, REST API development, React, React Native, Expo, Flutter, TailwindCSS, MySQL, PostgreSQL, SQLite, Supabase, HubSpot CRM, n8n automation, VAPI AI, ElevenLabs, Twilio, AI/LLM integration, Git &amp; GitHub.</p>
 <h2>Education</h2>
 <p>BS Computer Science, Central Philippine University (2021–2025). Vocational Degree in Computer Technology, Professional Electronics Institute, Inc. (2019–2021).</p>
 <h2>Projects</h2>
@@ -344,25 +365,27 @@ const homeInner = `
 ${projectListItems}
 </ul>
 <h2>Contact</h2>
-<p><a href="https://github.com/JjayFabor">GitHub</a> &middot; <a href="https://www.linkedin.com/in/jjayfabor/">LinkedIn</a></p>
+<p><a href="https://github.com/JjayFabor" rel="me">GitHub</a> &middot; <a href="https://www.linkedin.com/in/jjayfabor/" rel="me">LinkedIn</a></p>
 `.trim();
 
 writePage("/", stampPage({
-  title: "Jaylord Vhan Fabor (Jjay Fabor) — Software Engineer",
+  title: "Jjay Fabor — Software Engineer & Aspiring Data Engineer",
   description:
-    "Jaylord Vhan Fabor (Jjay Fabor) is a Software Engineer based in Iloilo, Philippines who builds productive, real-world apps — scalable Laravel/PHP & Python backends, REST APIs, React & mobile apps (React Native, Flutter), HubSpot CRM development, and AI-powered automation with n8n and VAPI AI.",
+    "Jaylord Vhan Fabor is a Software Engineer and aspiring Data Engineer in Iloilo, Philippines, building Python data pipelines, backends, and automation.",
   canonical: "/",
   ogImage: "/logo-jf.png",
+  imageAlt: "Jaylord Vhan Fabor, Software Engineer and aspiring Data Engineer",
   ogImageWidth: 1026,
   ogImageHeight: 1026,
   twitterCard: "summary",
+  keepHomepageJsonLd: true,
   root: shell(homeInner),
 }));
 
 // ---- /faq ---------------------------------------------------------------
 
 const faqDescription =
-  "Concise answers about Jjay Fabor's software engineering background, specialties, tools, availability, and location.";
+  "Concise answers about Jjay Fabor's software engineering background, path into Data Engineering, specialties, tools, and availability.";
 
 const faqInner = `
 <p><a href="/">← Back to home</a></p>
@@ -389,6 +412,7 @@ writePage("/faq", stampPage({
   description: faqDescription,
   canonical: "/faq",
   ogImage: "/logo-jf.png",
+  imageAlt: "Frequently asked questions about Jjay Fabor",
   ogImageWidth: 1026,
   ogImageHeight: 1026,
   twitterCard: "summary",
@@ -398,26 +422,62 @@ writePage("/faq", stampPage({
 
 // ---- sitemap.xml (complete + always in sync with the project set) ---------
 
+const xml = (value) =>
+  String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+
 const sitemapUrls = [
-  { loc: `${SITE}/`, priority: "1.0", changefreq: "weekly" },
-  { loc: `${SITE}/faq`, priority: "0.7", changefreq: "monthly" },
-  { loc: `${SITE}/projects`, priority: "0.8", changefreq: "weekly" },
+  {
+    loc: `${SITE}/`,
+    images: [
+      {
+        loc: `${SITE}/logo/profile.jpg`,
+        title: "Jaylord Vhan Fabor — Software Engineer and aspiring Data Engineer",
+      },
+    ],
+  },
+  {
+    loc: `${SITE}/faq`,
+    images: [
+      { loc: `${SITE}/logo-jf.png`, title: "Frequently asked questions about Jjay Fabor" },
+    ],
+  },
+  {
+    loc: `${SITE}/projects`,
+    images: [
+      { loc: `${SITE}/logo-jf.png`, title: "Software and Data Engineering projects by Jjay Fabor" },
+    ],
+  },
   ...projects.map((p) => ({
     loc: `${SITE}/projects/${p.slug}`,
-    priority: "0.7",
-    changefreq: "monthly",
-    lastmod: p.date || undefined,
+    images: [
+      { loc: abs(ogCardFor(p)), title: `${p.title} project by Jjay Fabor` },
+      ...(Array.isArray(p.screenshots)
+        ? p.screenshots.map((screenshot, index) => ({
+            loc: abs(screenshot),
+            title: `${p.title} project screenshot ${index + 1}`,
+          }))
+        : []),
+    ],
   })),
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${sitemapUrls
   .map(
     (u) =>
-      `  <url>\n    <loc>${u.loc}</loc>${
-        u.lastmod ? `\n    <lastmod>${u.lastmod}</lastmod>` : ""
-      }\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`,
+      `  <url>\n    <loc>${xml(u.loc)}</loc>${u.images
+        .map(
+          (image) =>
+            `\n    <image:image>\n      <image:loc>${xml(image.loc)}</image:loc>\n      <image:title>${xml(image.title)}</image:title>\n    </image:image>`,
+        )
+        .join("")}\n  </url>`,
   )
   .join("\n")}
 </urlset>

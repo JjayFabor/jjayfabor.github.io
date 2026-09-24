@@ -26,6 +26,16 @@ const skillGroups = [
     skills: ["MySQL", "PostgreSQL", "SQLite", "Supabase"],
   },
   {
+    title: "Data Engineering (Learning)",
+    skills: [
+      "Pandas",
+      "Data Pipelines",
+      "Data Cleaning",
+      "Data Validation",
+      "Relational Data Modeling",
+    ],
+  },
+  {
     title: "Tools & Platforms",
     skills: ["Git", "GitHub", "Docker", "Postman", "HubSpot CRM", "Vercel", "Render", "cPanel"],
   },
