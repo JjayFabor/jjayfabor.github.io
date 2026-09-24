@@ -53,7 +53,7 @@ const ProjectCard = ({ project }) => {
           {tags.map((tech, index) => (
             <span
               key={index}
-              className="bg-brand-accent/10 text-brand-accent font-mono text-[11px] px-2 py-0.5 rounded-full"
+              className="bg-brand-accent/10 text-brand-text font-mono text-[11px] px-2 py-0.5 rounded-full"
             >
               {tech}
             </span>

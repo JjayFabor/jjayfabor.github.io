@@ -1,0 +1,15 @@
+# Jjay Fabor
+
+Jjay Fabor is a software engineer who builds full-stack products, backend systems, data workflows, and practical automation.
+
+Portfolio: https://jjayfabor.com/
+Projects: https://jjayfabor.com/projects
+
+## Featured project
+
+SecondTrip is callback and rework analytics for service teams. It analyzes service-job history, surfaces possible repeat visits with explainable deterministic signals, and keeps the manager's decision as ground truth. V1 uses no AI or LLM.
+
+Case study: https://jjayfabor.com/projects/secondtrip
+Live product: https://secondtrip.jjayfabor.com/
+
+SecondTrip is a live private beta restricted to fictional or properly anonymized data. It is not approved for unrestricted production use with real customer data.
