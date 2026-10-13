@@ -4,11 +4,11 @@ import BrandLockup from "./BrandLockup";
 function Bio({ onOpenContact = () => {} }) {
   return (
     <section id="bio" className="bg-brand-bg border-b border-brand-border">
-      <div className="max-w-6xl w-full mx-auto px-6 pt-4 pr-24 sm:pt-5">
+      <div className="page-shell page-shell-header pt-4 sm:pt-5">
         <BrandLockup />
       </div>
 
-      <div className="max-w-6xl w-full mx-auto px-6 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-10 gap-y-6 items-center">
+      <div className="page-shell py-8 md:py-10 grid grid-cols-1 md:grid-cols-[160px_minmax(0,1fr)] gap-x-10 gap-y-6 items-center">
         <div className="flex justify-center md:block">
           <img
             src="logo/profile.jpg"

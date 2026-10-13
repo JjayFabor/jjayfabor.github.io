@@ -29,7 +29,7 @@ const AiJourneyPage = () => {
       <LightSwitch />
 
       <header className="border-b border-brand-border bg-brand-bg">
-        <div className="mx-auto max-w-6xl px-6 py-5 pr-20">
+        <div className="page-shell page-shell-header py-5">
           <Link
             to="/"
             aria-label="Back to home"
@@ -44,7 +44,7 @@ const AiJourneyPage = () => {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-6xl flex-grow px-6 py-8 md:py-14">
+      <main className="page-shell flex-grow py-8 md:py-14">
         <header className="max-w-2xl">
           <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-brand-accent">
             {aiRoadmap.title}

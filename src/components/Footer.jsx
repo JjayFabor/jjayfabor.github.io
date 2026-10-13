@@ -42,7 +42,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-brand-surface border-t border-brand-border">
-      <div className="max-w-6xl mx-auto px-6 py-6">
+      <div className="page-shell py-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <Monogram className="w-8 h-8 rounded-lg text-lg" />

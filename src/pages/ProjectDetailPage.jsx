@@ -93,7 +93,7 @@ const Shell = ({ children }) => (
   <div className="min-h-screen bg-brand-bg flex flex-col">
     <LightSwitch />
     <header className="bg-brand-bg border-b border-brand-border">
-      <div className="max-w-4xl mx-auto px-6 py-5 pr-20">
+      <div className="page-shell page-shell-header py-5">
         <Link
           to="/"
           aria-label="Back to home"
@@ -103,7 +103,7 @@ const Shell = ({ children }) => (
         </Link>
       </div>
     </header>
-    <main className="max-w-4xl w-full mx-auto px-6 py-8 md:py-10 flex-grow">
+    <main className="page-shell py-8 md:py-10 flex-grow">
       {children}
     </main>
     <Footer />
@@ -195,7 +195,7 @@ const ProjectDetailPage = () => {
       </Link>
 
       {/* Title + meta */}
-      <div className="mt-5">
+      <div className="mt-5 max-w-4xl">
         {project.contextLabel && (
           <p className="mb-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-accent">
             {project.contextLabel}
@@ -272,7 +272,7 @@ const ProjectDetailPage = () => {
       {showNav && (
         <nav
           aria-label="On this page"
-          className="sticky top-0 z-10 -mx-6 mt-8 px-6 py-3 bg-brand-bg/90 backdrop-blur border-b border-brand-border"
+          className="page-shell-bleed page-shell-header sticky top-0 z-10 mt-8 py-3 bg-brand-bg/90 backdrop-blur border-b border-brand-border"
         >
           <ul className="flex flex-wrap gap-2">
             {sections.map((s) => (
@@ -294,7 +294,7 @@ const ProjectDetailPage = () => {
           write-up so the first thing on the page is what the project looks like,
           rather than several paragraphs before any visual. */}
       {hasGallery && (
-        <section id="gallery" className="scroll-mt-24 mt-8">
+        <section id="gallery" className="scroll-mt-24 mt-8 max-w-6xl">
           <h2 className="text-xl font-semibold text-brand-text mb-4">Gallery</h2>
           <ScreenshotCarousel images={galleryImages} title={project.title} />
         </section>
@@ -302,7 +302,7 @@ const ProjectDetailPage = () => {
 
       {/* Case-study body */}
       {body && (
-        <div className={hasGallery ? "mt-10" : "mt-8"}>
+        <div className={`max-w-prose ${hasGallery ? "mt-10" : "mt-8"}`}>
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
             {body}
           </ReactMarkdown>

@@ -37,7 +37,7 @@ const skillGroups = [
   },
   {
     title: "Tools & Platforms",
-    skills: ["Git", "GitHub", "Docker", "Postman", "HubSpot CRM", "Vercel", "Render", "cPanel"],
+    skills: ["Git", "GitHub", "Docker", "Postman", "HubSpot CRM", "Cloudflare", "Vercel", "Render", "cPanel"],
   },
 ];
 

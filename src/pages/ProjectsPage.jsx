@@ -58,7 +58,7 @@ const ProjectsPage = () => {
       {/* Header — left-aligned so it stays clear of the fixed theme toggle
           (top-right). The back arrow + brand together link home. */}
       <header className="bg-brand-bg border-b border-brand-border">
-        <div className="max-w-6xl mx-auto px-6 py-5 pr-20">
+        <div className="page-shell page-shell-header py-5">
           <Link
             to="/"
             aria-label="Back to home"
@@ -70,7 +70,7 @@ const ProjectsPage = () => {
         </div>
       </header>
 
-      <main className="max-w-6xl w-full mx-auto px-6 py-8 md:py-10 flex-grow">
+      <main className="page-shell py-8 md:py-10 flex-grow">
         {/* Title */}
         <div className="mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-brand-text">
@@ -103,7 +103,7 @@ const ProjectsPage = () => {
 
         {visible.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
               {visible.map((project) => (
                 <ProjectCard key={project.slug} project={project} />
               ))}
