@@ -22,16 +22,16 @@ const HomePage = () => {
       <LightSwitch />
       <Bio onOpenContact={openContact} />
 
-      <main className="max-w-6xl mx-auto px-6 py-8 md:py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-8">
+      <main className="page-shell py-8 md:py-10">
+        <div className="home-layout">
           {/* Left rail: who I am + what I know */}
-          <div className="lg:col-span-1 space-y-8">
+          <div className="min-w-0 space-y-8">
             <About />
             <TechStack />
           </div>
 
           {/* Main column: track record */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="min-w-0 space-y-8">
             <Experience />
             <Projects />
           </div>

@@ -10,6 +10,8 @@
    bg #F8FAFC · surface #FFFFFF · border #E2E8F0 · accent #0E7490
    · accent-hover #0891B2 · text #0F1117 · muted #64748B */
 :root {
+  --page-gutter: clamp(1.5rem, 4vw, 5rem);
+
   /* brand tokens (RGB triplets consumed by tailwind.config.js) — light */
   --brand-bg: 248 250 252;
   --brand-surface: 255 255 255;
@@ -113,6 +115,39 @@ body {
 }
 * {
   scrollbar-width: none;
+}
+
+@layer components {
+  .page-shell {
+    width: 100%;
+    max-width: none;
+    padding-inline: var(--page-gutter);
+  }
+
+  .page-shell-bleed {
+    margin-inline: calc(-1 * var(--page-gutter));
+    padding-inline: var(--page-gutter);
+  }
+
+  .page-shell-header {
+    padding-right: calc(var(--page-gutter) + 5rem);
+  }
+
+  .theme-switch {
+    right: var(--page-gutter);
+  }
+
+  .home-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem clamp(2rem, 3vw, 4rem);
+  }
+
+  @media (min-width: 1024px) {
+    .home-layout {
+      grid-template-columns: clamp(22.5rem, 32vw, 30rem) minmax(0, 1fr);
+    }
+  }
 }
 
 @layer base {

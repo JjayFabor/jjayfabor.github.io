@@ -357,7 +357,7 @@ const homeInner = `
 <h2>Professional experience</h2>
 <p>My professional work includes HubSpot CRM development, custom workflows, API integrations connecting CRM data to an internal pipeline database, n8n business-process automation, and VAPI AI voice agents.</p>
 <h2>Core skills</h2>
-<p>Laravel, PHP, Livewire, Python, Pandas, data pipelines, data quality, relational data modeling, Django, REST API development, React, React Native, Expo, Flutter, TailwindCSS, MySQL, PostgreSQL, SQLite, Supabase, HubSpot CRM, n8n automation, VAPI AI, ElevenLabs, Twilio, AI/LLM integration, Git &amp; GitHub.</p>
+<p>Laravel, PHP, Livewire, Python, Pandas, data pipelines, data quality, relational data modeling, Django, REST API development, React, React Native, Expo, Flutter, TailwindCSS, MySQL, PostgreSQL, SQLite, Supabase, HubSpot CRM, n8n automation, VAPI AI, ElevenLabs, Twilio, AI/LLM integration, Cloudflare, Git &amp; GitHub.</p>
 <h2>Education</h2>
 <p>BS Computer Science, Central Philippine University (2021–2025). Vocational Degree in Computer Technology, Professional Electronics Institute, Inc. (2019–2021).</p>
 <h2>Projects</h2>

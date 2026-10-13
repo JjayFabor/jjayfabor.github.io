@@ -16,7 +16,7 @@ const FaqPage = () => {
       <LightSwitch />
 
       <header className="bg-brand-bg border-b border-brand-border">
-        <div className="max-w-4xl mx-auto px-6 py-5 pr-20">
+        <div className="page-shell page-shell-header py-5">
           <Link
             to="/"
             aria-label="Back to home"
@@ -31,7 +31,7 @@ const FaqPage = () => {
         </div>
       </header>
 
-      <main className="max-w-4xl w-full mx-auto px-6 py-10 md:py-14 flex-grow">
+      <main className="page-shell py-10 md:py-14 flex-grow">
         <header className="max-w-2xl">
           <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-brand-accent">
             Profile / FAQ
@@ -45,7 +45,7 @@ const FaqPage = () => {
           </p>
         </header>
 
-        <div className="mt-8 md:mt-10">
+        <div className="mt-8 md:mt-10 max-w-4xl">
           <Faq />
         </div>
       </main>

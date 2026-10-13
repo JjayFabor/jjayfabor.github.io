@@ -50,7 +50,7 @@ const ScreenshotCarousel = ({ images, title }) => {
       >
         {images.map((src, i) => (
           <div key={i} className="w-full shrink-0 snap-center">
-            <div className="aspect-[16/10] bg-brand-surface">
+            <div className="aspect-[16/10] max-h-[32rem] bg-brand-surface">
               <img
                 src={src}
                 alt={`${title} screenshot ${i + 1} of ${count}`}

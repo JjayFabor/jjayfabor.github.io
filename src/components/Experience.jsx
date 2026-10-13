@@ -125,7 +125,7 @@ const Experience = () => {
                           <h4 className="text-sm font-semibold text-brand-text">
                             {client.name}
                           </h4>
-                          <ul className="text-brand-text/85 leading-relaxed mt-2 space-y-2 list-disc pl-5">
+                          <ul className="max-w-prose text-brand-text/85 leading-relaxed mt-2 space-y-2 list-disc pl-5">
                             {client.description.map((point, i) => (
                               <li key={i}>{point}</li>
                             ))}
@@ -147,7 +147,7 @@ const Experience = () => {
                     </div>
                   ) : (
                     <>
-                      <ul className="text-brand-text/85 leading-relaxed mt-3 space-y-2 list-disc pl-5">
+                      <ul className="max-w-prose text-brand-text/85 leading-relaxed mt-3 space-y-2 list-disc pl-5">
                         {exp.description.map((point, i) => (
                           <li key={i}>{point}</li>
                         ))}
