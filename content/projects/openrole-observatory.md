@@ -2,8 +2,8 @@
 title: "OpenRole Observatory"
 slug: "openrole-observatory"
 description: "A job-data reliability platform that preserves source evidence, tracks listing changes, and makes observation history visible."
-category: "Data Engineering"
-contextLabel: "Live demo · Data engineering"
+category: "Backend System"
+contextLabel: "Live demo · Backend system"
 status: "ongoing"
 featured: true
 date: "2026-10-13"
@@ -18,7 +18,7 @@ techStack: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "Next.js
 
 OpenRole Observatory collects job listings directly from employer applicant-tracking systems and keeps the evidence behind each observation. It combines a Python ingestion pipeline, PostgreSQL history, private raw-response storage, and a public discovery interface.
 
-I built the project to practice data engineering and backend architecture through a working system: acquiring external data, validating records, preserving lineage, making ingestion repeatable, and exposing useful read models through FastAPI.
+I built the project to practice backend and platform engineering through a working system: integrating with external sources, validating what comes in, keeping every record traceable to its origin, making synchronization safe to re-run, and exposing clean APIs through FastAPI.
 
 ## What problem does OpenRole solve?
 
@@ -26,7 +26,7 @@ An employer can change or remove a listing without leaving a public record of wh
 
 OpenRole separates listing content from the evidence that it was observed. Job seekers can inspect a listing's source and last-observed timestamp, while operators can trace its history back to the original source response. An observation is evidence of source presence, not confirmation that an employer is hiring.
 
-## How does the data pipeline work?
+## How does ingestion work?
 
 The initial provider is Greenhouse. Board discovery uses a public directory for candidates, then verifies each company through Greenhouse's native board metadata before registration.
 

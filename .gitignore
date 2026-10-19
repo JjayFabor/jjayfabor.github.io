@@ -29,3 +29,4 @@ dist-ssr
 cf.json
 .dev.vars
 .env
+.venv-resume/

@@ -320,10 +320,10 @@ for (const p of projects) {
 writePage("/projects", stampPage({
   title: "Projects — Jjay Fabor",
   description:
-    "Projects by Jjay Fabor spanning backend and full-stack systems, Python data pipelines and Data Engineering practice, mobile apps, and AI automation.",
+    "Projects by Jjay Fabor spanning AI agents, developer tools, workflow automation, backend and full-stack systems, and mobile apps.",
   canonical: "/projects",
   ogImage: "/logo-jf.png",
-  imageAlt: "Software and Data Engineering projects by Jjay Fabor",
+  imageAlt: "Software and AI Engineering projects by Jjay Fabor",
   ogImageWidth: 1026,
   ogImageHeight: 1026,
   twitterCard: "summary",
@@ -351,13 +351,13 @@ writePage("/projects", stampPage({
 // is without executing JS. Keep it in sync if the bio/experience change.
 const homeInner = `
 <h1>Jaylord Vhan Fabor (Jjay Fabor)</h1>
-<p><strong>Software Engineer · Aspiring Data Engineer</strong> — @JjayFabor — based in Iloilo City, Philippines.</p>
-<p>I'm a Software Engineer expanding into Data Engineering through hands-on work with Python data pipelines, data quality, databases, and automation.</p>
+<p><strong>Software Engineer · AI Engineer</strong> — @JjayFabor — based in Iloilo City, Philippines.</p>
+<p>I'm a Software Engineer and AI Engineer who builds AI agents, developer tools, and workflow automation — software where AI does useful work inside real systems.</p>
 <p>I build reliable backend applications, internal business tools, AI voice agents, self-hosted AI agents, and automated workflows that connect systems, APIs, and data. I care about maintainable, production-quality systems that solve real business problems.</p>
 <h2>Professional experience</h2>
 <p>My professional work includes HubSpot CRM development, custom workflows, API integrations connecting CRM data to an internal pipeline database, n8n business-process automation, and VAPI AI voice agents.</p>
 <h2>Core skills</h2>
-<p>Laravel, PHP, Livewire, Python, Pandas, data pipelines, data quality, relational data modeling, Django, REST API development, React, React Native, Expo, Flutter, TailwindCSS, MySQL, PostgreSQL, SQLite, Supabase, HubSpot CRM, n8n automation, VAPI AI, ElevenLabs, Twilio, AI/LLM integration, Cloudflare, Git &amp; GitHub.</p>
+<p>Laravel, PHP, Livewire, Python, Django, REST API development, React, React Native, Expo, Flutter, TailwindCSS, MySQL, PostgreSQL, SQLite, Supabase, HubSpot CRM, n8n automation, VAPI AI, ElevenLabs, Twilio, AI/LLM integration, Claude Agent SDK, MCP servers, AI agents, Cloudflare, Git &amp; GitHub.</p>
 <h2>Education</h2>
 <p>BS Computer Science, Central Philippine University (2021–2025). Vocational Degree in Computer Technology, Professional Electronics Institute, Inc. (2019–2021).</p>
 <h2>Projects</h2>
@@ -369,12 +369,12 @@ ${projectListItems}
 `.trim();
 
 writePage("/", stampPage({
-  title: "Jjay Fabor — Software Engineer & Aspiring Data Engineer",
+  title: "Jjay Fabor — Software Engineer & AI Engineer",
   description:
-    "Jaylord Vhan Fabor is a Software Engineer and aspiring Data Engineer in Iloilo, Philippines, building Python data pipelines, backends, and automation.",
+    "Jaylord Vhan Fabor is a Software Engineer and AI Engineer in Iloilo, Philippines, building AI agents, developer tools, workflow automation, and reliable backends.",
   canonical: "/",
   ogImage: "/logo-jf.png",
-  imageAlt: "Jaylord Vhan Fabor, Software Engineer and aspiring Data Engineer",
+  imageAlt: "Jaylord Vhan Fabor, Software Engineer and AI Engineer",
   ogImageWidth: 1026,
   ogImageHeight: 1026,
   twitterCard: "summary",
@@ -385,7 +385,7 @@ writePage("/", stampPage({
 // ---- /faq ---------------------------------------------------------------
 
 const faqDescription =
-  "Concise answers about Jjay Fabor's software engineering background, path into Data Engineering, specialties, tools, and availability.";
+  "Concise answers about Jjay Fabor's software engineering background, AI engineering work, specialties, tools, and availability.";
 
 const faqInner = `
 <p><a href="/">← Back to home</a></p>
@@ -436,7 +436,7 @@ const sitemapUrls = [
     images: [
       {
         loc: `${SITE}/logo/profile.jpg`,
-        title: "Jaylord Vhan Fabor — Software Engineer and aspiring Data Engineer",
+        title: "Jaylord Vhan Fabor — Software Engineer and AI Engineer",
       },
     ],
   },
@@ -449,7 +449,7 @@ const sitemapUrls = [
   {
     loc: `${SITE}/projects`,
     images: [
-      { loc: `${SITE}/logo-jf.png`, title: "Software and Data Engineering projects by Jjay Fabor" },
+      { loc: `${SITE}/logo-jf.png`, title: "Software and AI Engineering projects by Jjay Fabor" },
     ],
   },
   ...projects.map((p) => ({

@@ -8,19 +8,19 @@
 export const faq = [
   {
     q: "Who is Jjay Fabor?",
-    a: "I'm Jjay Fabor (full name Jaylord Vhan Fabor), a software engineer based in Iloilo City, Philippines, and an aspiring data engineer. I'm building toward Data Engineering through hands-on work with Python data pipelines, data quality, databases, and automation, while continuing to build reliable backend systems and AI-powered products.",
+    a: "I'm Jjay Fabor (full name Jaylord Vhan Fabor), a software engineer and AI engineer based in Iloilo City, Philippines. I build AI agents, developer tools, and workflow automation — software where AI does useful work inside real systems — on top of reliable backends.",
   },
   {
     q: "What does Jjay Fabor specialize in?",
-    a: "I focus on backend and full-stack development: Laravel/PHP and Python backends, REST API design, and business-process automation. I'm also building Data Engineering skills through Python data pipelines, cleaning and validation, relational data modeling, and database integrations. My AI work includes voice agents, n8n workflows, and large language model integrations for production apps.",
+    a: "I specialize in AI engineering and automation: building AI agents with the Claude Agent SDK, MCP servers and connectors, AI voice agents, n8n workflows, and large language model integrations for production apps. Underneath that is solid backend and full-stack work — Laravel/PHP and Python backends, REST API design, and business-process automation.",
   },
   {
     q: "What technologies and tools does Jjay Fabor use?",
-    a: "I work primarily with Laravel, PHP, Livewire, Python, and Django on the backend; React, React Native, Flutter, and TailwindCSS for web and mobile; and MySQL, PostgreSQL, SQLite, and Supabase for databases. For hands-on Data Engineering work, I use Pandas for data pipelines, cleaning, and validation, and I practice relational data modeling with MySQL, PostgreSQL, and SQLite. I also use n8n, VAPI AI, ElevenLabs, and Twilio for automation and AI voice agents.",
+    a: "I work primarily with Laravel, PHP, Livewire, Python, and Django on the backend; React, React Native, Flutter, and TailwindCSS for web and mobile; and MySQL, PostgreSQL, SQLite, and Supabase for databases. For AI and automation I use the Claude Agent SDK, MCP, n8n, Cloudflare Workers, VAPI AI, ElevenLabs, and Twilio.",
   },
   {
-    q: "What Data Engineering projects has Jjay Fabor built?",
-    a: "I've built AI Model Usage Analyzer, a Python and Pandas pipeline that cleans and validates API usage logs, analyzes IQR outliers, and exports analysis-ready CSV and JSON results. I also built HubSpot Pipeline Data Sync, a workflow and REST API integration that synchronizes CRM records with MySQL. These are hands-on projects supporting my ongoing transition into Data Engineering, not professional Data Engineer employment.",
+    q: "What AI engineering projects has Jjay Fabor built?",
+    a: "I've built Delphi, a self-hosted personal AI agent on the Claude Agent SDK with persistent memory, teachable skills, MCP connectors, and scheduled tasks, reachable over Telegram and Discord. At work I built n8n workflows that automate role-based document provisioning across the employee lifecycle, VAPI AI voice agents that handle 300+ outbound calls per campaign, and HubSpot custom-coded actions and API integrations. As a freelancer I built a REST API that an ElevenLabs voice agent calls over Twilio to authenticate users and book appointments live.",
   },
   {
     q: "Is Jjay Fabor available for freelance work or hire?",

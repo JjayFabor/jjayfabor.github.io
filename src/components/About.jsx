@@ -30,15 +30,14 @@ const About = () => {
   return (
     <ResumeSection id="about" title="About">
       <p className="text-brand-text/85 leading-relaxed">
-        I&apos;m a Software Engineer expanding into Data Engineering through
-        hands-on work with Python data pipelines, data quality, databases, and
-        automation. I also work at the intersection of{" "}
+        I&apos;m a Software Engineer and AI Engineer who likes building
+        things people and teams actually use. I work at the intersection of{" "}
         <strong className="font-semibold text-brand-text">
           software engineering, AI, and automation
         </strong>
-        , building backend applications, internal business tools, AI voice
-        agents, self-hosted AI agents, and automated workflows that connect
-        systems, APIs, and data.
+        : AI agents, developer tools, MCP servers, AI voice agents, internal
+        business tools, and automated workflows that connect systems, APIs,
+        and data.
       </p>
       <p className="text-brand-text/85 leading-relaxed mt-3">
         I care about taking software beyond the prototype stage &mdash; building

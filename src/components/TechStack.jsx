@@ -11,7 +11,7 @@ const skillGroups = [
   },
   {
     title: "Backend",
-    skills: ["Laravel", "Livewire", "Django", "Flask", "Linux"],
+    skills: ["Laravel", "Livewire", "Django", "Flask", "Pandas", "Linux"],
   },
   {
     title: "Mobile",
@@ -19,21 +19,21 @@ const skillGroups = [
   },
   {
     title: "AI & Automation",
-    skills: ["VAPI AI", "ElevenLabs", "Twilio", "n8n", "LLM Integration"],
+    skills: [
+      "Claude Agent SDK",
+      "MCP Servers",
+      "AI Agents",
+      "LLM Integration",
+      "n8n",
+      "Cloudflare Workers",
+      "VAPI AI",
+      "ElevenLabs",
+      "Twilio",
+    ],
   },
   {
     title: "Databases",
     skills: ["MySQL", "PostgreSQL", "SQLite", "Supabase"],
-  },
-  {
-    title: "Data Engineering (Learning)",
-    skills: [
-      "Pandas",
-      "Data Pipelines",
-      "Data Cleaning",
-      "Data Validation",
-      "Relational Data Modeling",
-    ],
   },
   {
     title: "Tools & Platforms",
